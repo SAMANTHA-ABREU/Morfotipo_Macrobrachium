@@ -208,6 +208,64 @@ units.tW_mTC = {'d', 'g'}; label.tW_mTC = {'time', 'weight'};
 temp.tW_mTC = C2K(28);  units.temp.tW_mTC = 'K'; label.temp.tW_mTC = 'temperature';
 bibkey.tW_mTC = 'Mora2005'; comment.tW_mTC = 'data for males TC extracted from fig. 8';
 
+LL_mTC = [ ... % Log carapace length (mm), Log total length (mm)
+1.05497	1.74315
+1.08304	1.72030
+1.08187	1.73299
+1.09006	1.73046
+1.09591	1.72792
+1.09708	1.71396
+1.08421	1.74822
+1.08421	1.76853
+1.09123	1.79137
+1.09240	1.80787
+1.10058	1.75457
+1.12398	1.74061
+1.11930	1.80914
+1.12281	1.81294
+1.14035	1.81929
+1.14971	1.81294
+1.16257	1.81294
+1.17076	1.80533
+1.17427	1.81041
+1.18129	1.80787
+1.17778	1.77868
+1.18246	1.82056
+1.16959	1.83071
+1.16725	1.83706
+1.17778	1.83452
+1.16491	1.86878
+1.19064	1.84340
+1.20000	1.84467
+1.21170	1.85355
+1.20585	1.84975
+1.20117	1.85736
+1.20702	1.88147
+1.21170	1.88782
+1.21988	1.87640
+1.21170	1.86878
+1.21170	1.86117
+1.22807	1.86371
+1.23626	1.86878
+1.23860	1.89289
+1.24561	1.88782
+1.25263	1.89289
+1.26082	1.88782
+1.24561	1.90178
+1.24678	1.90431
+1.29825	1.90431
+1.29825	1.91320
+1.29474	1.91827
+1.31813	1.93604
+1.33567	1.95381
+1.33333	1.97284
+1.36023	1.96904
+];
+data.LL_mTC(:,[2 1]) = 10.^(LL_mTC(:,[2 1]));
+data.LL_mTC = LL_mTC(:,[2 1])/10;
+units.LL_mTC   = {'cm', 'cm'};  label.LL_mTC = {'total length', 'carapace length'};  
+bibkey.LL_mTC = 'Mora2002';
+
 %Male morphotype CC
 data.tW_mCC = [ ... % time since metam (months), weight (g) 
 67.3	4.36
@@ -218,6 +276,38 @@ data.tW_mCC = [ ... % time since metam (months), weight (g)
 units.tW_mCC = {'d', 'g'}; label.tW_mCC = {'time', 'weight'};  
 temp.tW_mCC = C2K(28);  units.temp.tW_mCC = 'K'; label.temp.tW_mCC = 'temperature';
 bibkey.tW_mCC = 'Mora2005'; comment.tW_mCC = 'data for males CC extracted from fig. 8';
+ 
+ LL_mCC = [ ... % Log carapace length (mm), Log total length (mm)
+1.12515	1.81421
+1.13684	1.80533
+1.15673	1.77868
+1.18947	1.84467
+1.19532	1.83959
+1.21988	1.87640
+1.23041	1.82563
+1.26433	1.86371
+1.25614	1.87640
+1.27719	1.90305
+1.28655	1.90431
+1.28772	1.90939
+1.26901	1.91320
+1.27368	1.91320
+1.27953	1.91447
+1.27602	1.92335
+1.29942	1.89289
+1.30526	1.92970
+1.31462	1.93985
+1.32164	1.93604
+1.32281	1.93096
+1.35906	1.90939
+1.32398	1.97284
+1.35088	1.96015
+1.34386	1.99061
+];
+data.LL_mCC(:,[2 1]) = 10.^(LL_mCC(:,[2 1]));
+data.LL_mCC = LL_mCC(:,[2 1])/10;
+units.LL_mCC   = {'cm', 'cm'};  label.LL_mCC = {'total length', 'carapace length'};  
+bibkey.LL_mCC = 'Mora2002';
  
 %Male morphotype GC1
 data.tW_mGC1 = [ ... % time since metam (months), weight (g) 
@@ -230,6 +320,30 @@ units.tW_mGC1 = {'d', 'g'}; label.tW_mGC1 = {'time', 'weight'};
 temp.tW_mGC1 = C2K(28);  units.temp.tW_mGC1 = 'K'; label.temp.tW_mGC1 = 'temperature';
 bibkey.tW_mGC1 = 'Mora2005'; comment.tW_mGC1 = 'data for males GC1 extracted from fig. 8';
 
+LL_mGC1 = [ ... % Log carapace length (mm), Log total length (mm)
+1.30409	1.94112
+1.31696	1.92843
+1.37544	1.95254
+1.36842	1.98553
+1.40585	1.99949
+1.40585	2.00330
+1.41287	2.00711
+1.43158	2.06548
+1.43860	2.05279
+1.47251	2.04391
+1.45731	2.10102
+1.47719	2.09594
+1.48421	2.08452
+1.49825	2.08198
+1.49708	2.11497
+1.49825	2.14797
+1.50994	2.14797
+];
+data.LL_mGC1(:,[2 1]) = 10.^(LL_mGC1(:,[2 1]));
+data.LL_mGC1 = LL_mGC1(:,[2 1])/10;
+units.LL_mGC1   = {'cm', 'cm'};  label.LL_mGC1 = {'total length', 'carapace length'};  
+bibkey.LL_mGC1 = 'Mora2002';
+
 %Male morphotype GC2
 data.tW_mGC2 = [ ... % time since metam (months), weight (g) 
 67.3	8.31
@@ -240,6 +354,48 @@ data.tW_mGC2 = [ ... % time since metam (months), weight (g)
 units.tW_mGC2 = {'d', 'g'}; label.tW_mGC2 = {'time', 'weight'};  
 temp.tW_mGC2 = C2K(28);  units.temp.tW_mGC2 = 'K'; label.temp.tW_mGC2 = 'temperature';
 bibkey.tW_mGC2 = 'Mora2005'; comment.tW_mGC2 = 'data for males GC2 extracted from fig. 8';
+
+LL_mGC2 = [ ... % Log carapace length (mm), Log total length (mm)
+1.29825	1.94492
+1.33450	1.93350
+1.32865	1.94492
+1.32632	1.95761
+1.33567	1.97157
+1.35205	1.96269
+1.34620	1.98680
+1.36374	1.98173
+1.37076	1.98173
+1.37544	2.00711
+1.39415	1.99442
+1.39415	2.01218
+1.42339	2.00584
+1.43041	2.02360
+1.44678	2.05279
+1.44795	2.06041
+1.46433	2.05787
+1.46433	2.05660
+1.47018	2.05787
+1.46199	2.06929
+1.45380	2.09721
+1.45731	2.09086
+1.46316	2.08325
+1.47018	2.07690
+1.47602	2.07310
+1.47368	2.09213
+1.48538	2.08706
+1.48538	2.09467
+1.49591	2.08325
+1.47251	2.11244
+1.48304	2.10736
+1.50175	2.10482
+1.49708	2.10482
+1.50175	2.11497
+1.53450	2.11624
+];
+data.LL_mGC2(:,[2 1]) = 10.^LL_mGC2(:,[2 1]);
+data.LL_mGC2 = LL_mGC2(:,[2 1])/10;
+units.LL_mGC2   = {'cm', 'cm'};  label.LL_mGC2 = {'total length', 'carapace length'};  
+bibkey.LL_mGC2 = 'Mora2002';
 
 %% set weights for all real data
 weights = setweights(data, []);
