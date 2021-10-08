@@ -18,7 +18,7 @@ metaData.ecoCode.gender  = {'D'};
 metaData.ecoCode.reprod  = {'O'};
 metaData.T_typical  = C2K(28); % K, typical body temp
 metaData.data_0     = {'ab';'tj';'tp';'Lp';'Li';'Wdb';'Ri'}; 
-metaData.data_1     = {'L-W_F';'L-N_F';'Ww-N_F';'tW_mTC'};
+metaData.data_1     = {'L-W_F';'L-N_F';'Ww-N_F';'tW_mTC';'tW_mCC';'tW_mCG1';'tW_mGC2'};
 
 metaData.COMPLETE = 2.0; % using criteria of LikaKear2011
 
