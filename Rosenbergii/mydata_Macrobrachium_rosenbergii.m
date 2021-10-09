@@ -46,7 +46,7 @@ data.tp = 120;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp 
 data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New2000';   
   temp.am = C2K(28); units.temp.am = 'K'; label.temp.am = 'temperature';
  
-data.Ri  = 100000;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSilva2004';   
+data.Ri  = 100000/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSilva2004';   
   temp.Ri = C2K(28);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
 
 data.Li_F  = 29;   units.Li_F  = 'cm';   label.Li_F  = 'ultimate total length';  bibkey.Li_F  = 'New2002';
