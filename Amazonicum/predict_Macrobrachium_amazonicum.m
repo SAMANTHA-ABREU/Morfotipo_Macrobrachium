@@ -5,7 +5,6 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % compute temperature correction factors
   TC= tempcorr(temp.ab, T_ref, T_A); 
-  TC_WwN_F = tempcorr(temp.WwN_F, T_ref, T_A);
   TC_LN_F = tempcorr(temp.LN_F, T_ref, T_A);
   kT_M = k_M * TC;                  % 1/d, som maint rate coeff
 
@@ -83,17 +82,16 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   % uni-variate data
   % We are considering that, afer puberty, males have different zoom factors
   % Female
-  % wet weight-fecundity
-  L_F = (WwN_F(:,1)./ (1 + f * w)).^(1/3);   % cm, structural length
-  WwE_F = TC_WwN_F * 365 * reprod_rate_j(L_F, f, pars_R);  % annual fecundity
-
-  % length-wet weight
-  EWw_F = (LW_F(:,1) * del_MT_F).^3 * (1 + f * w); % g, wet weight  
+  % length- weight
+  EW_F = (LW_F(:,1) * del_MT_F).^3 * (1 + f * w); % g, wet weight  
 
   % length-fecundity
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose parameter vector at T
   EN_F = TC_LN_F * 365 * reprod_rate_j(LN_F(:,1) * del_MT_F, f, pars_R);% #, fecundity and length
 
+  % length-length
+  ELw_F = LL_F(:,1) * del_MT_F/ del_M; % cm, cephalothorax length
+  
   % Males
   % Male morphotype TC
   % length-length
@@ -113,9 +111,9 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % pack to output
   % the names of the fields in the structure must be the same as the data names in the mydata file
-  prdData.WwN_F = WwE_F;
-  prdData.LW_F = EWw_F;
+  prdData.LW_F = EW_F;
   prdData.LN_F = EN_F;
+  prdData.LL_F = ELw_F;
   prdData.LL_mTC = ELw_mTC;
   prdData.LL_mCC = ELw_mCC;
   prdData.LL_mGC1 = ELw_mGC1;
