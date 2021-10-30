@@ -61,7 +61,9 @@ data.Wdb = 5.86e-6; units.Wdb = 'g'; label.Wdb = 'dry weight at birth'; bibkey.W
 
 %data.Wwp = 1.7; units.Wwp = 'g'; label.Wwp = 'wet weight at puberty'; bibkey.Wwp = 'Gues1979'; comment.Wwp = 'Seven females which produced eggs for the first time (...) weighed 1.7(0.1)g';
 
-data.Ri  = 1700/365; units.Ri = '#/d'; label.Ri = 'maximum reprod rate'; bibkey.Ri = 'Hayd2013'; temp.Ri = C2K(28); units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
+data.Ri  = 3375/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'Silv2006'; temp.Ri = C2K(27.5);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
+ 
+  
    
 % uni-variate data
 
@@ -98,97 +100,64 @@ bibkey.tL_JT30 = 'Gues1979'; comment.tL_JT30 = 'Data extracted from Fig.3'
 
 
 % Female
-data.LW_F = [ ... % total length (mm), total weight (g)
-29.89	0.23
-31.78	0.26
-33.18	0.30
-34.25	0.33
-36.71	0.39
-38.27	0.43
-39.18	0.46
-41.64	0.54
-44.11	0.63
-46.33	0.71
-49.04	0.83
-50.77	0.90
-52.00	0.96
-53.97	1.06
-56.44	1.19
-57.34	1.25
-58.90	1.34
-60.47	1.43
-61.62	1.50
-62.93	1.58
-63.84	1.65
-65.07	1.73
+data.LL_F = [ ... % total length (cm),total cephalothorax length (cm)
+2.78873	1.2
+3.69014	1.64348
+4.53521	2.06087
+5.38028	2.47826
+6.22535	2.86957
+7.07042	3.28696
+7.91549	3.70435
+8.76056	4.12174
+9.60563	4.53913
+10.4507	4.95652
+10.9014	5.16522
  ];
-data.LW_F(:,1) = data.LW_F(:,1) / 10; % convert mm to cm
-units.LW_F = {'cm', 'g'}; label.LW_F = {'total length', 'total weight'};  
-temp.LW_F = C2K(30);  units.temp.LW_F = 'K'; label.temp.LW_F = 'temperature';
-bibkey.LW_F = 'Hayd2013';
-comment.LW_F = '';
+units.LL_F = {'cm', 'cm'}; label.LL_F = {'total length', 'total Cephalothorax length (cm)'};  
+temp.LL_F = C2K(27.5);  units.temp.LL_F = 'K'; label.temp.LL_F = 'temperature';
+bibkey.LL_F = 'Silv2006';
+comment.LL_F = '';
 
-data.LN_F = [ ... % total length (mm), total number of eggs/offspring (#)
-29.60	90.30
-30.40	90.30
-32.20	104.00
-33.90	119.00
-35.70	138.00
-37.40	157.00
-39.20	175.00
-41.00	196.00
-42.70	220.00
-44.50	244.00
-46.20	269.00
-48.00	297.00
-49.80	325.00
-51.50	355.00
-53.30	388.00
-55.00	422.00
-56.80	456.00
-58.60	494.00
-60.30	533.00
-62.10	575.00
-63.80	617.00
-65.00	647.00
+data.LN_F = [ ... % total length (cm), total number of eggs/offspring (#)
+5.2045	414.938
+5.65418	564.315
+6.10385	697.095
+6.55353	829.876
+7.00321	979.253
+7.45289	1112.03
+7.90257	1228.22
+8.35225	1377.59
+8.80193	1510.37
+9.25161	1643.15
+9.70128	1775.93
+10.151	1925.31
+10.6006	2058.09
  ];
-data.LN_F(:,1) = data.LN_F(:,1) / 10; % convert mm to cm
 data.LN_F(:,2) = data.LN_F(:,2) * 365 / 153; % convert to eggs by days
 units.LN_F = {'cm', '#'}; label.LN_F = {'total length', 'total number of eggs/offspring'};  
-temp.LN_F = C2K(30);  units.temp.LN_F = 'K'; label.temp.LN_F = 'temperature';
-bibkey.LN_F = 'Hayd2013';
+temp.LN_F = C2K(27.5);  units.temp.LN_F = 'K'; label.temp.LN_F = 'temperature';
+bibkey.LN_F = 'Silv2006';
 comment.LN_F = '';
 
-data.WwN_F = [ ... % total wet weight (g), total number of eggs/offspring (#)
-0.23	94.84
-0.24	99.35
-0.32	129.46
-0.40	158.06
-0.48	188.17
-0.57	216.77
-0.65	246.88
-0.73	275.48
-0.81	307.10
-0.90	335.70
-0.98	365.81
-1.06	394.41
-1.14	424.52
-1.22	454.62
-1.31	483.23
-1.39	513.33
-1.47	543.44
-1.55	572.04
-1.63	602.15
-1.72	630.75
-1.80	660.86
-1.88	690.97
-1.91	700.00
+data.LW_F = [ ... % total length (cm), total weight (g)
+2.79184	0.143541
+2.98776	0.191388
+3.72245	0.382775
+4.45714	0.669856
+5.19184	1.05263
+5.92653	1.5311
+6.66122	2.2488
+7.39592	2.96651
+8.13061	3.92344
+8.86531	5.07177
+9.6	    6.36364
+10.3347	7.89474
+10.9224	9.2823
  ];
-data.WwN_F(:,2) = data.WwN_F(:,2) * 365 / 153; % convert to eggs by days
-units.WwN_F = {'g', '#'}; label.WwN_F = {'total wet weight', 'total number of eggs/offspring'};  
-temp.WwN_F = C2K(30);  units.temp.WwN_F = 'K'; label.temp.WwN_F = 'temperature';
-bibkey.WwN_F = 'Hayd2013';
-comment.WwN_F = '';
+units.LW_F = {'cm', 'g'}; label.LW_F = {'total length', 'total weight'};  
+temp.LW_F = C2K(27.5);  units.temp.LW_F = 'K'; label.temp.LW_F = 'temperature';
+bibkey.LW_F = 'Silv2006';
+comment.LW_F = '';
 
 % Moraes-Riodades (2005) dates:
 %Bloco 1 31/10/02 02/12/02 06/01/03 03/02/03 10/03/03 5,5 months
@@ -425,9 +394,11 @@ metaData.discussion = struct('D1', D1,'D2', D2);
 %% Facts
 F1 = 'Males occur in four distinct morphotypes were identified: Translucent Claw (TC), Cinnamon Claw (CC), Green Claw 1 (GC1) and Green Claw 2 (GC2). They differed in cheliped morphology and some morphometric relationships.';
 metaData.bibkey.F1 = 'mora2004';
-F2 = 'Total lengths as the distance from the tip of rostrum to the end of telson';     
+F2 = 'Total lengths as the distance from the tip of rostrum to the end of telson';
 metaData.bibkey.D1 = {'Gues1979','Mora2005'};
-metaData.facts = struct('F1',F1,'F2',F2);
+F3 = 'The species presents two subpopulations: coastal and continental populations, but for the production of this model only data concerning coastal populations were used';
+metaData.bibkey.F3 = '';
+metaData.facts = struct('F1',F1,'F2',F2,'F3',F3);
 
 %% Links
 metaData.links.id_CoL = '894740fb9cd8342bf10138209be507f3'; % Cat of Life
@@ -478,15 +449,6 @@ bibkey = 'Hayd2007'; type = 'Article'; bib = [ ...
 'journal = {}, ' ...
 'volume = {}, ' ...
 'pages = {}'];
-metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
-%
-bibkey = 'Hayd2013'; type = 'Article'; bib = [ ...
-'author = {Hayd, Liliam, and Klaus Anger}, ' ...
-'year = {2013}, ' ...
-'title = {Reproductive and morphometric traits of \emph{Macrobrachium amazonicum} (Decapoda: Palaemonidae) from the Pantanal, Brazil, suggests initial speciation}, ' ...
-'journal = {Revista de Biología Tropical}, ' ...
-'volume = {61.1}, ' ...
-'pages = {39-57}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'Maci2009'; type = 'Article'; bib = [ ...
