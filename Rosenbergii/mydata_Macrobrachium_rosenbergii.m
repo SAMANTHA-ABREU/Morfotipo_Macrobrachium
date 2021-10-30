@@ -61,21 +61,21 @@ data.Li_SM  = 15.77;   units.Li_SM  = 'cm';   label.Li_SM  = 'ultimate total len
 % uni-variate data
 
 %Juveniles
- data.tW_J = [... % time (weeks),Weight (g)
- 2.01579	0.0444486
- 3.01244	0.076759
- 4.05562	0.0948383
- 5.07553	0.120033
- 6.09952	0.214072
- 7.07143	0.228571
- 8.09155	0.257327
- 9.01722	0.290806
- ];
- data.tW_J(:,1) = data.tW_J(:,1) * 7 + 16; % convert weeks to d
- units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
- temp.tW_J = C2K(26);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
- bibkey.tW_J = 'Raanan1984';
- comment.tW_J = 'Data for juveniles';
+%  data.tW_J = [... % time (weeks),Weight (g)
+%  2.01579	0.0444486
+%  3.01244	0.076759
+%  4.05562	0.0948383
+%  5.07553	0.120033
+%  6.09952	0.214072
+%  7.07143	0.228571
+%  8.09155	0.257327
+%  9.01722	0.290806
+%  ];
+%  data.tW_J(:,1) = data.tW_J(:,1) * 7 + 16; % convert weeks to d
+%  units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
+%  temp.tW_J = C2K(26);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
+%  bibkey.tW_J = 'Raanan1984';
+%  comment.tW_J = 'Data for juveniles';
 % %OU
 % data.tW_J = [... % time (days),Weight (g)
 % 170.666	17.4734
