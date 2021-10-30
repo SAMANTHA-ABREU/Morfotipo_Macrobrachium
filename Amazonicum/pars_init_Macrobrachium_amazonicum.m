@@ -26,17 +26,17 @@ par.s_G = 0.0001;     free.s_G   = 0;   units.s_G = '-';          label.s_G = 'G
 
 %% other parameters 
 par.del_M = 0.1445;   free.del_M = 0;   units.del_M = '-';        label.del_M = 'shape coefficient'; 
-par.del_MT_F = 0.14415;  free.del_MT_F = 1;   units.del_MT_F = '-';     label.del_MT_F = 'shape coefficient for total length for female'; 
-par.del_MT_mCC = 0.096676;  free.del_MT_mCC = 1;   units.del_MT_mCC = '-';   label.del_MT_mCC = 'shape coefficient for total length for male CC'; 
+par.del_MT_F = 0.1485;  free.del_MT_F = 1;   units.del_MT_F = '-';     label.del_MT_F = 'shape coefficient for total length for female'; 
+par.del_MT_mCC = 0.096681;  free.del_MT_mCC = 1;   units.del_MT_mCC = '-';   label.del_MT_mCC = 'shape coefficient for total length for male CC'; 
 par.del_MT_mGC1 = 0.1013;  free.del_MT_mGC1 = 1;   units.del_MT_mGC1 = '-';  label.del_MT_mGC1 = 'shape coefficient for total length for male GC1'; 
 par.del_MT_mGC2 = 0.10127;  free.del_MT_mGC2 = 1;   units.del_MT_mGC2 = '-';  label.del_MT_mGC2 = 'shape coefficient for total length for male GC2'; 
-par.del_MT_mTC = 0.09356;  free.del_MT_mTC = 1;   units.del_MT_mTC = '-';   label.del_MT_mTC = 'shape coefficient for total length for male TC'; 
+par.del_MT_mTC = 0.093556;  free.del_MT_mTC = 1;   units.del_MT_mTC = '-';   label.del_MT_mTC = 'shape coefficient for total length for male TC'; 
 par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
 par.f_tW = 1;         free.f_tW  = 0;   units.f_tW = '-';         label.f_tW = 'scaled functional response for tW data'; 
-par.z_mCC = 0.94739;  free.z_mCC = 1;   units.z_mCC = '-';        label.z_mCC = 'zoom factor for males CC'; 
+par.z_mCC = 0.94746;  free.z_mCC = 1;   units.z_mCC = '-';        label.z_mCC = 'zoom factor for males CC'; 
 par.z_mGC1 = 1.3169;  free.z_mGC1 = 1;   units.z_mGC1 = '-';       label.z_mGC1 = 'zoom factor for males GC1'; 
 par.z_mGC2 = 1.604;   free.z_mGC2 = 1;   units.z_mGC2 = '-';       label.z_mGC2 = 'zoom factor for males GC2'; 
-par.z_mTC = 0.87948;  free.z_mTC = 1;   units.z_mTC = '-';        label.z_mTC = 'zoom factor for males TC'; 
+par.z_mTC = 0.87942;  free.z_mTC = 1;   units.z_mTC = '-';        label.z_mTC = 'zoom factor for males TC'; 
 
 %% set chemical parameters from Kooy2010 
 [par, units, label, free] = addchem(par, units, label, free, metaData.phylum, metaData.class); 
