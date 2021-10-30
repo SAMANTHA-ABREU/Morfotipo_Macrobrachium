@@ -5,7 +5,12 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % compute temperature correction factors
   TC= tempcorr(temp.ab, T_ref, T_A); 
+  TC_tL_J = tempcorr(temp.tL_J, T_ref, T_A);
   TC_LN_F = tempcorr(temp.LN_F, T_ref, T_A);
+  TC_tW_TC = tempcorr(temp.tW_TC, T_ref, T_A);
+  TC_tW_CC = tempcorr(temp.tW_CC, T_ref, T_A);
+  TC_tW_GC1 = tempcorr(temp.tW_GC1, T_ref, T_A);
+  TC_tW_GC2 = tempcorr(temp.tW_GC2, T_ref, T_A);
   kT_M = k_M * TC;                  % 1/d, som maint rate coeff
 
   % zero-variate data
