@@ -7,10 +7,10 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   TC= tempcorr(temp.ab, T_ref, T_A); 
   TC_tL_J = tempcorr(temp.tL_J, T_ref, T_A);
   TC_LN_F = tempcorr(temp.LN_F, T_ref, T_A);
-  TC_tW_TC = tempcorr(temp.tW_TC, T_ref, T_A);
-  TC_tW_CC = tempcorr(temp.tW_CC, T_ref, T_A);
-  TC_tW_GC1 = tempcorr(temp.tW_GC1, T_ref, T_A);
-  TC_tW_GC2 = tempcorr(temp.tW_GC2, T_ref, T_A);
+  TC_tW_TC = tempcorr(temp.tW_mTC, T_ref, T_A);
+  TC_tW_CC = tempcorr(temp.tW_mCC, T_ref, T_A);
+  TC_tW_GC1 = tempcorr(temp.tW_mGC1, T_ref, T_A);
+  TC_tW_GC2 = tempcorr(temp.tW_mGC2, T_ref, T_A);
   kT_M = k_M * TC;                  % 1/d, som maint rate coeff
 
   % zero-variate data
@@ -73,7 +73,7 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % males
   %TC
-  p_Am_mTC = z_TC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  p_Am_mTC = z_mTC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mTC = p_Am_mTC/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mTC = E_G/ (kap* E_m_mTC);             % -, energy investment ratio
   m_Em_mTC = y_E_V * E_m_mTC/ E_G;         % mol/mol, reserve capacity 
@@ -82,7 +82,7 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   pars_tjmTC = [g_mTC k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males TC
 
   %CC
-  p_Am_mCC = z_CC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  p_Am_mCC = z_mCC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mCC = p_Am_mCC/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mCC = E_G/ (kap* E_m_mCC);             % -, energy investment ratio
   m_Em_mCC = y_E_V * E_m_mCC/ E_G;         % mol/mol, reserve capacity 
@@ -91,7 +91,7 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   pars_tjmCC = [g_mCC k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males CC
 
   %GC1
-  p_Am_mGC1 = z_GC1 * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  p_Am_mGC1 = z_mGC1 * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mGC1 = p_Am_mGC1/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mGC1 = E_G/ (kap* E_m_mGC1);             % -, energy investment ratio
   m_Em_mGC1 = y_E_V * E_m_mGC1/ E_G;         % mol/mol, reserve capacity 
@@ -100,7 +100,7 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   pars_tjmGC1 = [g_mGC1 k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males GC1
 
   %GC2
-  p_Am_mGC2 = z_GC2 * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  p_Am_mGC2 = z_mGC2 * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mGC2 = p_Am_mGC2/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mGC2 = E_G/ (kap* E_m_mGC2);             % -, energy investment ratio
   m_Em_mGC2 = y_E_V * E_m_mGC2/ E_G;         % mol/mol, reserve capacity 
@@ -143,73 +143,73 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   
   % Males
   % Male morphotype TC
-  % length-length
-  ELw_mTC = LL_mTC(:,1) * del_MT_mTC/ del_M; % cm, carapace length
-
   %time-weigth
   [t_jmTC, t_pmTC, t_bmTC, l_jmTC, l_pmTC, l_bmTC, l_imTC, rho_jmTC, rho_BmTC] = get_tj(pars_tjmTC, f);
-    kT_M = k_M * TC_tW_TC;
-    rT_jmTC = rho_jmTC * kT_M; 
-    rT_BmTC = rho_BmTC * kT_M;
-    tT_jmTC = (t_jmTC - t_bmTC)/ kT_M;
-    L_bmTC = L_mmTC * l_bmTC;  L_jmTC = L_mmTC * l_jmTC; L_imTC = L_mmTC * l_imTC;
-    L_bjmTC = L_bmTC * exp(tW_TC((tW_TC(:,1) <= tT_jmTC),1) *  rT_jmTC/ 3);
-    p_Am_TC = z_TC * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
-    L_i_TC = f * kap * p_Am_TC / p_M;     % cm, ultimate structural length at f
-    L_ji_TC = L_i_TC - (L_i_TC - L_jmTC) * exp( - rT_BmTC * (tW_TC((tW_TC(:,1) > tT_jmTC),1) - tT_jmTC)); % cm, structural length at time
-    EWw_TC = [L_bjmTC; L_ji_TC].^3 * (1 + f * w_mTC);
-    
+  kT_M = k_M * TC_tW_TC;
+  rT_jmTC = rho_jmTC * kT_M; 
+  rT_BmTC = rho_BmTC * kT_M;
+  tT_jmTC = (t_jmTC - t_bmTC)/ kT_M;
+  L_bmTC = L_mmTC * l_bmTC;  L_jmTC = L_mmTC * l_jmTC; L_imTC = L_mmTC * l_imTC;
+  L_bjmTC = L_bmTC * exp(tW_mTC((tW_mTC(:,1) <= tT_jmTC),1) *  rT_jmTC/ 3);
+  p_Am_TC = z_mTC * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
+  L_i_TC = f * kap * p_Am_TC / p_M;     % cm, ultimate structural length at f
+  L_ji_TC = L_i_TC - (L_i_TC - L_jmTC) * exp( - rT_BmTC * (tW_mTC((tW_mTC(:,1) > tT_jmTC),1) - tT_jmTC)); % cm, structural length at time
+  EWw_TC = [L_bjmTC; L_ji_TC].^3 * (1 + f * w_mTC);
+  
+  %length-length
+  ELw_mTC = LL_mTC(:,1) * del_MT_mTC/ del_M; % cm, carapace length
+
   % Male morphotype CC
+  %time-weigth
+  [t_jmCC, t_pmCC, t_bmCC, l_jmCC, l_pmCC, l_bmCC, l_imCC, rho_jmCC, rho_BmCC] = get_tj(pars_tjmCC, f);
+  kT_M = k_M * TC_tW_CC;
+  rT_jmCC = rho_jmCC * kT_M; 
+  rT_BmCC = rho_BmCC * kT_M;
+  tT_jmCC = (t_jmCC - t_bmCC)/ kT_M;
+  L_bmCC = L_mmCC * l_bmCC;  L_jmCC = L_mmCC * l_jmCC; L_imCC = L_mmCC * l_imCC;
+  L_bjmCC = L_bmCC * exp(tW_mCC((tW_mCC(:,1) <= tT_jmCC),1) *  rT_jmCC/ 3);
+  p_Am_CC = z_mCC * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
+  L_i_CC = f * kap * p_Am_CC / p_M;     % cm, ultimate structural length at f
+  L_ji_CC = L_i_CC - (L_i_CC - L_jmCC) * exp( - rT_BmCC * (tW_mCC((tW_mCC(:,1) > tT_jmCC),1) - tT_jmCC)); % cm, structural length at time
+  EWw_CC = [L_bjmCC; L_ji_CC].^3 * (1 + f * w_mCC);
+  
   % length-length
   ELw_mCC = LL_mCC(:,1) * del_MT_mCC/ del_M; % cm, carapace length
 
-%time-weigth
-  [t_jmCC, t_pmCC, t_bmCC, l_jmCC, l_pmCC, l_bmCC, l_imCC, rho_jmCC, rho_BmCC] = get_tj(pars_tjmCC, f);
-    kT_M = k_M * TC_tW_CC;
-    rT_jmCC = rho_jmCC * kT_M; 
-    rT_BmCC = rho_BmCC * kT_M;
-    tT_jmCC = (t_jmCC - t_bmCC)/ kT_M;
-    L_bmCC = L_mmCC * l_bmCC;  L_jmCC = L_mmCC * l_jmCC; L_imCC = L_mmCC * l_imCC;
-    L_bjmCC = L_bmCC * exp(tW_CC((tW_CC(:,1) <= tT_jmCC),1) *  rT_jmCC/ 3);
-    p_Am_CC = z_CC * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
-    L_i_CC = f * kap * p_Am_CC / p_M;     % cm, ultimate structural length at f
-    L_ji_CC = L_i_CC - (L_i_CC - L_jmCC) * exp( - rT_BmCC * (tW_CC((tW_CC(:,1) > tT_jmCC),1) - tT_jmCC)); % cm, structural length at time
-    EWw_CC = [L_bjmCC; L_ji_CC].^3 * (1 + f * w_mCC);
-    
   % Male morphotype GC1
+  %time-weigth
+  [t_jmGC1, t_pmGC1, t_bmGC1, l_jmGC1, l_pmGC1, l_bmGC1, l_imGC1, rho_jmGC1, rho_BmGC1] = get_tj(pars_tjmGC1, f);
+  kT_M = k_M * TC_tW_GC1;
+  rT_jmGC1 = rho_jmGC1 * kT_M; 
+  rT_BmGC1 = rho_BmGC1 * kT_M;
+  tT_jmGC1 = (t_jmGC1 - t_bmGC1)/ kT_M;
+  L_bmGC1 = L_mmGC1 * l_bmGC1;  L_jmGC1 = L_mmGC1 * l_jmGC1; L_imGC1 = L_mmGC1 * l_imGC1;
+  L_bjmGC1 = L_bmGC1 * exp(tW_mGC1((tW_mGC1(:,1) <= tT_jmGC1),1) *  rT_jmGC1/ 3);
+  p_Am_GC1 = z_mGC1 * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
+  L_i_GC1 = f * kap * p_Am_GC1 / p_M;     % cm, ultimate structural length at f
+  L_ji_GC1 = L_i_GC1 - (L_i_GC1 - L_jmGC1) * exp( - rT_BmGC1 * (tW_mGC1((tW_mGC1(:,1) > tT_jmGC1),1) - tT_jmGC1)); % cm, structural length at time
+  EWw_GC1 = [L_bjmGC1; L_ji_GC1].^3 * (1 + f * w_mGC1);
+  
   % length-length
   ELw_mGC1 = LL_mGC1(:,1) * del_MT_mGC1/ del_M; % cm, carapace length
 
-%time-weigth
-  [t_jmGC1, t_pmGC1, t_bmGC1, l_jmGC1, l_pmGC1, l_bmGC1, l_imGC1, rho_jmGC1, rho_BmGC1] = get_tj(pars_tjmGC1, f);
-    kT_M = k_M * TC_tW_GC1;
-    rT_jmGC1 = rho_jmGC1 * kT_M; 
-    rT_BmGC1 = rho_BmGC1 * kT_M;
-    tT_jmGC1 = (t_jmGC1 - t_bmGC1)/ kT_M;
-    L_bmGC1 = L_mmGC1 * l_bmGC1;  L_jmGC1 = L_mmGC1 * l_jmGC1; L_imGC1 = L_mmGC1 * l_imGC1;
-    L_bjmGC1 = L_bmGC1 * exp(tW_GC1((tW_GC1(:,1) <= tT_jmGC1),1) *  rT_jmGC1/ 3);
-    p_Am_GC1 = z_GC1 * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
-    L_i_GC1 = f * kap * p_Am_GC1 / p_M;     % cm, ultimate structural length at f
-    L_ji_GC1 = L_i_GC1 - (L_i_GC1 - L_jmGC1) * exp( - rT_BmGC1 * (tW_GC1((tW_GC1(:,1) > tT_jmGC1),1) - tT_jmGC1)); % cm, structural length at time
-    EWw_GC1 = [L_bjmGC1; L_ji_GC1].^3 * (1 + f * w_mGC1);
-    
   % Male morphotype GC2
+  %time-weigth
+  [t_jmGC2, t_pmGC2, t_bmGC2, l_jmGC2, l_pmGC2, l_bmGC2, l_imGC2, rho_jmGC2, rho_BmGC2] = get_tj(pars_tjmGC2, f);
+  kT_M = k_M * TC_tW_GC2;
+  rT_jmGC2 = rho_jmGC2 * kT_M; 
+  rT_BmGC2 = rho_BmGC2 * kT_M;
+  tT_jmGC2 = (t_jmGC2 - t_bmGC2)/ kT_M;
+  L_bmGC2 = L_mmGC2 * l_bmGC2;  L_jmGC2 = L_mmGC2 * l_jmGC2; L_imGC2 = L_mmGC2 * l_imTC;
+  L_bjmGC2 = L_bmGC2 * exp(tW_mGC2((tW_mGC2(:,1) <= tT_jmGC2),1) *  rT_jmGC2/ 3);
+  p_Am_GC2 = z_mGC2 * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
+  L_i_GC2 = f * kap * p_Am_GC2 / p_M;     % cm, ultimate structural length at f
+  L_ji_GC2 = L_i_GC2 - (L_i_GC2 - L_jmGC2) * exp( - rT_BmGC2 * (tW_mGC2((tW_mGC2(:,1) > tT_jmGC2),1) - tT_jmGC2)); % cm, structural length at time
+  EWw_GC2 = [L_bjmGC2; L_ji_GC2].^3 * (1 + f * w_mGC2);
+
   % length-length
   ELw_mGC2 = LL_mGC2(:,1) * del_MT_mGC2/ del_M; % cm, carapace length
 
-%time-weigth
-  [t_jmGC2, t_pmGC2, t_bmGC2, l_jmGC2, l_pmGC2, l_bmGC2, l_imGC2, rho_jmGC2, rho_BmGC2] = get_tj(pars_tjmGC2, f);
-    kT_M = k_M * TC_tW_GC2;
-    rT_jmGC2 = rho_jmGC2 * kT_M; 
-    rT_BmGC2 = rho_BmGC2 * kT_M;
-    tT_jmGC2 = (t_jmGC2 - t_bmGC2)/ kT_M;
-    L_bmGC2 = L_mmGC2 * l_bmGC2;  L_jmGC2 = L_mmGC2 * l_jmGC2; L_imGC2 = L_mmGC2 * l_imTC;
-    L_bjmGC2 = L_bmGC2 * exp(tW_GC2((tW_GC2(:,1) <= tT_jmGC2),1) *  rT_jmGC2/ 3);
-    p_Am_GC2 = z_GC2 * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
-    L_i_GC2 = f * kap * p_Am_GC2 / p_M;     % cm, ultimate structural length at f
-    L_ji_GC2 = L_i_GC2 - (L_i_GC2 - L_jmGC2) * exp( - rT_BmGC2 * (tW_GC2((tW_GC2(:,1) > tT_jmGC2),1) - tT_jmGC2)); % cm, structural length at time
-    EWw_GC2 = [L_bjmGC2; L_ji_GC2].^3 * (1 + f * w_mGC2);
-    CC
   % pack to output
   % the names of the fields in the structure must be the same as the data names in the mydata file
   prdData.tL_J = ELw_J;
