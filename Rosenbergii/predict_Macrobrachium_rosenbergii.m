@@ -57,7 +57,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   % compute temperature correction factors
   TC_28 = tempcorr(temp.ab, T_ref, T_A);
   TC_tL_F = tempcorr(temp.tL_F, T_ref, T_A);
-%   TC_tW_J = tempcorr(temp.tW_J, T_ref, T_A);
+  TC_tW_J = tempcorr(temp.tW_J, T_ref, T_A);
   TC_tW_SM = tempcorr(temp.tW_SM, T_ref, T_A);
   TC_tW_OC = tempcorr(temp.tW_OC, T_ref, T_A);
   TC_tW_BC = tempcorr(temp.tW_BC, T_ref, T_A);
@@ -168,13 +168,13 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
    
     %Juveniles
     %time-weight
-%     [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);
-%     kT_M = k_M * TC_tW_J; 
-%     rT_j = rho_j * kT_M; 
-%     rT_B = rho_B * kT_M;        
-%     L_b = L_m * l_b;  
-%     L_J = L_b * exp(rT_j * tW_J(:,1)/ 3);  
-%     EWw_J = L_J.^3 * (1 + f * w) * 1e6; % g, wet weight
+    [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);
+    kT_M = k_M * TC_tW_J; 
+    rT_j = rho_j * kT_M; 
+    rT_B = rho_B * kT_M;        
+    L_b = L_m * l_b;  
+    L_J = L_b * exp(rT_j * tW_J(:,1)/ 3);  
+    EWw_J = L_J.^3 * (1 + f * w); % g, wet weight
     
     %Female
     %time-length
@@ -271,7 +271,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
     EWw_BC = [L_bjmBC; L_ji_BC].^3 * (1 + f * w_mBC);
   % pack to output
   % the names of the fields in the structure must be the same as the data names in the mydata file
- %   prdData.tW_J = EWw_J;
+  prdData.tW_J = EWw_J;
   prdData.tL_F = ELw_F;
   prdData.LW_F = EWw_F;
   prdData.tW_SM = EWw_SM;
