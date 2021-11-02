@@ -61,40 +61,21 @@ data.Li_SM  = 15.77;   units.Li_SM  = 'cm';   label.Li_SM  = 'ultimate total len
 % uni-variate data
 
 %Juveniles
- data.tW_J = [... % time (weeks),Weight (g)
- 2.01579	0.0444486
- 3.01244	0.076759
- 4.05562	0.0948383
- 5.07553	0.120033
- 6.09952	0.214072
- 7.07143	0.228571
- 8.09155	0.257327
- 9.01722	0.290806
+data.tW_J = [... % time (weeks),Weight (g)
+2.01579	0.0444486
+3.01244	0.076759
+4.05562	0.0948383
+5.07553	0.120033
+6.09952	0.214072
+7.07143	0.228571
+8.09155	0.257327
+9.01722	0.290806
  ];
- data.tW_J(:,1) = data.tW_J(:,1) * 7 + 16; % convert weeks to d
- units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
- temp.tW_J = C2K(26);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
- bibkey.tW_J = 'Raanan1984';
- comment.tW_J = 'Data for juveniles';
-% %OU
-% data.tW_J = [... % time (days),Weight (g)
-% 170.666	17.4734
-% 166.287	17.6119
-% 169.649	18.31
-% 168.714	18.6817
-% 168.738	18.5422
-% 226.815	20.1353
-% 230.339	19.9037
-% 229.485	19.8105
-% 225.162	19.6236
-% 232.17	19.3927
-% 229.566	19.3456
-% ];
-% %data.tW_J(:,1) = data.tW_J(:,1) * 7; % convert weeks to d
-% units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
-% temp.tW_J = C2K(29);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
-% bibkey.tW_J = 'Mancebo1978';
-% comment.tW_J = 'Data for juveniles';
+data.tW_J(:,1) = data.tW_J(:,1) * 7 + 16; % convert weeks to d
+units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
+temp.tW_J = C2K(26);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
+bibkey.tW_J = 'Raanan1984';
+comment.tW_J = 'Data for juveniles';
 
 %Females
 data.LW_F = [... % length (cm),weight (g)
@@ -116,8 +97,7 @@ data.LW_F = [... % length (cm),weight (g)
 20.40	114.00
 21.40	142.00
 22.40	174.00
-];
-%data.LW_F(:,1) = data.LW_F(:,1) / 24; % convert h to d
+ ];
 units.LW_F = {'cm', 'g'}; label.LW_F = {'length (cm)', 'weight (g)'};  
 temp.LW_F = C2K(28);  units.temp.LW_F = 'K'; label.temp.LW_F = 'temperature';
 bibkey.LW_F = 'Lalrinsanga2012';
@@ -150,47 +130,60 @@ data.tL_F = [... % time (months), length (mm)
 24.1287	275.461
 25.079	278.212
 25.9341	278.528
-];
+ ];
 data.tL_F(:,1) = data.tL_F(:,1) * 30+16; % convert months to d
 data.tL_F(:,2) = data.tL_F(:,2) / 10; % convert mm to cm
 units.tL_F = {'d', 'cm'}; label.tL_F = {'time for a day', 'total length'};  
 temp.tL_F = C2K(30);  units.temp.tL_F = 'K'; label.temp.tL_F = 'temperature';
 bibkey.tL_F = 'ITARIKRTsHNAN1997';
 
+data.tW_F = [... % time (days),Weight (g/2m²)
+45.00	5.27
+48.57	5.18
+52.42	5.08
+56.82	7.73
+59.85	10.43
+64.25	13.08
+68.92	24.04
+73.04	29.47
+74.96	34.96
+77.44	37.67
+81.56	43.10
+85.68	51.31
+87.88	59.56
+89.80	70.59
+93.91	98.19
+96.37	114.74
+98.02	128.55
+101.85	153.38
+105.43	156.06
+110.10	167.02
+114.77	183.52
+115.86	197.34
+117.50	219.46
+118.59	238.82
+120.77	263.70
+121.86	280.29
+122.68	288.58
+125.14	321.75
+127.05	349.41
+128.14	363.23
+129.51	379.81
+130.88	385.32
+135.00	393.52
+138.85	407.27
+141.59	421.05
+143.23	434.86
+144.33	445.91
+147.06	473.54
+151.16	520.53
+ ];
+data.tW_F(:,1) = data.tW_F(:,1) + 16; 
+units.tW_F = {'d', 'g'}; label.tW_F = {'time for a day', 'total weight'};  
+temp.tW_F = C2K(26);  units.temp.tW_F = 'K'; label.temp.tW_F = 'temperature';
+bibkey.tW_F = 'Sagi1986';
 %Males
 %SM
-% data.tW_SM = [... % time (weeks),Weight (g)
-% -0.21	2.96
-% 0.54	3.68
-% 1.29	4.58
-% 2.04	5.52
-% 2.79	6.68
-% 3.55	7.94
-% 4.29	8.65
-% 5.04	8.96
-% 5.78	9.23
-% 6.53	9.99
-% 7.28	10.84
-% 8.03	11.65
-% 8.78	12.27
-% 9.53	12.85
-% 10.28	13.52
-% 11.02	14.24
-% 11.77	15.04
-% 12.52	15.67
-% 13.27	16.30
-% 14.02	16.88
-% 14.76	17.10
-% 15.50	17.36
-% 15.85	17.50
-% ];
-% data.tW_SM(:,1) = data.tW_SM(:,1) * 7; % convert weeks to day
-% units.tW_SM = {'d', 'g'}; label.tW_SM = {'time for a day', 'total weight'};  
-% temp.tW_SM = C2K(27.35);  units.temp.tW_SM = 'K'; label.temp.tW_SM = 'temperature';
-% bibkey.tW_SM = 'Karplus1992';
-
-%OU
-
 data.tW_SM = [... % time (weeks),Weight (g)
 -0.0580162	0.24791
 2.07189	0.571104
@@ -203,7 +196,7 @@ data.tW_SM = [... % time (weeks),Weight (g)
 15.8726	1.35367
 17.9938	1.41239
 19.9849	1.54545
-];
+ ];
 data.tW_SM(:,1) = data.tW_SM(:,1) * 7 + 120; % convert weeks to d
 data.tW_SM(:,2) = exp(data.tW_SM(:,2)); % convert logs of masses to masses
 units.tW_SM = {'d', 'g'}; label.tW_SM = {'time for a day', 'total weight'};  
@@ -211,22 +204,6 @@ temp.tW_SM = C2K(27);  units.temp.tW_SM = 'K'; label.temp.tW_SM = 'temperature';
 bibkey.tW_SM = 'Raanan1991';
 
 %OC
-% data.tW_OC = [... % time (weeks),Weight (g)
-% 0.0701081	9.16649
-% 2.05476	14.4754
-% 4.07725	19.1763
-% 6.0594	29.1518
-% 8.0783	40.5483
-% 10.0224	51.5377
-% 12.0403	64.7602
-% ];
-% data.tW_OC(:,1) = data.tW_OC(:,1) * 7; % convert weeks to d
-% units.tW_OC = {'d', 'g'}; label.tW_OC = {'time for a day', 'total weight'};  
-% temp.tW_OC = C2K(27.7);  units.temp.tW_OC = 'K'; label.temp.tW_OC = 'temperature';
-% bibkey.tW_OC = 'Karplus1991';
-
-%OU
-
 data.tW_OC = [... % time (weeks),Weight (g)
 0.0963288	0.909131
 2.03248	1.38101
@@ -239,14 +216,14 @@ data.tW_OC = [... % time (weeks),Weight (g)
 15.9928	2.98182
 17.9817	3.04875
 19.9781	3.33883
-];
+ ];
 data.tW_OC(:,1) = data.tW_OC(:,1) * 7 + 120; % convert weeks to d
 data.tW_OC(:,2) = exp(data.tW_OC(:,2)); % convert logs of masses to masses
 units.tW_OC = {'d', 'g'}; label.tW_OC = {'time for a day', 'total weight'};  
 temp.tW_OC = C2K(27);  units.temp.tW_OC = 'K'; label.temp.tW_OC = 'temperature';
 bibkey.tW_OC = 'Raanan1991';
-% 
-% %BC
+ 
+%BC
 data.tW_BC = [... % time (weeks),Weight (g)
 0.0139567	2.42149
 2.00977	2.69505
@@ -362,15 +339,6 @@ bibkey = 'Iketani2016'; type = 'Article'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-% bibkey = 'NaguluBanoth2011'; type = 'Article'; bib = [ ...
-% 'author = {Nagulu, Banoth, et al}, ' ...
-% 'year = {2011}, ' ...
-% 'title = {Estimation of the growth curve parameters in Macrobrachium rosenbergii}, ' ...
-% 'journal = {Continental Journal of Fisheries and Aquatic Science}, ' ...
-% 'volume = {5.1}, ' ...
-% 'pages = {38-48}'];
-% metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
-%
 bibkey = 'Raanan1984'; type = 'Article'; bib = [ ...
 'author = {Ra´Anan, Ziva, and Dan Cohen}, ' ...
 'year = {1984}, ' ...
@@ -378,15 +346,6 @@ bibkey = 'Raanan1984'; type = 'Article'; bib = [ ...
 'journal = {The Biological Bulletin}, ' ...
 'volume = {166}, ' ...
 'pages = {22-31}'];
-metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
-%
-bibkey = 'Mancebo1978'; type = 'Article'; bib = [ ...
-'author = {Mancebo, V. J.}, ' ...
-'year = {1978}, ' ...
-'title = {Growth in tank‐reared populations of the Malaysian prawn, Macrobrachium rosenbergii (de Man)}, ' ...
-'journal = {Proceedings of the annual meeting‐World Mariculture Society}, ' ...
-'volume = {9}, ' ...
-'pages = {83-90}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'Lalrinsanga2012'; type = 'Article'; bib = [ ...
@@ -407,13 +366,13 @@ bibkey = 'ITARIKRTsHNAN1997'; type = 'Article'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'Karplus1992'; type = 'Article'; bib = [ ...
-'author = {Ilan Karplus, et al.}, ' ...
-'year = {1992}, ' ...
-'title = {Social control of growth in Macrobrachium rosenbergii. III. The role of claws in bull-runt interactions.}, ' ...
+bibkey = 'Sagi1986'; type = 'Article'; bib = [ ...
+'author = {Amir Sagi, Ziva Ra´anan, Dan Cohen and Yohanan Wax}, ' ...
+'year = {1986}, ' ...
+'title = Production of Macrobrachium rosenbergii in monosex populations: yield characteristics under intensive monoculture conditions in cages.}, ' ...
 'journal = {Aquaculture}, ' ...
-'volume = {105}, ' ...
-'pages = {281-296}'];
+'volume = {51}, ' ...
+'pages = {265-275}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'Raanan1991'; type = 'Article'; bib = [ ...
@@ -423,13 +382,4 @@ bibkey = 'Raanan1991'; type = 'Article'; bib = [ ...
 'journal = {The Biological Bulletin}, ' ...
 'volume = {181}, ' ...
 'pages = {379-386}'];
-metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
-%
-bibkey = 'Karplus1991'; type = 'Article'; bib = [ ...
-'author = {Ilan Karplus, et al.}, ' ...
-'year = {1991}, ' ...
-'title = {Social control of growth in Macrobrachium rosenbergii. II. The “leapfrog” growth pattern.}, ' ...
-'journal = {Aquaculture}, ' ...
-'volume = {96}, ' ...
-'pages = {353-365}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
