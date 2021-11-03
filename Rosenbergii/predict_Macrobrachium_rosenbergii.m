@@ -146,7 +146,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   p_Am = z * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
   L_i = f * kap * p_Am / p_M;     % cm, ultimate structural length at f
   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tW_F((tW_F(:,1) > tT_j),1) - tT_j)); % cm, structural length at time
-  EW = [L_bj; L_ji].^3 * (1 + f * w);
+  EW_F = [L_bj; L_ji].^3 * (1 + f * w);
   
   %Males
   %SM
