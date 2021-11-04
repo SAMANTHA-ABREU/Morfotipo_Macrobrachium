@@ -7,7 +7,6 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   TC_28 = tempcorr(temp.ab, T_ref, T_A);
   TC_tL_F = tempcorr(temp.tL_F, T_ref, T_A);
   TC_tW_J = tempcorr(temp.tW_J, T_ref, T_A);
-  TC_tW_F = tempcorr(temp.tW_F, T_ref, T_A);
   TC_tW_SM = tempcorr(temp.tW_SM, T_ref, T_A);
   TC_tW_OC = tempcorr(temp.tW_OC, T_ref, T_A);
   TC_tW_BC = tempcorr(temp.tW_BC, T_ref, T_A);
@@ -135,19 +134,6 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   %length-weigth
   EWw_F = (LW_F(:,1) * del_M).^3 * (1 + f * w);
   
-  %time-weigth
-  [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);
-  kT_M = k_M * TC_tW_F;
-  rT_j = rho_j * kT_M; 
-  rT_B = rho_B * kT_M;
-  tT_j = (t_j - t_b)/ kT_M;
-  L_b = L_m * l_b;  L_j = L_m * l_j; L_i = L_m * l_i;
-  L_bj = L_b * exp(tW_F((tW_F(:,1) <= tT_j),1) *  rT_j/ 3);
-  p_Am = z * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
-  L_i = f * kap * p_Am / p_M;     % cm, ultimate structural length at f
-  L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tW_F((tW_F(:,1) > tT_j),1) - tT_j)); % cm, structural length at time
-  EW_F = [L_bj; L_ji].^3 * (1 + f * w);
-  
   %Males
   %SM
   %time-weigth
@@ -195,7 +181,6 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   prdData.tW_J = EWw_J;
   prdData.tL_F = ELw_F;
   prdData.LW_F = EWw_F;
-  prdData.tW_F = EW_F;
   prdData.tW_SM = EWw_SM;
   prdData.tW_OC = EWw_OC;
   prdData.tW_BC = EWw_BC;
