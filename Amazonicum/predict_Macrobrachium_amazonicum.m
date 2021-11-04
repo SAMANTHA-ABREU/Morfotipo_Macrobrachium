@@ -4,15 +4,19 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   vars_pull(cPar);  vars_pull(data);  vars_pull(auxData);
 
   % compute temperature correction factors
-  TC= tempcorr(temp.ab, T_ref, T_A); 
-  TC_tL_J = tempcorr(temp.tL_J, T_ref, T_A);
+  TC_ab_T24 = tempcorr(temp.ab_T24, T_ref, T_A);
+  TC_ab_T30 = tempcorr(temp.ab_T30, T_ref, T_A);
+  TC_tj = tempcorr(temp.tj, T_ref, T_A);
+  TC_Lp = tempcorr(temp.Lp, T_ref, T_A);
+  TC_Ri = tempcorr(temp.Ri, T_ref, T_A);
+  TC_tL_JT25 = tempcorr(temp.tL_JT25, T_ref, T_A);
   TC_LN_F = tempcorr(temp.LN_F, T_ref, T_A);
+%   TC_tL_F = tempcorr(temp.tL_F, T_ref, T_A);
   TC_tW_TC = tempcorr(temp.tW_mTC, T_ref, T_A);
   TC_tW_CC = tempcorr(temp.tW_mCC, T_ref, T_A);
   TC_tW_GC1 = tempcorr(temp.tW_mGC1, T_ref, T_A);
   TC_tW_GC2 = tempcorr(temp.tW_mGC2, T_ref, T_A);
-  kT_M = k_M * TC;                  % 1/d, som maint rate coeff
-
+  
   % zero-variate data
 
   % life cycle
@@ -24,18 +28,20 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   Ww_b = L_b^3 *(1 + f * w);        % g, wet weight at birth
   Wd_b = L_b^3 * d_V * (1 + f * w); % g, dry weight at birth
   t_0 = 0;
-  aT_b = t_0 + t_b/ kT_M;        % d, age at birth
+  aT24_b = t_b/ k_M/ TC_ab_T24;     % d, age at birth at f and T 24 °C
+  aT30_b = t_b/ k_M/ TC_ab_T30;     % d, age at birth at f and T 30 °C
 
   % metam
   L_j = L_m * l_j;                  % cm, structural length at metam at f
   Lw_j = L_j/ del_M;                % cm, total length at metam
+  kT_M = k_M * TC_tj;                  % 1/d, som maint rate coeff
   tT_j = (t_j-t_b)/ kT_M;           % d, time since birth at metam at f and T
 
   % puberty 
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
   L_p = L_p/ del_M;                 % cm, total length at puberty at f 
+  kT_M = k_M * TC_Lp;                  % 1/d, som maint rate coeff
   tT_p = (t_p-t_j)/ kT_M;           % d, time since metam at puberty at f
-
 
   % ultimate
   L_i = L_m * l_i;                  % cm, ultimate structural length at f
@@ -64,7 +70,7 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % reproduction
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose parameter vector at T
-  RT_i = TC * reprod_rate_j(L_i, f, pars_R);                    % #/d, ultimate reproduction rate at T
+  RT_i = TC_Ri * reprod_rate_j(L_i, f, pars_R);                    % #/d, ultimate reproduction rate at T
 
   % life span
   pars_tm = [g; l_T; h_a/ k_M^2; s_G];  % compose parameter vector at T_ref
@@ -110,7 +116,8 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % pack to output
   % the names of the fields in the structure must be the same as the data names in the mydata file
-  prdData.ab = aT_b;
+  prdData.ab_T24 = aT24_b;
+  prdData.ab_T30 = aT30_b;
   prdData.tj = tT_j;
   prdData.Lp = L_p;
   prdData.Li_F = Lw_i_F;
@@ -122,14 +129,26 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   prdData.Ri = RT_i;
 
   % uni-variate data
-  %Juveniles
-  % time-length
-  [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f_tL);
-  kT_M = k_M * TC_tL_J;  rT_B = rho_B * kT_M; L_0 = Lw_0 * del_M; L_i = L_m * l_i;
-  L = L_i - (L_i - L_0) * exp( - rT_B * tL_J(:,1)); % cm, struc length females
-  ELw_J = L / del_M;
-  
   % We are considering that, afer puberty, males have different zoom factors
+  %Juveniles
+  %indoors (low temperature)
+  [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);
+  kT_M = k_M * TC_tL_JT25;
+  rT_B = rho_B * kT_M;
+  L_b = L_m * l_b;
+  L_j = L_m * l_j;
+  L = L_j - (L_j - L_b) * exp( - rT_B * tL_JT25(:,1)); % cm, struc length females
+  ELw_JT25 = L / del_M; % cm, length juveniles, indoors
+  
+  %outdoors (high temperature)
+  [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);
+  kT_M = k_M * TC_ab_T30;
+  rT_B = rho_B * kT_M;
+  L_b = L_m * l_b;
+  L_j = L_m * l_j;
+  L = L_j - (L_j - L_b) * exp( - rT_B * tL_JT30(:,1)); % cm, struc length females
+  ELw_JT30 = L / del_M; % cm, length juveniles, outdoors
+  
   % Female
   % length- weight
   EW_F = (LW_F(:,1) * del_MT_F).^3 * (1 + f * w); % g, wet weight  
@@ -140,9 +159,18 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % length-length
   ELw_F = LL_F(:,1) * del_MT_F/ del_M; % cm, cephalothorax length
+
+  % time-length
+%   [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);
+%   kT_M = k_M * TC_tL_F; rT_B = rho_B * kT_M; rT_j = rho_j * kT_M; tT_j = (t_j - t_b)/ kT_M;
+%   L_b = L_m * l_b;  L_j = L_m * l_j; L_i = L_m * l_i;
+%   L_bj = L_b * exp(tL_F(tL_F(:,1) < tT_j,1) * rT_j/ 3);
+%   L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_F(tL_F(:,1) >= tT_j,1) - tT_j)); 
+%   EL_F = [L_bj; L_ji]/ del_M; % cm, total length
+
+  %Males
+  %Male morphotype TC
   
-  % Males
-  % Male morphotype TC
   %time-weigth
   [t_jmTC, t_pmTC, t_bmTC, l_jmTC, l_pmTC, l_bmTC, l_imTC, rho_jmTC, rho_BmTC] = get_tj(pars_tjmTC, f);
   kT_M = k_M * TC_tW_TC;
@@ -212,16 +240,18 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % pack to output
   % the names of the fields in the structure must be the same as the data names in the mydata file
-  prdData.tL_J = ELw_J;
+  prdData.tL_JT25 = ELw_JT25;
+  prdData.tL_JT30 = ELw_JT30;
   prdData.LW_F = EW_F;
   prdData.LN_F = EN_F;
   prdData.LL_F = ELw_F;
+%   prdData.tL_F = EL_F;
   prdData.LL_mTC = ELw_mTC;
-  prdData.tW_TC = EWw_TC;
+  prdData.tW_mTC = EWw_TC;
   prdData.LL_mCC = ELw_mCC;
-  prdData.tW_CC = EWw_CC;
+  prdData.tW_mCC = EWw_CC;
   prdData.LL_mGC1 = ELw_mGC1;
-  prdData.tW_GC1 = EWw_GC1;
+  prdData.tW_mGC1 = EWw_GC1;
   prdData.LL_mGC2 = ELw_mGC2;
-  prdData.tW_GC2 = EWw_GC2;
+  prdData.tW_mGC2 = EWw_GC2;
 end
