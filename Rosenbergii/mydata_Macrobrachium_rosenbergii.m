@@ -137,51 +137,6 @@ units.tL_F = {'d', 'cm'}; label.tL_F = {'time for a day', 'total length'};
 temp.tL_F = C2K(30);  units.temp.tL_F = 'K'; label.temp.tL_F = 'temperature';
 bibkey.tL_F = 'ITARIKRTsHNAN1997';
 
-data.tW_F = [... % time (days),Weight (g/2m²)
-45.00	5.27
-48.57	5.18
-52.42	5.08
-56.82	7.73
-59.85	10.43
-64.25	13.08
-68.92	24.04
-73.04	29.47
-74.96	34.96
-77.44	37.67
-81.56	43.10
-85.68	51.31
-87.88	59.56
-89.80	70.59
-93.91	98.19
-96.37	114.74
-98.02	128.55
-101.85	153.38
-105.43	156.06
-110.10	167.02
-114.77	183.52
-115.86	197.34
-117.50	219.46
-118.59	238.82
-120.77	263.70
-121.86	280.29
-122.68	288.58
-125.14	321.75
-127.05	349.41
-128.14	363.23
-129.51	379.81
-130.88	385.32
-135.00	393.52
-138.85	407.27
-141.59	421.05
-143.23	434.86
-144.33	445.91
-147.06	473.54
-151.16	520.53
- ];
-data.tW_F(:,1) = data.tW_F(:,1) + 16; 
-units.tW_F = {'d', 'g'}; label.tW_F = {'time for a day', 'total weight'};  
-temp.tW_F = C2K(26);  units.temp.tW_F = 'K'; label.temp.tW_F = 'temperature';
-bibkey.tW_F = 'Sagi1986';
 %Males
 %SM
 data.tW_SM = [... % time (weeks),Weight (g)
@@ -364,15 +319,6 @@ bibkey = 'ITARIKRTsHNAN1997'; type = 'Article'; bib = [ ...
 'journal = {}, ' ...
 'volume = {}, ' ...
 'pages = {}'];
-metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
-%
-bibkey = 'Sagi1986'; type = 'Article'; bib = [ ...
-'author = {Amir Sagi, Ziva Ra´anan, Dan Cohen and Yohanan Wax}, ' ...
-'year = {1986}, ' ...
-'title = Production of Macrobrachium rosenbergii in monosex populations: yield characteristics under intensive monoculture conditions in cages.}, ' ...
-'journal = {Aquaculture}, ' ...
-'volume = {51}, ' ...
-'pages = {265-275}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
 bibkey = 'Raanan1991'; type = 'Article'; bib = [ ...
