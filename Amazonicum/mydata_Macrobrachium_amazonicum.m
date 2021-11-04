@@ -37,15 +37,15 @@ metaData.address  = {'UNESP, Universidade Estadual Paulista "Júlio de Mesquita 
 % Temperature dependence coded as Americamysis bahia;
 % age 0 is at onset of embryo development;
 
-data.ab_T24 = 21.5; units.ab = 'd'; label.ab = 'age at birth'; bibkey.ab = 'Gues1979'; temp.ab_T24 = C2K(24);  units.temp.ab = 'K'; label.temp.ab = 'temperature'; comment.ab_T24  = 'Incubation was 19-24 days at 24(2)oC';
+data.ab_T24 = 21.5; units.ab_T24 = 'd'; label.ab_T24 = 'age at birth'; bibkey.ab_T24 = 'Gues1979'; temp.ab_T24 = C2K(24);  units.temp.ab_T24 = 'K'; label.temp.ab_T24 = 'temperature'; comment.ab_T24  = 'Incubation was 19-24 days at 24(2)oC';
 
-data.ab_T30 = 13.5; units.ab = 'd'; label.ab = 'age at birth';  bibkey.ab = 'Gues1979'; temp.ab_T30 = C2K(30);  units.temp.ab = 'K'; label.temp.ab = 'temperature'; comment.ab_T30  = 'Incubation was 12-15 days at 30(1)oC';
+data.ab_T30 = 13.5; units.ab_T30 = 'd'; label.ab_T30 = 'age at birth';  bibkey.ab_T30 = 'Gues1979'; temp.ab_T30 = C2K(30);  units.temp.ab_T30 = 'K'; label.temp.ab_T30 = 'temperature'; comment.ab_T30  = 'Incubation was 12-15 days at 30(1)oC';
 
 data.tj = 24.5; units.tj = 'd'; label.tj = 'time since birth at metam'; bibkey.tj = 'Gues1979'; temp.tj = C2K(24);  units.temp.tj = 'K'; label.temp.tj = 'temperature'; comment.tj  = 'M. amazonicum larvae underwent 8-9 molts (stages) in 23-26 days at 24.0(3)oC';
 
 %data.tp = 168; units.tp = 'd'; label.tp = 'time since birth at puberty'; bibkey.tp = 'Gues1979'; temp.tp = C2K(30); units.temp.tp = 'K'; label.temp.tp = 'temperature'; comment.tp  = 'M. amazonicum reared outdoors reached sexual maturity in 168(2) days after hatching';
   
-%data.Lp = 5.94; units.Lp = 'cm'; label.Lp = 'total length at puberty'; bibkey.Lp = 'Gues1979'; comment.Lp = 'Seven females which produced eggs for the first time averaged 59.4(1.8) mm (...) ';
+data.Lp  = 2.96; units.Lp  = 'cm';   label.Lp  = 'total length at puberty';  bibkey.Lp  = 'Gues1979'; temp.Lp = C2K(26);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature'; comment.Lp = 'sexual maturity size';
 
 data.Li_F = 13.58; units.Li_F = 'cm'; label.Li_F = 'ultimate total length'; bibkey.Li_F ='Silv2006'; comment.Li_F = 'Silva (2006) adopted several methods to estimate Li of females, we considered the median';
 
@@ -158,6 +158,25 @@ units.LW_F = {'cm', 'g'}; label.LW_F = {'total length', 'total weight'};
 temp.LW_F = C2K(27.5);  units.temp.LW_F = 'K'; label.temp.LW_F = 'temperature';
 bibkey.LW_F = 'Silv2006';
 comment.LW_F = '';
+
+% data.tL_F = [ ... % time (months), total length (cm)
+% 2 7.7094
+% 3 11.1734
+% 4 12.7299
+% 5 13.4293
+% 6 13.7436
+% 7 13.8848
+% 8 13.9482
+% 9 13.9767
+% 10 13.9895
+% 11 13.9953
+% 12 13.9979
+%  ];
+% data.tL_F(:,1) = data.tL_F(:,1) * 30; % convert months to days by days
+% units.tL_F = {'d', 'cm'}; label.tL_F = {'time', 'total length'};  
+% temp.tL_F = C2K(27.5);  units.temp.tL_F = 'K'; label.temp.tL_F = 'temperature';
+% bibkey.tL_F = 'Silv2006';
+% comment.tL_F = '';
 
 % Moraes-Riodades (2005) dates:
 %Bloco 1 31/10/02 02/12/02 06/01/03 03/02/03 10/03/03 5,5 months
