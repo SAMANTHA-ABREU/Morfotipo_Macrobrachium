@@ -18,7 +18,7 @@ metaData.ecoCode.gender  = {'D'};
 metaData.ecoCode.reprod  = {'O'};
 metaData.T_typical  = C2K(28); % K, typical body temp
 metaData.data_0     = {'ab';'tj';'tp';'am';'Ri';'Li_F';'Li_BC';'Li_OC';'Li_SM'}; 
-metaData.data_1     = {'t-W_J';'L-W_F';'t-L_F';'t-W_SM';'t-W_OC';'t-W_BC'};
+metaData.data_1     = {'t-W_J';'t-L_F';'L-W_F';'t-W_F';'t-W_SM';'t-W_OC';'t-W_BC'};
 
 metaData.COMPLETE = 2.0; % using criteria of LikaKear2011
 
@@ -35,27 +35,27 @@ metaData.address  = {'UNESP, Universidade Estadual Paulista "Júlio de Mesquita 
 % zero-variate data;
 
 % age 0 is at onset of embryo development
-data.ab = 19;      units.ab = 'd';    label.ab = 'age at birth';  bibkey.ab = 'PinheiroHebling1998';   
+data.ab = 19;      units.ab = 'd';    label.ab = 'age at birth';  bibkey.ab = 'Pinh1998';   
   temp.ab = C2K(28);  units.temp.ab = 'K'; label.temp.ab = 'temperature';
-data.tj = 16;      units.tj = 'd';    label.tj = 'time at end of acceleration';  bibkey.tj = 'PinheiroHebling1998';   
+data.tj = 18;      units.tj = 'd';    label.tj = 'time at end of acceleration';  bibkey.tj = 'Pinh1998';   
   temp.tj = C2K(28);  units.temp.tj = 'K'; label.temp.tj = 'temperature';
   comment.tj  = 'periodo varia de 16 a 20 dias';
-data.tp = 120;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = 'PinheiroHebling1998';   
+data.tp = 150;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = 'Pinh1998';   
   temp.tp = C2K(28);  units.temp.tp = 'K'; label.temp.tp = 'temperature';
   comment.tb  = 'periodo varia de 120 a 180 dias';
 data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New2000';   
   temp.am = C2K(28); units.temp.am = 'K'; label.temp.am = 'temperature';
  
-data.Ri  = 100000/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSilva2004';   
+data.Ri  = 100000/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSi2004';   
   temp.Ri = C2K(28);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
 
 data.Li_F  = 29;   units.Li_F  = 'cm';   label.Li_F  = 'ultimate total length';  bibkey.Li_F  = 'New2002';
   comment.Li_F = 'Ultimate length for female';
 data.Li_BC  = 33;   units.Li_BC  = 'cm';   label.Li_BC  = 'ultimate total length';  bibkey.Li_BC  = 'New2002';
    comment.Li_BC = 'Ultimate length of males BC';
-data.Li_OC  = 23.82;   units.Li_OC  = 'cm';   label.Li_OC  = 'ultimate total length';  bibkey.Li_OC  = 'Iketani2016';
+data.Li_OC  = 23.82;   units.Li_OC  = 'cm';   label.Li_OC  = 'ultimate total length';  bibkey.Li_OC  = 'Iket2016';
   comment.Li_OC = 'Ultimate length of males OC';
-data.Li_SM  = 15.77;   units.Li_SM  = 'cm';   label.Li_SM  = 'ultimate total length';  bibkey.Li_SM  = 'Iketani2016';
+data.Li_SM  = 15.77;   units.Li_SM  = 'cm';   label.Li_SM  = 'ultimate total length';  bibkey.Li_SM  = 'Iket2016';
   comment.Li_SM = 'Ultimate length of males SM';
 
 % uni-variate data
@@ -71,39 +71,26 @@ data.tW_J = [... % time (weeks),Weight (g)
 8.09155	0.257327
 9.01722	0.290806
  ];
-data.tW_J(:,1) = data.tW_J(:,1) * 7 + 16; % convert weeks to d
+data.tW_J(:,1) = data.tW_J(:,1) * 7; % convert weeks to d
 units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
 temp.tW_J = C2K(26);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
-bibkey.tW_J = 'Raanan1984';
-comment.tW_J = 'Data for juveniles';
+bibkey.tW_J = 'Raan1984';
+comment.tW_J = 'Data for juveniles'; comment.tW_J = 'Data extracted from Fig.2';
 
 %Females
 data.LW_F = [... % length (cm),weight (g)
-6.53	6.14
-7.57	7.02
-8.44	8.77
-9.36	10.50
-10.30	12.30
-11.20	14.90
-12.10	18.40
-13.10	21.90
-14.00	26.30
-14.90	32.50
-15.90	40.40
-16.80	50.00
-17.70	60.50
-18.60	74.60
-19.60	93.90
-20.40	114.00
-21.40	142.00
-22.40	174.00
+6.52709	5.26316
+10.0369	11.4035
+15.0246	33.3333
+20.0123	102.632
+22.3522	173.684
  ];
 units.LW_F = {'cm', 'g'}; label.LW_F = {'length (cm)', 'weight (g)'};  
 temp.LW_F = C2K(28);  units.temp.LW_F = 'K'; label.temp.LW_F = 'temperature';
-bibkey.LW_F = 'Lalrinsanga2012';
+bibkey.LW_F = 'Lalr2012'; comment.LW_F = 'Data extracted from Fig.2';
 
 data.tL_F = [... % time (months), length (mm)
--0.0245759	69.743
+0.41276	72.0189
 1.05448	91.7415
 2.00661	111.293
 3.02182	128.468
@@ -129,77 +116,99 @@ data.tL_F = [... % time (months), length (mm)
 23.115	272.687
 24.1287	275.461
 25.079	278.212
-25.9341	278.528
  ];
-data.tL_F(:,1) = data.tL_F(:,1) * 30+16; % convert months to d
+data.tL_F(:,1) = data.tL_F(:,1) * 30; % convert months to d
 data.tL_F(:,2) = data.tL_F(:,2) / 10; % convert mm to cm
 units.tL_F = {'d', 'cm'}; label.tL_F = {'time for a day', 'total length'};  
 temp.tL_F = C2K(30);  units.temp.tL_F = 'K'; label.temp.tL_F = 'temperature';
-bibkey.tL_F = 'ITARIKRTsHNAN1997';
+bibkey.tL_F = 'ITAR1997'; comment.tL_F = 'Data extracted from Fig.2';
+
+% data.tW_F = [... % time (days),Weight (g/2m²)
+% 45.2735	5.2696
+% 60.1264	7.65517
+% 75.2474	34.9645
+% 88.1679	62.3309
+% 102.172	150.611
+% 115.091	183.518
+% 130.166	377.033
+% 142.257	421.041
+% 152.13	526.049
+%  ];
+% data.tW_F(:,1) = data.tW_F(:,1);
+% data.tW_F(:,2) = data.tW_F(:,2) / 80;
+% units.tW_F = {'d', 'g'}; label.tW_F = {'time (days)', 'total weight'};  
+% temp.tW_F = C2K(26);  units.temp.tW_F = 'K'; label.temp.tW_F = 'temperature';
+% bibkey.tW_F = 'Sagi1986'; comment.tW_F = 'Data extracted from Fig.1';
 
 %Males
 %SM
 data.tW_SM = [... % time (weeks),Weight (g)
--0.0580162	0.24791
+0.00848351	0.256202
 2.07189	0.571104
-3.99984	0.795041
-5.991	0.928095
+4.06606	0.795069
+6.05722	0.928123
 8.04592	0.986796
-9.97304	1.18594
-12.0299	1.30249
-14.0205	1.41902
-15.8726	1.35367
-17.9938	1.41239
-19.9849	1.54545
+10.0393	1.18597
+12.0302	1.31076
+14.0208	1.42728
+16.0051	1.35372
+18.06	1.41242
+20.0512	1.54548
  ];
-data.tW_SM(:,1) = data.tW_SM(:,1) * 7 + 120; % convert weeks to d
+data.tW_SM(:,1) = data.tW_SM(:,1) * 7; % convert weeks to d
 data.tW_SM(:,2) = exp(data.tW_SM(:,2)); % convert logs of masses to masses
-units.tW_SM = {'d', 'g'}; label.tW_SM = {'time for a day', 'total weight'};  
+units.tW_SM = {'d', 'g'}; label.tW_SM = {'time (days)', 'total weight'};  
 temp.tW_SM = C2K(27);  units.temp.tW_SM = 'K'; label.temp.tW_SM = 'temperature';
-bibkey.tW_SM = 'Raanan1991';
+bibkey.tW_SM = 'Raan1991'; comment.tW_SM = 'Data extracted from Fig.1';
 
 %OC
 data.tW_OC = [... % time (weeks),Weight (g)
-0.0963288	0.909131
+0.0301028	0.909103
 2.03248	1.38101
-4.03076	1.72894
+4.03103	1.7372
 6.02493	1.9529
 8.02047	2.21819
-9.94951	2.47519
-11.9434	2.69089
-13.9332	2.78262
-15.9928	2.98182
-17.9817	3.04875
-19.9781	3.33883
+10.0157	2.47521
+12.0096	2.69091
+14.0657	2.78267
+16.0593	2.99011
+18.0482	3.05704
+20.0443	3.33886
  ];
-data.tW_OC(:,1) = data.tW_OC(:,1) * 7 + 120; % convert weeks to d
+data.tW_OC(:,1) = data.tW_OC(:,1) * 7; % convert weeks to d
 data.tW_OC(:,2) = exp(data.tW_OC(:,2)); % convert logs of masses to masses
-units.tW_OC = {'d', 'g'}; label.tW_OC = {'time for a day', 'total weight'};  
+units.tW_OC = {'d', 'g'}; label.tW_OC = {'time (days)', 'total weight'};  
 temp.tW_OC = C2K(27);  units.temp.tW_OC = 'K'; label.temp.tW_OC = 'temperature';
-bibkey.tW_OC = 'Raanan1991';
+bibkey.tW_OC = 'Raan1991'; comment.tW_OC = 'Data extracted from Fig.1';
  
 %BC
 data.tW_BC = [... % time (weeks),Weight (g)
-0.0139567	2.42149
+0.0804565	2.42979
 2.00977	2.69505
-3.93607	2.8694
-5.92805	3.02724
-7.91949	3.16856
-9.84962	3.45862
-11.9782	3.74049
-13.8322	3.73299
-16.0182	3.75042
-18.0042	3.72645
-19.991	3.72727
+4.0023	2.86942
+6.06051	3.0273
+8.05221	3.17688
+10.0488	3.47523
+12.0444	3.74051
+14.0309	3.73307
+16.1507	3.75048
+18.0704	3.72648
+20.0572	3.7273
 ];
-data.tW_BC(:,1) = data.tW_BC(:,1) * 7 + 120; % convert weeks to d
+data.tW_BC(:,1) = data.tW_BC(:,1) * 7; % convert weeks to d
 data.tW_BC(:,2) = exp(data.tW_BC(:,2)); % convert logs of masses to masses
-units.tW_BC = {'d', 'g'}; label.tW_BC = {'time for a day', 'total weight'};  
+units.tW_BC = {'d', 'g'}; label.tW_BC = {'time (days)', 'total weight'};  
 temp.tW_BC = C2K(27);  units.temp.tW_BC = 'K'; label.temp.tW_BC = 'temperature';
-bibkey.tW_BC = 'Raanan1991';
+bibkey.tW_BC = 'Raan1991'; comment.tW_BC = 'Data extracted from Fig.1';
 
 %% set weights for all real data
 weights = setweights(data, []);
+% weights.tW_J = 0.2 * weights.tW_J;
+weights.LW_F = 10 * weights.LW_F;
+% weights.tL_F = 0.2 *weights.tL_F;
+weights.tW_BC = 10 * weights.tW_BC;
+weights.tW_OC = 10 * weights.tW_OC;
+weights.tW_SM = 10 * weights.tW_SM;
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
@@ -249,7 +258,7 @@ bibkey = 'Kooy2010'; type = 'Book'; bib = [ ...  % used in setting of chemical p
 'howpublished = {\url{http://www.bio.vu.nl/thb/research/bib/Kooy2010.html}}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'PinheiroHebling1998'; type = 'Article'; bib = [ ...
+bibkey = 'Pinh1998'; type = 'Article'; bib = [ ...
 'author = {Pinheiro, Marcelo Antonio Amaro, and Nilton Jose Hebling}, ' ...
 'year = {1998}, ' ...
 'title = {Biologia de Macrobrachium rosenbergii (De Man, 1879)}, ' ...
@@ -267,7 +276,7 @@ bibkey = 'New2000'; type = 'Book'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'DaSilva2004'; type = 'Book'; bib = [ ...
+bibkey = 'DaSi2004'; type = 'Book'; bib = [ ...
 'author = {Da Silva, R. R., Sampaio, C. M. S., & Santos, J. A.}, ' ...
 'year = {2004}, ' ...
 'title = {Fecundity and fertility of Macrobrachium amazonicum (Crustacea, Palaemonidae)}, ' ...
@@ -285,7 +294,7 @@ bibkey = 'New2002'; type = 'Book'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'Iketani2016'; type = 'Article'; bib = [ ...
+bibkey = 'Iket2016'; type = 'Article'; bib = [ ...
 'author = {Iketani, G., Aviz, M. A. B., Maciel, C., Valenti, W., Schneider, H., & Sampaio, I.}, ' ...
 'year = {2016}, ' ...
 'title = {Successful invasion of the Amazon Coast by the giant river prawn, Macrobrachium rosenbergii: evidence of a reproductively viable population.}, ' ...
@@ -294,7 +303,7 @@ bibkey = 'Iketani2016'; type = 'Article'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'Raanan1984'; type = 'Article'; bib = [ ...
+bibkey = 'Raan1984'; type = 'Article'; bib = [ ...
 'author = {Ra´Anan, Ziva, and Dan Cohen}, ' ...
 'year = {1984}, ' ...
 'title = {The effect of group interactions on the development of size distribution in Macrobrachium rosenbergii (de Man) juvenile populations.}, ' ...
@@ -303,7 +312,7 @@ bibkey = 'Raanan1984'; type = 'Article'; bib = [ ...
 'pages = {22-31}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'Lalrinsanga2012'; type = 'Article'; bib = [ ...
+bibkey = 'Lalr2012'; type = 'Article'; bib = [ ...
 'author = {P. L. Lalrinsanga, et al.}, ' ...
 'year = {2012}, ' ...
 'title = {Length weight relationship and condition factor of giant freshwater prawn Macrobrachium rosenbergii (De Man, 1879) based on developmental stages, culture stages and sex.}, ' ...
@@ -312,7 +321,7 @@ bibkey = 'Lalrinsanga2012'; type = 'Article'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'ITARIKRTsHNAN1997'; type = 'Article'; bib = [ ...
+bibkey = 'ITAR1997'; type = 'Article'; bib = [ ...
 'author = {M. ITARIKRTsHNAN, and B. MADHUsoooeNaiKURU}, ' ...
 'year = {1997}, ' ...
 'title = {Growth, mortality and exploitation of male and female populations of Macrobrachiutn rosenbergii (de Man) in the Vembanad lake, India.}, ' ...
@@ -321,7 +330,16 @@ bibkey = 'ITARIKRTsHNAN1997'; type = 'Article'; bib = [ ...
 'pages = {}'];
 metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
 %
-bibkey = 'Raanan1991'; type = 'Article'; bib = [ ...
+bibkey = 'Sagi1986'; type = 'Article'; bib = [ ...
+'author = {Amir Sagi, Ziva Ra´anan, Dan Cohen and Yohanan Wax}, ' ...
+'year = {1986}, ' ...
+'title = Production of Macrobrachium rosenbergii in monosex populations: yield characteristics under intensive monoculture conditions in cages.}, ' ...
+'journal = {Aquaculture}, ' ...
+'volume = {51}, ' ...
+'pages = {265-275}'];
+metaData.biblist.(bibkey) = ['''@', type, '{', bibkey, ', ' bib, '}'';'];
+%
+bibkey = 'Raan1991'; type = 'Article'; bib = [ ...
 'author = {Ra´Anan, Z., Sagi, A., Wax, Y., Karplus, I., Hulata, G., & Kuris, A.}, ' ...
 'year = {1991}, ' ...
 'title = {Growth, size rank, and maturation of the freshwater prawn, Macrobrachium rosenbergii: analysis of marked prawns in an experimental population.}, ' ...
