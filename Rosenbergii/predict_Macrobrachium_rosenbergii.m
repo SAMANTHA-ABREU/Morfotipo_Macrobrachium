@@ -43,7 +43,6 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   Wd_i = L_i^3 * d_V * (1 + f * w); % g, ultimate dry weight (remove d_V for wet weight)
  
   % ultimate for Males BC
-%   p_Am_mBC = z_BC * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
   p_Am_mBC = z_BC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mBC = p_Am_mBC/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mBC = E_G/ (kap* E_m_mBC);             % -, energy investment ratio
@@ -56,7 +55,6 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   Lw_i_mBC = L_i_mBC/ del_MT_mBC;              % cm, ultimate total length at f
 
   % ultimate for Males OC
-%   p_Am_mOC = z_OC * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
   p_Am_mOC = z_OC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mOC = p_Am_mOC/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mOC = E_G/ (kap* E_m_mOC);             % -, energy investment ratio
@@ -69,7 +67,6 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   Lw_i_mOC = L_i_mOC/ del_MT_mOC;              % cm, ultimate total length at f
 
   % ultimate for Males SM
-%   p_Am_mSM = z_SM * p_M/ kap;            % J/d.cm^2, {p_Am} spec assimilation flux  
   p_Am_mSM = z_SM * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mSM = p_Am_mSM/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mSM = E_G/ (kap* E_m_mSM);             % -, energy investment ratio
@@ -111,21 +108,22 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   rT_j = rho_j * kT_M; 
   rT_B = rho_B * kT_M;        
   L_b = L_m * l_b;  
-  L_J = L_b * exp(rT_j * (tW_J(:,1)+ data.tj)/ 3);  
+  L_J = L_b * exp(rT_j * (tW_J(:,1)+ tT_j)/ 3);  
   EWw_J = L_J.^3 * (1 + f * w); % g, wet weight
     
   %Female
   %time-length
-  kT_M = k_M * TC_tL_F; 
-  rT_B = rho_B * kT_M; 
-  rT_j = rho_j * kT_M; 
-  tT_j = (t_j - t_b)/ kT_M;
+  kT_M_f = k_M * TC_tL_F; 
+  rT_B_f = rho_B * kT_M_f; 
+  rT_j_f = rho_j * kT_M_f; 
+  tT_j_f = (t_j - t_b)/ kT_M_f;
   L_b = L_m * l_b;  
   L_j = L_m * l_j; 
   L_i = L_m * l_i;
-  L_bj = L_b * exp(tL_F((tL_F(:,1)+ data.tj) < tT_j,1) * rT_j/ 3);
-  L_ji = L_i - (L_i - L_j) * exp( - rT_B * (tL_F((tL_F(:,1)+ data.tj) >= tT_j,1) - tT_j)); 
-  ELw_F = [L_bj; L_ji]/ del_M; % cm, total length
+%   L_bj = L_b * exp((tL_F((tL_F(:,1)+ tT_j_f) < tT_j_f,1) + tT_j_f) * rT_j/ 3);
+  L_ji_f = L_i - (L_i - L_j) * exp( - rT_B * (tL_F((tL_F(:,1)+ tT_j_f) + tT_j_f >= tT_j_f,1) - tT_j_f)); 
+%   ELw_F = [L_bj; L_ji]/ del_M; % cm, total length
+  ELw_F = L_ji_f/ del_M; % cm, total length
     
   %length-weigth
   EWw_F = (LW_F(:,1) * del_M).^3 * (1 + f * w);
@@ -136,9 +134,10 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
 %   rT_B_f = rho_B * kT_M_f;
 %   tT_j_f = (t_j - t_b)/ kT_M_f;
 %   L_b = L_m * l_b;  L_j = L_m * l_j; L_i = L_m * l_i;
-%   L_bj = L_b * exp(tW_F(((tW_F(:,1)+ data.tj) <= tT_j_f),1) *  rT_j_f/ 3);
-%   L_ji_F = L_i - (L_i - L_j) * exp( - rT_B_f * (tW_F(((tW_F(:,1)+ data.tj) > tT_j_f),1) - tT_j_f)); % cm, structural length at time
-%   EW_F = [L_bj; L_ji_F].^3 * (1 + f * w);
+% %   L_bj = L_b * exp((tW_F((tW_F(:,1)+ tT_j_f) <= tT_j_f),1) *  rT_j_f/ 3);
+%   L_ji_F = L_i - (L_i - L_j) * exp( - rT_B_f * (tW_F(((tW_F(:,1)+ tT_j_f) > tT_j_f),1) - tT_j_f)); % cm, structural length at time
+% %   EW_F = [L_bj; L_ji_F].^3 * (1 + f * w);
+%   EW_F = L_ji_F.^3 * (1 + f * w); % cm, total length
   
   %Males
   %SM
@@ -148,10 +147,13 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   rT_jmSM = rho_jmSM * kT_M; 
   rT_BmSM = rho_BmSM * kT_M;
   tT_jmSM = (t_jmSM - t_bmSM)/ kT_M;
+  tT_pmSM = t_pmSM/ k_M/ TC_tW_SM;           % d, time at puberty at f and T
   L_bmSM = L_mmSM * l_bmSM;  L_jmSM = L_mmSM * l_jmSM; L_i_mSM = L_mmSM * l_imSM;
-  L_bjmSM = L_bmSM * exp(tW_SM(((tW_SM(:,1)+ data.tp)<= tT_j),1) *  rT_jmSM/ 3);
-  L_ji_SM = L_i_mSM - (L_i_mSM - L_jmSM) * exp( - rT_BmSM * (tW_SM(((tW_SM(:,1)+ data.tp) > tT_jmSM),1) - tT_jmSM)); % cm, structural length at time
-  EWw_SM = [L_bjmSM; L_ji_SM].^3 * (1 + f * w_mSM);
+%   L_bjmSM = L_bmSM * exp((tW_SM((tW_SM(:,1)+ tT_jmSM)<= tT_jmSM),1) *  rT_jmSM/ 3);
+  L_ji_SM = L_i_mSM - (L_i_mSM - L_jmSM) * exp( - rT_BmSM * (tW_SM(((tW_SM(:,1)+ tT_pmSM) > tT_jmSM),1) - tT_jmSM)); % cm, structural length at time
+%   EWw_SM = [L_bjmSM; L_ji_SM].^3 * (1 + f * w_mSM);
+  EWw_SM = L_ji_SM.^3 * (1 + f * w_mSM);
+
 
   %OC
   %time-weigth
@@ -160,10 +162,13 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   rT_jmOC = rho_jmOC * kT_M; 
   rT_BmOC = rho_BmOC * kT_M;
   tT_jmOC = (t_jmOC - t_bmOC)/ kT_M;
+  tT_pmOC = t_pmOC/ k_M/ TC_tW_OC;           % d, time at puberty at f and T
   L_bmOC = L_mmOC * l_bmOC;  L_jmOC = L_mmOC * l_jmOC; L_i_mOC = L_mmOC * l_imOC;
-  L_bjmOC = L_bmOC * exp(tW_OC(((tW_OC(:,1)+ data.tp) <= tT_j),1) *  rT_jmOC/ 3);
-  L_ji_OC = L_i_mOC- (L_i_mOC - L_jmOC) * exp( - rT_BmOC * (tW_OC(((tW_OC(:,1)+ data.tp) > tT_jmOC),1) - tT_jmOC)); % cm, structural length at time
-  EWw_OC = [L_bjmOC; L_ji_OC].^3 * (1 + f * w_mOC);
+  %   L_bjmOC = L_bmOC * exp((tW_OC((tW_OC(:,1)+ tT_jmOC)<= tT_jmOC),1) *  rT_jmOC/ 3);
+  L_ji_OC = L_i_mOC- (L_i_mOC - L_jmOC) * exp( - rT_BmOC * (tW_OC(((tW_OC(:,1)+  tT_pmOC) > tT_jmOC),1) - tT_jmOC)); % cm, structural length at time
+%   EWw_OC = [L_bjmOC; L_ji_OC].^3 * (1 + f * w_mOC);
+  EWw_OC = L_ji_OC.^3 * (1 + f * w_mOC);
+
 
   %BC
   %time-weigth
@@ -172,10 +177,12 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   rT_jmBC = rho_jmBC * kT_M; 
   rT_BmBC = rho_BmBC * kT_M;
   tT_jmBC = (t_jmBC - t_bmBC)/ kT_M;
+  tT_pmBC = t_pmBC/ k_M/ TC_tW_BC;           % d, time at puberty at f and T
   L_bmBC = L_mmBC * l_bmBC;  L_jmBC = L_mmBC * l_jmBC; L_i_mBC = L_mmBC * l_imBC;
-  L_bjmBC = L_bmBC * exp(tW_BC(((tW_BC(:,1)+ data.tp) <= tT_j),1) *  rT_jmBC/ 3);
-  L_ji_BC = L_i_mBC - (L_i_mBC - L_jmBC) * exp( - rT_BmBC * (tW_BC(((tW_BC(:,1)+ data.tp) > tT_jmBC),1) - tT_jmBC)); % cm, structural length at time
-  EWw_BC = [L_bjmBC; L_ji_BC].^3 * (1 + f * w_mBC);
+  %   L_bjmBC = L_bmBC * exp((tW_BC((tW_BC(:,1)+ tT_jmBC)<= tT_jmBC),1) *  rT_jmBC/ 3);
+  L_ji_BC = L_i_mBC - (L_i_mBC - L_jmBC) * exp( - rT_BmBC * (tW_BC(((tW_BC(:,1)+ tT_pmBC) > tT_jmBC),1) - tT_jmBC)); % cm, structural length at time
+%   EWw_BC = [L_bjmBC; L_ji_BC].^3 * (1 + f * w_mBC);
+  EWw_BC =  L_ji_BC.^3 * (1 + f * w_mBC);
   
   % pack to output
   prdData.tW_J = EWw_J;
