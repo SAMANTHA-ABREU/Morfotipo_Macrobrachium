@@ -7,33 +7,33 @@ par.T_ref = 293.15;   free.T_ref = 0;   units.T_ref = 'K';        label.T_ref = 
 
 %% core primary parameters 
 par.T_A = 8000;       free.T_A   = 0;   units.T_A = 'K';          label.T_A = 'Arrhenius temperature'; 
-par.z = 2.4682;       free.z     = 1;   units.z = '-';            label.z = 'zoom factor'; 
+par.z = 2.4278;       free.z     = 1;   units.z = '-';            label.z = 'zoom factor'; 
 par.F_m = 6.5;        free.F_m   = 0;   units.F_m = 'l/d.cm^2';   label.F_m = '{F_m}, max spec searching rate'; 
 par.kap_X = 0.8;      free.kap_X = 0;   units.kap_X = '-';        label.kap_X = 'digestion efficiency of food to reserve'; 
 par.kap_P = 0.1;      free.kap_P = 0;   units.kap_P = '-';        label.kap_P = 'faecation efficiency of food to faeces'; 
-par.v = 0.0020594;    free.v     = 1;   units.v = 'cm/d';         label.v = 'energy conductance'; 
-par.kap = 0.53082;    free.kap   = 1;   units.kap = '-';          label.kap = 'allocation fraction to soma'; 
+par.v = 0.0020302;    free.v     = 1;   units.v = 'cm/d';         label.v = 'energy conductance'; 
+par.kap = 0.42376;    free.kap   = 1;   units.kap = '-';          label.kap = 'allocation fraction to soma'; 
 par.kap_R = 0.95;     free.kap_R = 0;   units.kap_R = '-';        label.kap_R = 'reproduction efficiency'; 
-par.p_M = 26.8338;    free.p_M   = 1;   units.p_M = 'J/d.cm^3';   label.p_M = '[p_M], vol-spec somatic maint'; 
+par.p_M = 29.7123;    free.p_M   = 1;   units.p_M = 'J/d.cm^3';   label.p_M = '[p_M], vol-spec somatic maint'; 
 par.p_T = 0;          free.p_T   = 0;   units.p_T = 'J/d.cm^2';   label.p_T = '{p_T}, surf-spec somatic maint'; 
 par.k_J = 0.002018;   free.k_J   = 0;   units.k_J = '1/d';        label.k_J = 'maturity maint rate coefficient'; 
-par.E_G = 4433.457;   free.E_G   = 1;   units.E_G = 'J/cm^3';     label.E_G = '[E_G], spec cost for structure'; 
-par.E_Hb = 4.220e-01; free.E_Hb  = 1;   units.E_Hb = 'J';         label.E_Hb = 'maturity at birth'; 
-par.E_Hj = 1.163e+00; free.E_Hj  = 1;   units.E_Hj = 'J';         label.E_Hj = 'maturity at metam'; 
-par.E_Hp = 6.519e+01; free.E_Hp  = 1;   units.E_Hp = 'J';         label.E_Hp = 'maturity at puberty'; 
-par.h_a = 4.431e-07;  free.h_a   = 1;   units.h_a = '1/d^2';      label.h_a = 'Weibull aging acceleration'; 
+par.E_G = 4432.6815;  free.E_G   = 1;   units.E_G = 'J/cm^3';     label.E_G = '[E_G], spec cost for structure'; 
+par.E_Hb = 8.530e-01; free.E_Hb  = 1;   units.E_Hb = 'J';         label.E_Hb = 'maturity at birth'; 
+par.E_Hj = 2.470e+00; free.E_Hj  = 1;   units.E_Hj = 'J';         label.E_Hj = 'maturity at metam'; 
+par.E_Hp = 1.030e+02; free.E_Hp  = 1;   units.E_Hp = 'J';         label.E_Hp = 'maturity at puberty'; 
+par.h_a = 4.421e-07;  free.h_a   = 1;   units.h_a = '1/d^2';      label.h_a = 'Weibull aging acceleration'; 
 par.s_G = 0.0001;     free.s_G   = 0;   units.s_G = '-';          label.s_G = 'Gompertz stress coefficient'; 
 
 %% other parameters 
 par.Ww_0 = 0.123;     free.Ww_0  = 0;   units.Ww_0 = 'g';         label.Ww_0 = 'wet weight at time zero in tW data'; 
-par.del_M = 0.095488;  free.del_M = 1;   units.del_M = '-';        label.del_M = 'shape coefficient'; 
-par.del_MT_mBC = 1.1439;  free.del_MT_mBC = 1;   units.del_MT_mBC = '-';   label.del_MT_mBC = 'shape coefficient for total length for male BC'; 
-par.del_MT_mOC = 1.2084;  free.del_MT_mOC = 1;   units.del_MT_mOC = '-';   label.del_MT_mOC = 'shape coefficient for total length for male OC'; 
-par.del_MT_mSM = 1.0434;  free.del_MT_mSM = 1;   units.del_MT_mSM = '-';   label.del_MT_mSM = 'shape coefficient for total length for male SM'; 
+par.del_M = 0.086225;  free.del_M = 1;   units.del_M = '-';        label.del_M = 'shape coefficient'; 
+par.del_MT_mBC = 0.97781;  free.del_MT_mBC = 1;   units.del_MT_mBC = '-';   label.del_MT_mBC = 'shape coefficient for total length for male BC'; 
+par.del_MT_mOC = 1.031;  free.del_MT_mOC = 1;   units.del_MT_mOC = '-';   label.del_MT_mOC = 'shape coefficient for total length for male OC'; 
+par.del_MT_mSM = 0.87607;  free.del_MT_mSM = 1;   units.del_MT_mSM = '-';   label.del_MT_mSM = 'shape coefficient for total length for male SM'; 
 par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
-par.z_BC = 27.2971;   free.z_BC  = 1;   units.z_BC = '-';         label.z_BC = 'zoom factor for males BC'; 
-par.z_OC = 20.8211;   free.z_OC  = 1;   units.z_OC = '-';         label.z_OC = 'zoom factor for males OC'; 
-par.z_SM = 11.885;    free.z_SM  = 1;   units.z_SM = '-';         label.z_SM = 'zoom factor for males SM'; 
+par.z_BC = 23.0408;   free.z_BC  = 1;   units.z_BC = '-';         label.z_BC = 'zoom factor for males BC'; 
+par.z_OC = 17.4991;   free.z_OC  = 1;   units.z_OC = '-';         label.z_OC = 'zoom factor for males OC'; 
+par.z_SM = 9.8314;    free.z_SM  = 1;   units.z_SM = '-';         label.z_SM = 'zoom factor for males SM'; 
 
 %% set chemical parameters from Kooy2010 
 [par, units, label, free] = addchem(par, units, label, free, metaData.phylum, metaData.class); 
