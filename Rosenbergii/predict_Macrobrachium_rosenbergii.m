@@ -42,7 +42,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   Lw_i_F = L_i/ del_M;              % cm, ultimate total length at f for female
   Wd_i = L_i^3 * d_V * (1 + f * w); % g, ultimate dry weight (remove d_V for wet weight)
  
-  % ultimate for Males BC
+ % ultimate for Males BC
   p_Am_mBC = z_BC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
   E_m_mBC = p_Am_mBC/ v;                   % J/cm^3, reserve capacity [E_m]
   g_mBC = E_G/ (kap* E_m_mBC);             % -, energy investment ratio
@@ -53,6 +53,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   [t_jmBC, t_pmBC, t_bmBC, l_jmBC, l_pmBC, l_bmBC, l_imBC, rho_jmBC, rho_BmBC] = get_tj(pars_tjmBC, f);
   L_i_mBC = L_mmBC * l_imBC;     % cm, ultimate structural length at f
   Lw_i_mBC = L_i_mBC/ del_MT_mBC;              % cm, ultimate total length at f
+  Ww_i_mBC = L_i_mBC^3 * (1 + f * w_mBC);       % g, ultimate wet weight 
 
   % ultimate for Males OC
   p_Am_mOC = z_OC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
@@ -65,6 +66,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   [t_jmOC, t_pmOC, t_bmOC, l_jmOC, l_pmOC, l_bmOC, l_imOC, rho_jmOC, rho_BmOC] = get_tj(pars_tjmOC, f);
   L_i_mOC = L_mmOC * l_imOC;     % cm, ultimate structural length at f
   Lw_i_mOC = L_i_mOC/ del_MT_mOC;              % cm, ultimate total length at f
+  Ww_i_mOC = L_i_mOC^3 * (1 + f * w_mOC);       % g, ultimate wet weight 
 
   % ultimate for Males SM
   p_Am_mSM = z_SM * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
@@ -77,6 +79,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   [t_jmSM, t_pmSM, t_bmSM, l_jmSM, l_pmSM, l_bmSM, l_imSM, rho_jmSM, rho_BmSM] = get_tj(pars_tjmSM, f);
   L_i_mSM = L_mmSM * l_imSM;     % cm, ultimate structural length at f
   Lw_i_mSM = L_i_mSM/ del_MT_mSM;              % cm, ultimate total length at f
+  Ww_i_mSM = L_i_mSM^3 * (1 + f * w_mSM);       % g, ultimate wet weight 
 
   % reproduction
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hp]; % compose parameter vector at T
@@ -92,10 +95,14 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   prdData.ab = aT_b;
   prdData.tj = tT_j;
   prdData.tp = tT_p;
-  prdData.Li_F = Lw_i_F;
-  prdData.Li_BC = Lw_i_mBC;
-  prdData.Li_OC = Lw_i_mOC;
-  prdData.Li_SM = Lw_i_mSM;
+%   prdData.Li_F = Lw_i_F;
+  prdData.Wwi_F = Ww_i_F;
+%   prdData.Li_BC = Lw_i_mBC;
+  prdData.Wwi_BC = Ww_i_mBC;
+%   prdData.Li_OC = Lw_i_mOC;
+  prdData.Wwi_OC = Ww_i_mOC;
+%   prdData.Li_SM = Lw_i_mSM;
+  prdData.Wwi_SM = Ww_i_mSM;
   prdData.am = aT_m;
   prdData.Ri = RT_i;
   
