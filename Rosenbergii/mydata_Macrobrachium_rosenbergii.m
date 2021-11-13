@@ -72,18 +72,69 @@ data.tW_J = [... % time (weeks),Weight (g)
 9.01722	0.290806
  ];
 data.tW_J(:,1) = data.tW_J(:,1) * 7; % convert weeks to d
-units.tW_J = {'d', 'g'}; label.tW_J = {'time for a day', 'total weight'};  
+units.tW_J = {'d', 'g'}; label.tW_J = {'time (days)', 'total weight'};  
 temp.tW_J = C2K(26);  units.temp.tW_J = 'K'; label.temp.tW_J = 'temperature';
 bibkey.tW_J = 'Raan1984';
 comment.tW_J = 'Data for juveniles'; comment.tW_J = 'Data extracted from Fig.2';
 
 %Females
 data.LW_F = [... % length (cm),weight (g)
-6.52709	5.26316
-10.0369	11.4035
-15.0246	33.3333
-20.0123	102.632
-22.3522	173.684
+6.52709	2.63158
+6.83498	2.63158
+7.69704	3.50877
+8.25123	5.26316
+9.17488	7.01754
+10.4064	9.64912
+11.3916	13.1579
+12.2537	23.6842
+13.2389	17.5439
+12.1921	15.7895
+13.1158	34.2105
+13.4236	34.2105
+13.67	28.9474
+13.8547	21.0526
+14.8399	28.0702
+14.3473	32.4561
+14.3473	39.4737
+14.6552	38.5965
+15.1478	43.8596
+15.7635	47.3684
+15.3941	32.4561
+16.3177	38.5965
+16.8719	42.1053
+16.4409	50.8772
+16.0099	64.0351
+16.6256	71.9298
+16.9951	55.2632
+17.2414	48.2456
+17.6724	53.5088
+18.1034	58.7719
+17.7956	64.0351
+18.0419	73.6842
+18.4729	81.5789
+18.5345	57.8947
+18.9039	71.9298
+19.335	78.0702
+19.5813	66.6667
+20.3202	71.9298
+19.8892	86.8421
+19.9507	94.7368
+20.2586	87.7193
+20.936	87.7193
+20.3202	99.1228
+19.7044	107.018
+20.0123	109.649
+20.9975	103.509
+21.4286	96.4912
+21.6133	111.404
+20.9975	118.421
+21.9828	117.544
+22.4138	112.281
+22.4754	123.684
+22.1059	129.825
+21.6133	129.825
+21.1207	128.947
+21.6133	140.351
  ];
 units.LW_F = {'cm', 'g'}; label.LW_F = {'length (cm)', 'weight (g)'};  
 temp.LW_F = C2K(28);  units.temp.LW_F = 'K'; label.temp.LW_F = 'temperature';
@@ -119,7 +170,7 @@ data.tL_F = [... % time (months), length (mm)
  ];
 data.tL_F(:,1) = data.tL_F(:,1) * 30; % convert months to d
 data.tL_F(:,2) = data.tL_F(:,2) / 10; % convert mm to cm
-units.tL_F = {'d', 'cm'}; label.tL_F = {'time for a day', 'total length'};  
+units.tL_F = {'d', 'cm'}; label.tL_F = {'time (days)', 'total length'};  
 temp.tL_F = C2K(30);  units.temp.tL_F = 'K'; label.temp.tL_F = 'temperature';
 bibkey.tL_F = 'ITAR1997'; comment.tL_F = 'Data extracted from Fig.2';
 
@@ -135,7 +186,7 @@ bibkey.tL_F = 'ITAR1997'; comment.tL_F = 'Data extracted from Fig.2';
 % 152.13	526.049
 %  ];
 % data.tW_F(:,1) = data.tW_F(:,1);
-% data.tW_F(:,2) = data.tW_F(:,2) / 80;
+% data.tW_F(:,2) = data.tW_F(:,2) / 40;
 % units.tW_F = {'d', 'g'}; label.tW_F = {'time (days)', 'total weight'};  
 % temp.tW_F = C2K(26);  units.temp.tW_F = 'K'; label.temp.tW_F = 'temperature';
 % bibkey.tW_F = 'Sagi1986'; comment.tW_F = 'Data extracted from Fig.1';
@@ -204,7 +255,7 @@ bibkey.tW_BC = 'Raan1991'; comment.tW_BC = 'Data extracted from Fig.1';
 %% set weights for all real data
 weights = setweights(data, []);
 % weights.tW_J = 0.2 * weights.tW_J;
-weights.LW_F = 10 * weights.LW_F;
+% weights.LW_F = 10 * weights.LW_F;
 % weights.tL_F = 0.2 *weights.tL_F;
 weights.tW_BC = 10 * weights.tW_BC;
 weights.tW_OC = 10 * weights.tW_OC;
