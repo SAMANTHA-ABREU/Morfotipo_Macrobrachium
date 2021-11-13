@@ -35,30 +35,42 @@ metaData.address  = {'UNESP, Universidade Estadual Paulista "Julio de Mesquita F
 % zero-variate data;
 
 % age 0 is at onset of embryo development
-data.ab_T24 = 21.5; units.ab_T24 = 'd'; label.ab_T24 = 'age at birth'; bibkey.ab_T24 = 'Gues1979'; 
-  temp.ab_T24 = C2K(24);  units.temp.ab_T24 = 'K'; label.temp.ab_T24 = 'temperature'; 
-  comment.ab_T24  = 'Incubation was 19-24 days at 24(2)oC';
-data.ab_T30 = 13.5; units.ab_T30 = 'd'; label.ab_T30 = 'age at birth';  bibkey.ab_T30 = 'Gues1979'; 
-  temp.ab_T30 = C2K(30);  units.temp.ab_T30 = 'K'; label.temp.ab_T30 = 'temperature'; 
-  comment.ab_T30  = 'Incubation was 12-15 days at 30(1)oC';
-data.tj = 24.5; units.tj = 'd'; label.tj = 'time since birth at metam'; bibkey.tj = 'Gues1979'; 
-  temp.tj = C2K(24);  units.temp.tj = 'K'; label.temp.tj = 'temperature'; 
-  comment.tj  = 'M. amazonicum larvae underwent 8-9 molts (stages) in 23-26 days at 24.0(3)oC';
+data.ab = 12;      units.ab = 'd';    label.ab = 'age at birth';  bibkey.ab = 'MacielValenti2009';   
+  temp.ab = C2K(28);  units.temp.ab = 'K'; label.temp.ab = 'temperature';
+  comment.ab  = 'period varies from 12 to 18 days';
 
-data.Lp  = 2.96; units.Lp  = 'cm';   label.Lp  = 'total length at puberty';  bibkey.Lp  = 'Gues1979';
-  temp.Lp = C2K(26);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature';
-  comment.Lp = 'sexual maturity size';
+% data.ab_T24 = 21.5; units.ab_T24 = 'd'; label.ab_T24 = 'age at birth'; bibkey.ab_T24 = 'Gues1979'; 
+%   temp.ab_T24 = C2K(24);  units.temp.ab_T24 = 'K'; label.temp.ab_T24 = 'temperature'; 
+%   comment.ab_T24  = 'Incubation was 19-24 days at 24(2)oC';
+% data.ab_T30 = 13.5; units.ab_T30 = 'd'; label.ab_T30 = 'age at birth';  bibkey.ab_T30 = 'Gues1979'; 
+%   temp.ab_T30 = C2K(30);  units.temp.ab_T30 = 'K'; label.temp.ab_T30 = 'temperature'; 
+%   comment.ab_T30  = 'Incubation was 12-15 days at 30(1)oC';
+% data.tj = 24.5; units.tj = 'd'; label.tj = 'time since birth at metam'; bibkey.tj = 'Gues1979'; 
+%   temp.tj = C2K(24);  units.temp.tj = 'K'; label.temp.tj = 'temperature'; 
+%   comment.tj  = 'M. amazonicum larvae underwent 8-9 molts (stages) in 23-26 days at 24.0(3)oC';
+% 
+% data.Lp  = 2.96; units.Lp  = 'cm';   label.Lp  = 'total length at puberty';  bibkey.Lp  = 'Gues1979';
+%   temp.Lp = C2K(26);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature';
+%   comment.Lp = 'sexual maturity size';
 data.Li_F  = 12.66;   units.Li_F  = 'cm';   label.Li_F  = 'ultimate total length';  bibkey.Li_F  = 'Silv2006';
   comment.Li_F = 'estimate made using the Appeldoorn methodology for female';
-data.Li_TC  = 9.4;   units.Li_TC  = 'cm';   label.Li_TC  = 'ultimate total length';  bibkey.Li_TC  = 'Mora2002';
-  comment.Li_TC = 'Ultimate length of males TC';
-data.Li_CC  = 9.8;   units.Li_CC  = 'cm';   label.Li_CC  = 'ultimate total length';  bibkey.Li_CC  = 'Mora2002';
-  comment.Li_CC = 'Ultimate length of males CC';
-data.Li_GC1  = 13;   units.Li_GC1  = 'cm';   label.Li_GC1  = 'ultimate total length';  bibkey.Li_GC1  = 'Mora2002';
-  comment.Li_GC1 = 'Ultimate length of males GC1';
-data.Li_GC2  = 15.84;   units.Li_GC2  = 'cm';   label.Li_GC2  = 'ultimate total length';  bibkey.Li_GC2  = 'Silv2006';
+% data.Li_TC  = 9.4;   units.Li_TC  = 'cm';   label.Li_TC  = 'ultimate total length';  bibkey.Li_TC  = 'Mora2002';
+%   comment.Li_TC = 'Ultimate length of males TC';
+data.Wwi_TC  = 2.3;   units.Wwi_TC  = 'g';   label.Wwi_TC  = 'ultimate total weight';  bibkey.Wwi_TC  = 'Mora2005';
+  comment.Wwi_TC = 'Ultimate weight of males TC';
+% data.Li_CC  = 9.8;   units.Li_CC  = 'cm';   label.Li_CC  = 'ultimate total length';  bibkey.Li_CC  = 'Mora2002';
+%   comment.Li_CC = 'Ultimate length of males CC';
+data.Wwi_CC  = 3.8;   units.Wwi_CC  = 'g';   label.Wwi_CC  = 'ultimate total weight';  bibkey.Wwi_TC  = 'Mora2005';
+  comment.Wwi_CC = 'Ultimate weight of males CC';
+% data.Li_GC1  = 13;   units.Li_GC1  = 'cm';   label.Li_GC1  = 'ultimate total length';  bibkey.Li_GC1  = 'Mora2002';
+%   comment.Li_GC1 = 'Ultimate length of males GC1';
+data.Wwi_GC1  = 11.8;   units.Wwi_GC1  = 'g';   label.Wwi_GC1  = 'ultimate total weight';  bibkey.Wwi_GC1  = 'Mora2005';
+  comment.Wwi_GC1 = 'Ultimate weight of males GC1';
+data.Li_GC2  = 14;   units.Li_GC2  = 'cm';   label.Li_GC2  = 'ultimate total length';  bibkey.Li_GC2  = 'Silv2006';
   comment.Li_GC2 = 'estimate made using the Appeldoorn methodology for male GC2';
-
+data.Wwi_GC2  = 14.4;   units.Wwi_GC2  = 'g';   label.Wwi_GC2  = 'ultimate total weight';  bibkey.Wwi_GC2  = 'Mora2005';
+  comment.Wwi_GC2 = 'Ultimate weight of males GC2';
+  
 data.Wdb = 5.86e-6;   units.Wdb = 'g';   label.Wdb = 'dry weight at birth';       bibkey.Wdb = 'Hayd2007';
 
 data.Ri  = 3375/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'Silv2006';   
@@ -66,54 +78,54 @@ data.Ri  = 3375/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bib
    
 % uni-variate data
 % Juveniles, indoors (low temperature)
-tL_JT25 = [ ... % time since hatching (d), Total length (mm)
-50.6	12.3
-75.4	17.7
-110.5	19.7
-132.3	24.2
-147.5	27.1
-161.5	31.6
-173.9	35.4
-];
-data.tL_JT25 = tL_JT25(:,2)/10; % convert mm to cm
-units.tL_JT25   = {'d', 'cm'};  label.tL_JT25 = {'days', 'total length'};  
-temp.tL_JT25 = C2K(25);  units.temp.tL_JT25 = 'K'; label.temp.tL_JT25 = 'temperature';
-bibkey.tL_JT25 = 'Gues1979'; comment.tL_JT25 = 'Data extracted from Fig.3';
+% tL_JT25 = [ ... % time since hatching (d), Total length (mm)
+% 50.6	12.3
+% 75.4	17.7
+% 110.5	19.7
+% 132.3	24.2
+% 147.5	27.1
+% 161.5	31.6
+% 173.9	35.4
+% ];
+% data.tL_JT25 = tL_JT25(:,2)/10; % convert mm to cm
+% units.tL_JT25   = {'d', 'cm'};  label.tL_JT25 = {'days', 'total length'};  
+% temp.tL_JT25 = C2K(25);  units.temp.tL_JT25 = 'K'; label.temp.tL_JT25 = 'temperature';
+% bibkey.tL_JT25 = 'Gues1979'; comment.tL_JT25 = 'Data extracted from Fig.3';
 
 % Juveniles, outdoors (high temperature)
-tL_JT30 = [ ... % time since hatching (d), Total length (mm)
-35.6	8.6
-49.2	11.5
-75.4	20.3
-112.2	35.3
-135.0	48.0
-168.0	58.9
-224.3	64.4
-251.9	66.8
-];
-data.tL_JT30 = tL_JT30(:,2)/10; % convert mm to cm
-units.tL_JT30 = {'d', 'cm'}; label.tL_JT30 = {'days', 'total length'};  
-temp.tL_JT30 = C2K(30);  units.temp.tL_JT30 = 'K'; label.temp.tL_JT30 = 'temperature';
-bibkey.tL_JT30 = 'Gues1979'; comment.tL_JT30 = 'Data extracted from Fig.3';
+% tL_JT30 = [ ... % time since hatching (d), Total length (mm)
+% 35.6	8.6
+% 49.2	11.5
+% 75.4	20.3
+% 112.2	35.3
+% 135.0	48.0
+% 168.0	58.9
+% 224.3	64.4
+% 251.9	66.8
+% ];
+% data.tL_JT30 = tL_JT30(:,2)/10; % convert mm to cm
+% units.tL_JT30 = {'d', 'cm'}; label.tL_JT30 = {'days', 'total length'};  
+% temp.tL_JT30 = C2K(30);  units.temp.tL_JT30 = 'K'; label.temp.tL_JT30 = 'temperature';
+% bibkey.tL_JT30 = 'Gues1979'; comment.tL_JT30 = 'Data extracted from Fig.3';
 
 % Female
-data.LL_F = [ ... % total length (cm),total cephalothorax length (cm)
-2.78873	1.2
-3.69014	1.64348
-4.53521	2.06087
-5.38028	2.47826
-6.22535	2.86957
-7.07042	3.28696
-7.91549	3.70435
-8.76056	4.12174
-9.60563	4.53913
-10.4507	4.95652
-10.9014	5.16522
- ];
-units.LL_F = {'cm', 'cm'}; label.LL_F = {'total length', 'total Cephalothorax length (cm)'};  
-temp.LL_F = C2K(27.5);  units.temp.LL_F = 'K'; label.temp.LL_F = 'temperature';
-bibkey.LL_F = 'Silv2006';
-comment.LL_F = '';
+% data.LL_F = [ ... % total length (cm),total cephalothorax length (cm)
+% 2.78873	1.2
+% 3.69014	1.64348
+% 4.53521	2.06087
+% 5.38028	2.47826
+% 6.22535	2.86957
+% 7.07042	3.28696
+% 7.91549	3.70435
+% 8.76056	4.12174
+% 9.60563	4.53913
+% 10.4507	4.95652
+% 10.9014	5.16522
+%  ];
+% units.LL_F = {'cm', 'cm'}; label.LL_F = {'total length', 'total Cephalothorax length (cm)'};  
+% temp.LL_F = C2K(27.5);  units.temp.LL_F = 'K'; label.temp.LL_F = 'temperature';
+% bibkey.LL_F = 'Silv2006';
+% comment.LL_F = '';
 
 data.LN_F = [ ... % total length (cm), total number of eggs/offspring (#)
 5.2045	414.938
@@ -174,6 +186,7 @@ comment.LW_F = '';
 % temp.tL_F = C2K(27.5);  units.temp.tL_F = 'K'; label.temp.tL_F = 'temperature';
 % bibkey.tL_F = 'Silv2006';
 % comment.tL_F = '';
+
 % Males
 % Male morphotype TC
 data.tW_mTC = [ ... % time since metam (months), weight (g) 
@@ -182,67 +195,68 @@ data.tW_mTC = [ ... % time since metam (months), weight (g)
 130.7	2.23
 175.0	2.29
 ];
+% data.tW_mTC(:,1) = data.tW_mTC(:,1)+25;
 units.tW_mTC = {'d', 'g'}; label.tW_mTC = {'time', 'weight'};  
 temp.tW_mTC = C2K(28);  units.temp.tW_mTC = 'K'; label.temp.tW_mTC = 'temperature';
 bibkey.tW_mTC = 'Mora2005'; comment.tW_mTC = 'data for males TC extracted from fig. 8';
 
-LL_mTC = [ ... % Log carapace length (mm), Log total length (mm)
-1.05497	1.74315
-1.08304	1.72030
-1.08187	1.73299
-1.09006	1.73046
-1.09591	1.72792
-1.09708	1.71396
-1.08421	1.74822
-1.08421	1.76853
-1.09123	1.79137
-1.09240	1.80787
-1.10058	1.75457
-1.12398	1.74061
-1.11930	1.80914
-1.12281	1.81294
-1.14035	1.81929
-1.14971	1.81294
-1.16257	1.81294
-1.17076	1.80533
-1.17427	1.81041
-1.18129	1.80787
-1.17778	1.77868
-1.18246	1.82056
-1.16959	1.83071
-1.16725	1.83706
-1.17778	1.83452
-1.16491	1.86878
-1.19064	1.84340
-1.20000	1.84467
-1.21170	1.85355
-1.20585	1.84975
-1.20117	1.85736
-1.20702	1.88147
-1.21170	1.88782
-1.21988	1.87640
-1.21170	1.86878
-1.21170	1.86117
-1.22807	1.86371
-1.23626	1.86878
-1.23860	1.89289
-1.24561	1.88782
-1.25263	1.89289
-1.26082	1.88782
-1.24561	1.90178
-1.24678	1.90431
-1.29825	1.90431
-1.29825	1.91320
-1.29474	1.91827
-1.31813	1.93604
-1.33567	1.95381
-1.33333	1.97284
-1.36023	1.96904
-];
-data.LL_mTC(:,[2 1]) = 10.^(LL_mTC(:,[2 1]));
-data.LL_mTC = LL_mTC(:,[2 1])/10;
-units.LL_mTC   = {'cm', 'cm'};  label.LL_mTC = {'total length', 'carapace length'};  
-bibkey.LL_mTC = 'Mora2002';
+% LL_mTC = [ ... % Log carapace length (mm), Log total length (mm)
+% 1.05497	1.74315
+% 1.08304	1.72030
+% 1.08187	1.73299
+% 1.09006	1.73046
+% 1.09591	1.72792
+% 1.09708	1.71396
+% 1.08421	1.74822
+% 1.08421	1.76853
+% 1.09123	1.79137
+% 1.09240	1.80787
+% 1.10058	1.75457
+% 1.12398	1.74061
+% 1.11930	1.80914
+% 1.12281	1.81294
+% 1.14035	1.81929
+% 1.14971	1.81294
+% 1.16257	1.81294
+% 1.17076	1.80533
+% 1.17427	1.81041
+% 1.18129	1.80787
+% 1.17778	1.77868
+% 1.18246	1.82056
+% 1.16959	1.83071
+% 1.16725	1.83706
+% 1.17778	1.83452
+% 1.16491	1.86878
+% 1.19064	1.84340
+% 1.20000	1.84467
+% 1.21170	1.85355
+% 1.20585	1.84975
+% 1.20117	1.85736
+% 1.20702	1.88147
+% 1.21170	1.88782
+% 1.21988	1.87640
+% 1.21170	1.86878
+% 1.21170	1.86117
+% 1.22807	1.86371
+% 1.23626	1.86878
+% 1.23860	1.89289
+% 1.24561	1.88782
+% 1.25263	1.89289
+% 1.26082	1.88782
+% 1.24561	1.90178
+% 1.24678	1.90431
+% 1.29825	1.90431
+% 1.29825	1.91320
+% 1.29474	1.91827
+% 1.31813	1.93604
+% 1.33567	1.95381
+% 1.33333	1.97284
+% 1.36023	1.96904
+% ];
+% data.LL_mTC(:,[2 1]) = 10.^(LL_mTC(:,[2 1]));
+% data.LL_mTC = LL_mTC(:,[2 1])/10;
+% units.LL_mTC   = {'cm', 'cm'};  label.LL_mTC = {'total length', 'carapace length'};  
+% bibkey.LL_mTC = 'Mora2002';
 
 %Male morphotype CC
 data.tW_mCC = [ ... % time since metam (months), weight (g) 
@@ -251,41 +265,42 @@ data.tW_mCC = [ ... % time since metam (months), weight (g)
 130.7	3.90
 175.0	3.79
 ];
+% data.tW_mCC(:,1) = data.tW_mCC(:,1)+25;
 units.tW_mCC = {'d', 'g'}; label.tW_mCC = {'time', 'weight'};  
 temp.tW_mCC = C2K(28);  units.temp.tW_mCC = 'K'; label.temp.tW_mCC = 'temperature';
 bibkey.tW_mCC = 'Mora2005'; comment.tW_mCC = 'data for males CC extracted from fig. 8';
 
-LL_mCC = [ ... % Log carapace length (mm), Log total length (mm)
-1.12515	1.81421
-1.13684	1.80533
-1.15673	1.77868
-1.18947	1.84467
-1.19532	1.83959
-1.21988	1.87640
-1.23041	1.82563
-1.26433	1.86371
-1.25614	1.87640
-1.27719	1.90305
-1.28655	1.90431
-1.28772	1.90939
-1.26901	1.91320
-1.27368	1.91320
-1.27953	1.91447
-1.27602	1.92335
-1.29942	1.89289
-1.30526	1.92970
-1.31462	1.93985
-1.32164	1.93604
-1.32281	1.93096
-1.35906	1.90939
-1.32398	1.97284
-1.35088	1.96015
-1.34386	1.99061
-];
-data.LL_mCC(:,[2 1]) = 10.^(LL_mCC(:,[2 1]));
-data.LL_mCC = LL_mCC(:,[2 1])/10;
-units.LL_mCC   = {'cm', 'cm'};  label.LL_mCC = {'total length', 'carapace length'};  
-bibkey.LL_mCC = 'Mora2002';
+% LL_mCC = [ ... % Log carapace length (mm), Log total length (mm)
+% 1.12515	1.81421
+% 1.13684	1.80533
+% 1.15673	1.77868
+% 1.18947	1.84467
+% 1.19532	1.83959
+% 1.21988	1.87640
+% 1.23041	1.82563
+% 1.26433	1.86371
+% 1.25614	1.87640
+% 1.27719	1.90305
+% 1.28655	1.90431
+% 1.28772	1.90939
+% 1.26901	1.91320
+% 1.27368	1.91320
+% 1.27953	1.91447
+% 1.27602	1.92335
+% 1.29942	1.89289
+% 1.30526	1.92970
+% 1.31462	1.93985
+% 1.32164	1.93604
+% 1.32281	1.93096
+% 1.35906	1.90939
+% 1.32398	1.97284
+% 1.35088	1.96015
+% 1.34386	1.99061
+% ];
+% data.LL_mCC(:,[2 1]) = 10.^(LL_mCC(:,[2 1]));
+% data.LL_mCC = LL_mCC(:,[2 1])/10;
+% units.LL_mCC   = {'cm', 'cm'};  label.LL_mCC = {'total length', 'carapace length'};  
+% bibkey.LL_mCC = 'Mora2002';
 
 %Male morphotype GC1
 data.tW_mGC1 = [ ... % time since metam (months), weight (g) 
@@ -294,33 +309,34 @@ data.tW_mGC1 = [ ... % time since metam (months), weight (g)
 130.7	11.48
 175.0	11.84
 ];
+% data.tW_mGC1(:,1) = data.tW_mGC1(:,1)+25;
 units.tW_mGC1 = {'d', 'g'}; label.tW_mGC1 = {'time', 'weight'};  
 temp.tW_mGC1 = C2K(28);  units.temp.tW_mGC1 = 'K'; label.temp.tW_mGC1 = 'temperature';
 bibkey.tW_mGC1 = 'Mora2005'; comment.tW_mGC1 = 'data for males GC1 extracted from fig. 8';
 
-LL_mGC1 = [ ... % Log carapace length (mm), Log total length (mm)
-1.30409	1.94112
-1.31696	1.92843
-1.37544	1.95254
-1.36842	1.98553
-1.40585	1.99949
-1.40585	2.00330
-1.41287	2.00711
-1.43158	2.06548
-1.43860	2.05279
-1.47251	2.04391
-1.45731	2.10102
-1.47719	2.09594
-1.48421	2.08452
-1.49825	2.08198
-1.49708	2.11497
-1.49825	2.14797
-1.50994	2.14797
-];
-data.LL_mGC1(:,[2 1]) = 10.^(LL_mGC1(:,[2 1]));
-data.LL_mGC1 = LL_mGC1(:,[2 1])/10;
-units.LL_mGC1   = {'cm', 'cm'};  label.LL_mGC1 = {'total length', 'carapace length'};  
-bibkey.LL_mGC1 = 'Mora2002';
+% LL_mGC1 = [ ... % Log carapace length (mm), Log total length (mm)
+% 1.30409	1.94112
+% 1.31696	1.92843
+% 1.37544	1.95254
+% 1.36842	1.98553
+% 1.40585	1.99949
+% 1.40585	2.00330
+% 1.41287	2.00711
+% 1.43158	2.06548
+% 1.43860	2.05279
+% 1.47251	2.04391
+% 1.45731	2.10102
+% 1.47719	2.09594
+% 1.48421	2.08452
+% 1.49825	2.08198
+% 1.49708	2.11497
+% 1.49825	2.14797
+% 1.50994	2.14797
+% ];
+% data.LL_mGC1(:,[2 1]) = 10.^(LL_mGC1(:,[2 1]));
+% data.LL_mGC1 = LL_mGC1(:,[2 1])/10;
+% units.LL_mGC1   = {'cm', 'cm'};  label.LL_mGC1 = {'total length', 'carapace length'};  
+% bibkey.LL_mGC1 = 'Mora2002';
 
 %Male morphotype GC2
 data.tW_mGC2 = [ ... % time since metam (months), weight (g) 
@@ -329,51 +345,52 @@ data.tW_mGC2 = [ ... % time since metam (months), weight (g)
 130.7	13.30
 175.0	14.44
 ];
+% data.tW_mGC2(:,1) = data.tW_mGC2(:,1)+25;
 units.tW_mGC2 = {'d', 'g'}; label.tW_mGC2 = {'time', 'weight'};  
 temp.tW_mGC2 = C2K(28);  units.temp.tW_mGC2 = 'K'; label.temp.tW_mGC2 = 'temperature';
 bibkey.tW_mGC2 = 'Mora2005'; comment.tW_mGC2 = 'data for males GC2 extracted from fig. 8';
 
-LL_mGC2 = [ ... % Log carapace length (mm), Log total length (mm)
-1.29825	1.94492
-1.33450	1.93350
-1.32865	1.94492
-1.32632	1.95761
-1.33567	1.97157
-1.35205	1.96269
-1.34620	1.98680
-1.36374	1.98173
-1.37076	1.98173
-1.37544	2.00711
-1.39415	1.99442
-1.39415	2.01218
-1.42339	2.00584
-1.43041	2.02360
-1.44678	2.05279
-1.44795	2.06041
-1.46433	2.05787
-1.46433	2.05660
-1.47018	2.05787
-1.46199	2.06929
-1.45380	2.09721
-1.45731	2.09086
-1.46316	2.08325
-1.47018	2.07690
-1.47602	2.07310
-1.47368	2.09213
-1.48538	2.08706
-1.48538	2.09467
-1.49591	2.08325
-1.47251	2.11244
-1.48304	2.10736
-1.50175	2.10482
-1.49708	2.10482
-1.50175	2.11497
-1.53450	2.11624
-];
-data.LL_mGC2(:,[2 1]) = 10.^LL_mGC2(:,[2 1]);
-data.LL_mGC2 = LL_mGC2(:,[2 1])/10;
-units.LL_mGC2   = {'cm', 'cm'};  label.LL_mGC2 = {'total length', 'carapace length'};  
-bibkey.LL_mGC2 = 'Mora2002';
+% LL_mGC2 = [ ... % Log carapace length (mm), Log total length (mm)
+% 1.29825	1.94492
+% 1.33450	1.93350
+% 1.32865	1.94492
+% 1.32632	1.95761
+% 1.33567	1.97157
+% 1.35205	1.96269
+% 1.34620	1.98680
+% 1.36374	1.98173
+% 1.37076	1.98173
+% 1.37544	2.00711
+% 1.39415	1.99442
+% 1.39415	2.01218
+% 1.42339	2.00584
+% 1.43041	2.02360
+% 1.44678	2.05279
+% 1.44795	2.06041
+% 1.46433	2.05787
+% 1.46433	2.05660
+% 1.47018	2.05787
+% 1.46199	2.06929
+% 1.45380	2.09721
+% 1.45731	2.09086
+% 1.46316	2.08325
+% 1.47018	2.07690
+% 1.47602	2.07310
+% 1.47368	2.09213
+% 1.48538	2.08706
+% 1.48538	2.09467
+% 1.49591	2.08325
+% 1.47251	2.11244
+% 1.48304	2.10736
+% 1.50175	2.10482
+% 1.49708	2.10482
+% 1.50175	2.11497
+% 1.53450	2.11624
+% ];
+% data.LL_mGC2(:,[2 1]) = 10.^LL_mGC2(:,[2 1]);
+% data.LL_mGC2 = LL_mGC2(:,[2 1])/10;
+% units.LL_mGC2   = {'cm', 'cm'};  label.LL_mGC2 = {'total length', 'carapace length'};  
+% bibkey.LL_mGC2 = 'Mora2002';
 
 %% set weights for all real data
 weights = setweights(data, []);
