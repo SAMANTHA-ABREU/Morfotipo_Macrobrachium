@@ -49,14 +49,22 @@ data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New20
 data.Ri  = 100000/365;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSi2004';   
   temp.Ri = C2K(28);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
 
-data.Li_F  = 29;   units.Li_F  = 'cm';   label.Li_F  = 'ultimate total length';  bibkey.Li_F  = 'New2002';
-  comment.Li_F = 'Ultimate length for female';
-data.Li_BC  = 33;   units.Li_BC  = 'cm';   label.Li_BC  = 'ultimate total length';  bibkey.Li_BC  = 'New2002';
-   comment.Li_BC = 'Ultimate length of males BC';
-data.Li_OC  = 23.82;   units.Li_OC  = 'cm';   label.Li_OC  = 'ultimate total length';  bibkey.Li_OC  = 'Iket2016';
-  comment.Li_OC = 'Ultimate length of males OC';
-data.Li_SM  = 15.77;   units.Li_SM  = 'cm';   label.Li_SM  = 'ultimate total length';  bibkey.Li_SM  = 'Iket2016';
-  comment.Li_SM = 'Ultimate length of males SM';
+% data.Li_F  = 29;   units.Li_F  = 'cm';   label.Li_F  = 'ultimate total length';  bibkey.Li_F  = 'New2002';
+%   comment.Li_F = 'Ultimate length for female';
+data.Wwi_F  = 21.35;   units.Wwi_F  = 'g';   label.Wwi_F  = 'ultimate total weight';  bibkey.Wwi_F  = 'Raan1991';
+  comment.Wwi_F = 'Ultimate weight of males female';
+% data.Li_BC  = 33;   units.Li_BC  = 'cm';   label.Li_BC  = 'ultimate total length';  bibkey.Li_BC  = 'New2002';
+%    comment.Li_BC = 'Ultimate length of males BC';
+data.Wwi_BC  = 45;   units.Wwi_BC  = 'g';   label.Wwi_BC  = 'ultimate total weight';  bibkey.Wwi_BC  = 'Raan1991';
+  comment.Wwi_BC = 'Ultimate weight of males BC';
+% data.Li_OC  = 23.82;   units.Li_OC  = 'cm';   label.Li_OC  = 'ultimate total length';  bibkey.Li_OC  = 'Iket2016';
+%   comment.Li_OC = 'Ultimate length of males OC';
+data.Wwi_OC  = 31.2;   units.Wwi_OC  = 'g';   label.Wwi_OC  = 'ultimate total weight';  bibkey.Wwi_OC  = 'Raan1991';
+  comment.Wwi_OC = 'Ultimate weight of males OC';
+% data.Li_SM  = 15.77;   units.Li_SM  = 'cm';   label.Li_SM  = 'ultimate total length';  bibkey.Li_SM  = 'Iket2016';
+%   comment.Li_SM = 'Ultimate length of males SM';
+data.Wwi_SM  = 6.5;   units.Wwi_SM  = 'g';   label.Wwi_SM  = 'ultimate total weight';  bibkey.Wwi_SM  = 'Raan1991';
+  comment.Wwi_SM = 'Ultimate weight of males SM';
 
 % uni-variate data
 
