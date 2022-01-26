@@ -7,7 +7,7 @@ par.T_ref = 293.15;   free.T_ref = 0;   units.T_ref = 'K';        label.T_ref = 
 
 %% core primary parameters 
 par.T_A = 9000;       free.T_A   = 0;   units.T_A = 'K';          label.T_A = 'Arrhenius temperature'; 
-par.z = 0.058604;     free.z     = 1;   units.z = '-';            label.z = 'zoom factor'; 
+par.z = 0.095441;     free.z     = 0;   units.z = '-';            label.z = 'zoom factor'; 
 par.F_m = 6.5;        free.F_m   = 0;   units.F_m = 'l/d.cm^2';   label.F_m = '{F_m}, max spec searching rate'; 
 par.kap_X = 0.8;      free.kap_X = 0;   units.kap_X = '-';        label.kap_X = 'digestion efficiency of food to reserve'; 
 par.kap_P = 0.1;      free.kap_P = 0;   units.kap_P = '-';        label.kap_P = 'faecation efficiency of food to faeces'; 
