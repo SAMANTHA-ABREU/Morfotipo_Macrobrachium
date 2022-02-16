@@ -52,16 +52,17 @@ for i = 1:length(zoomfactor)
     JT_EAm = TC * J_E_Am * L^2;                       % mol/d.cm^2, {J_EAm}, max assimilation flux per area surface
 
     %OU
-    JT_EAm = TC * p_Am * L_m^2;                      % Mytilus edulis
+    JT_EAm = TC * p_Am * L_m^2;                       % Mytilus edulis
     
     %OU
-    JT_EAm = kap_X * pT_Xm;                            % (Kooijman, 2008)pag 35
+    JT_EAm = kap_X * pT_Xm;                           % (Kooijman, 2008)pag 35
         
     % Feces
     J_f_Am = JT_XAm - JT_EAm;                         % mol/d.cm^2, max faeces production per surface area 
     
     %OU
-    TJ_X = mu_F* p_Am* TC* L^2 / kap_X;               % Hyalella azteca (Não temos o parametro mu_F, tenho que encontrar uma forma de estima-lo)
+    L = (0.00045/(1 + f * w)/d_V).^(1/3);             % Egestion measure for 450µg dry weight, Hyalella azteca
+    TJ_X = mu_F* p_Am* TC* L^2 / kap_X;               % Number of faecal pellets per day, Hyalella azteca (Não temos o parametro mu_F, tenho que encontrar uma forma de estima-lo)
     
     % Flux data 
     pars_p = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose pars
