@@ -27,10 +27,10 @@ par.s_G = 0.0001;     free.s_G   = 0;   units.s_G = '-';          label.s_G = 'G
 %% other parameters 
 par.del_M = 0.066914;  free.del_M = 0;   units.del_M = '-';        label.del_M = 'shape coefficient'; 
 par.f = 1;            free.f     = 0;   units.f = '-';            label.f = 'scaled functional response for 0-var data'; 
-par.p_MCC = 2641.8402;  free.p_MCC = 1;   units.p_MCC = 'J/d.cm^3';  label.p_MCC = '[p_M], vol-spec somatic maint for males CC'; 
-par.p_MGC1 = 3437.8084;  free.p_MGC1 = 1;   units.p_MGC1 = 'J/d.cm^3';  label.p_MGC1 = '[p_M], vol-spec somatic maint for males GC1'; 
-par.p_MGC2 = 5.478;   free.p_MGC2 = 1;   units.p_MGC2 = 'J/d.cm^3';  label.p_MGC2 = '[p_M], vol-spec somatic maint for males GC2'; 
-par.p_MTC = 4269.9219;  free.p_MTC = 1;   units.p_MTC = 'J/d.cm^3';  label.p_MTC = '[p_M], vol-spec somatic maint for males TC'; 
+par.p_MCC = 3555.3586;  free.p_MCC = 1;   units.p_MCC = 'J/d.cm^3';  label.p_MCC = '[p_M], vol-spec somatic maint for males CC'; 
+par.p_MGC1 = 2488.7247;  free.p_MGC1 = 1;   units.p_MGC1 = 'J/d.cm^3';  label.p_MGC1 = '[p_M], vol-spec somatic maint for males GC1'; 
+par.p_MGC2 = 2303.9942;  free.p_MGC2 = 1;   units.p_MGC2 = 'J/d.cm^3';  label.p_MGC2 = '[p_M], vol-spec somatic maint for males GC2'; 
+par.p_MTC = 4272.6886;  free.p_MTC = 1;   units.p_MTC = 'J/d.cm^3';  label.p_MTC = '[p_M], vol-spec somatic maint for males TC'; 
 
 %% set chemical parameters from Kooy2010 
 [par, units, label, free] = addchem(par, units, label, free, metaData.phylum, metaData.class); 
