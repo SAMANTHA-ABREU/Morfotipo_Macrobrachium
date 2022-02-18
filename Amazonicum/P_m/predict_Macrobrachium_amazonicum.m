@@ -34,56 +34,44 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   Lw_i_F = L_i/ del_M;              % cm, ultimate total length at f for female
 
   % ultimate for Males TC
-  p_Am_mTC = z * p_MTC/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
-  E_m_mTC = p_Am_mTC/ v;                   % J/cm^3, reserve capacity [E_m]
-  g_mTC = E_G/ (kap* E_m_mTC);             % -, energy investment ratio
-  m_Em_mTC = y_E_V * E_m_mTC/ E_G;         % mol/mol, reserve capacity 
-  w_mTC = m_Em_mTC * w_E/ w_V;             % -, contribution of reserve to weight
-  L_mmTC = v/ k_M/ g_mTC;                  % cm, max struct length
-  pars_tjmTC = [g_mTC k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males TC
+  k_MmTC = p_MTC/E_G;
+  k_mTC = k_J/k_MmTC;
+  L_mmTC = v/ k_MmTC/ g;                  % cm, max struct length
+  pars_tjmTC = [g k_mTC l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males TC
   [t_jmTC, t_pmTC, t_bmTC, l_jmTC, l_pmTC, l_bmTC, l_imTC, rho_jmTC, rho_BmTC] = get_tj(pars_tjmTC, f);   
   L_imTC = L_mmTC * l_imTC;    % cm, ultimate structural length at f
   Lw_i_mTC = L_imTC/ del_M;                % cm, ultimate total length at f
-  Ww_i_mTC = L_imTC^3 * (1 + f * w_mTC);       % g, ultimate wet weight 
+  Ww_i_mTC = L_imTC^3 * (1 + f * w);       % g, ultimate wet weight 
 
   % ultimate for Males CC
-  p_Am_mCC = z * p_MCC/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
-  E_m_mCC = p_Am_mCC/ v;                   % J/cm^3, reserve capacity [E_m]
-  g_mCC = E_G/ (kap* E_m_mCC);             % -, energy investment ratio
-  m_Em_mCC = y_E_V * E_m_mCC/ E_G;         % mol/mol, reserve capacity 
-  w_mCC = m_Em_mCC * w_E/ w_V;             % -, contribution of reserve to weight
-  L_mmCC = v/ k_M/ g_mCC;                  % cm, max struct length
-  pars_tjmCC = [g_mCC k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males CC
+  k_MmCC = p_MCC/E_G;
+  k_mCC = k_J/k_MmCC;
+  L_mmCC = v/ k_M/ g;                  % cm, max struct length
+  pars_tjmCC = [g k_mCC l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males CC
   [t_jmCC, t_pmCC, t_bmCC, l_jmCC, l_pmCC, l_bmCC, l_imCC, rho_jmCC, rho_BmCC] = get_tj(pars_tjmCC, f);
   L_imCC = L_mmCC * l_imCC;     % cm, ultimate structural length at f
   Lw_i_mCC = L_imCC/ del_M;              % cm, ultimate total length at f
-  Ww_i_mCC = L_imCC^3 * (1 + f * w_mCC);       % g, ultimate wet weight 
+  Ww_i_mCC = L_imCC^3 * (1 + f * w);       % g, ultimate wet weight 
 
   % ultimate for Males GC1
-  p_Am_mGC1 = z * p_MGC1/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
-  E_m_mGC1 = p_Am_mGC1/ v;                   % J/cm^3, reserve capacity [E_m]
-  g_mGC1 = E_G/ (kap* E_m_mGC1);             % -, energy investment ratio
-  m_Em_mGC1 = y_E_V * E_m_mGC1/ E_G;         % mol/mol, reserve capacity 
-  w_mGC1 = m_Em_mGC1 * w_E/ w_V;             % -, contribution of reserve to weight
-  L_mmGC1 = v/ k_M/ g_mGC1;                  % cm, max struct length
-  pars_tjmGC1 = [g_mGC1 k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males GC1
+  k_MmGC1 = p_MGC1/E_G;
+  k_mGC1 = k_J/k_MmGC1;
+  L_mmGC1 = v/ k_M/ g;                  % cm, max struct length
+  pars_tjmGC1 = [g k_mGC1 l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males GC1
   [t_jmGC1, t_pmGC1, t_bmGC1, l_jmGC1, l_pmGC1, l_bmGC1, l_imGC1, rho_jmGC1, rho_BmGC1] = get_tj(pars_tjmGC1, f);
   L_imGC1 = L_mmGC1 * l_imGC1;     % cm, ultimate structural length at f
   Lw_i_mGC1 = L_imGC1/ del_M;              % cm, ultimate total length at f
-  Ww_i_mGC1 = L_imGC1^3 * (1 + f * w_mGC1);       % g, ultimate wet weight 
+  Ww_i_mGC1 = L_imGC1^3 * (1 + f * w);       % g, ultimate wet weight 
 
   % ultimate for Males GC2
-  p_Am_mGC2 = z * p_MGC2/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
-  E_m_mGC2 = p_Am_mGC2/ v;                   % J/cm^3, reserve capacity [E_m]
-  g_mGC2 = E_G/ (kap* E_m_mGC2);             % -, energy investment ratio
-  m_Em_mGC2 = y_E_V * E_m_mGC2/ E_G;         % mol/mol, reserve capacity 
-  w_mGC2 = m_Em_mGC2 * w_E/ w_V;             % -, contribution of reserve to weight
-  L_mmGC2 = v/ k_M/ g_mGC2;                  % cm, max struct length
-  pars_tjmGC2 = [g_mGC2 k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males GC2
+  k_MmGC2 = p_MGC2/E_G;
+  k_mGC2 = k_J/k_MmGC2;
+  L_mmGC2 = v/ k_M/ g;                  % cm, max struct length
+  pars_tjmGC2 = [g k_mGC2 l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males GC2
   [t_jmGC2, t_pmGC2, t_bmGC2, l_jmGC2, l_pmGC2, l_bmGC2, l_imGC2, rho_jmGC2, rho_BmGC2] = get_tj(pars_tjmGC2, f);
   L_imGC2 = L_mmGC2 * l_imGC2;     % cm, ultimate structural length at f
   Lw_i_mGC2 = L_imGC2/ del_M;              % cm, ultimate total length at f
-  Ww_i_mGC2 = L_imGC2^3 * (1 + f * w_mGC2);       % g, ultimate wet weight 
+  Ww_i_mGC2 = L_imGC2^3 * (1 + f * w);       % g, ultimate wet weight 
 
   % reproduction
   pars_R = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose parameter vector at T
@@ -123,25 +111,25 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   % time-weight
   rT_BmTC = rho_BmTC * kT_M;
   L_ji_TC = L_imTC - (L_imTC - L_p) * exp( - rT_BmTC * (tW_mTC(:,1) - tT_p)); % cm, structural length at time
-  EWw_TC = L_ji_TC.^3 * (1 + f * w_mTC);
+  EWw_TC = L_ji_TC.^3 * (1 + f * w);
   
   % Male morphotype CC
   %time-weigth
   rT_BmCC = rho_BmCC * kT_M;
   L_ji_CC = L_imCC - (L_imCC - L_p) * exp( - rT_BmCC * (tW_mCC(:,1) - tT_p)); % cm, structural length at time
-  EWw_CC = L_ji_CC.^3 * (1 + f * w_mCC);
+  EWw_CC = L_ji_CC.^3 * (1 + f * w);
   
   % Male morphotype GC1
   % time-weight
   rT_BmGC1 = rho_BmGC1 * kT_M;
   L_ji_GC1 = L_imGC1 - (L_imGC1 - L_p) * exp( - rT_BmGC1 * (tW_mGC1(:,1) - tT_p)); % cm, structural length at time
-  EWw_GC1 = L_ji_GC1.^3 * (1 + f * w_mGC1);
+  EWw_GC1 = L_ji_GC1.^3 * (1 + f * w);
 
   % Male morphotype GC2
   %time-weigth
   rT_BmGC2 = rho_BmGC2 * kT_M;
   L_ji_GC2 = L_imGC2 - (L_imGC2 - L_p) * exp( - rT_BmGC2 * (tW_mGC2(:,1) - tT_p)); % cm, structural length at time
-  EWw_GC2 = L_ji_GC2.^3 * (1 + f * w_mGC2);
+  EWw_GC2 = L_ji_GC2.^3 * (1 + f * w);
 
   % pack to output
   % the names of the fields in the structure must be the same as the data names in the mydata file
