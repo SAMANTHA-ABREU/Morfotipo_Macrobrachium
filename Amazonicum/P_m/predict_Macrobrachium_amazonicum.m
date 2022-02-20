@@ -103,31 +103,34 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
 
   % Males
   % After puberty males growth with different pAm
-  kT_M = k_M * TC_tW_mTC;
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
   tT_p = (t_p-t_j)/ kT_M;           % d, time since metam at puberty at f
 
   % Male morphotype TC
   % time-weight
-  rT_BmTC = rho_BmTC * kT_M;
+  kT_MmTC = k_MmTC * TC_tW_mTC;
+  rT_BmTC = rho_BmTC * kT_MmTC;
   L_ji_TC = L_imTC - (L_imTC - L_p) * exp( - rT_BmTC * (tW_mTC(:,1) - tT_p)); % cm, structural length at time
   EWw_TC = L_ji_TC.^3 * (1 + f * w);
   
   % Male morphotype CC
   %time-weigth
-  rT_BmCC = rho_BmCC * kT_M;
+  kT_MmCC = k_MmCC * TC_tW_mTC;
+  rT_BmCC = rho_BmCC * kT_MmCC;
   L_ji_CC = L_imCC - (L_imCC - L_p) * exp( - rT_BmCC * (tW_mCC(:,1) - tT_p)); % cm, structural length at time
   EWw_CC = L_ji_CC.^3 * (1 + f * w);
   
   % Male morphotype GC1
   % time-weight
-  rT_BmGC1 = rho_BmGC1 * kT_M;
+  kT_MmGC1 = k_MmGC1 * TC_tW_mTC;
+  rT_BmGC1 = rho_BmGC1 * kT_MmGC1;
   L_ji_GC1 = L_imGC1 - (L_imGC1 - L_p) * exp( - rT_BmGC1 * (tW_mGC1(:,1) - tT_p)); % cm, structural length at time
   EWw_GC1 = L_ji_GC1.^3 * (1 + f * w);
 
   % Male morphotype GC2
   %time-weigth
-  rT_BmGC2 = rho_BmGC2 * kT_M;
+  kT_MmGC2 = k_MmGC2 * TC_tW_mTC;
+  rT_BmGC2 = rho_BmGC2 * kT_MmGC2;
   L_ji_GC2 = L_imGC2 - (L_imGC2 - L_p) * exp( - rT_BmGC2 * (tW_mGC2(:,1) - tT_p)); % cm, structural length at time
   EWw_GC2 = L_ji_GC2.^3 * (1 + f * w);
 
