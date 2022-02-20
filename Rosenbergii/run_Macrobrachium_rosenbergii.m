@@ -13,4 +13,4 @@ estim_options('pars_init_method', 1);
 estim_options('results_output', 3);
 estim_options('method', 'nm');
 
-estim_pars;
+estim_pars; 

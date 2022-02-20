@@ -40,34 +40,43 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   RT_i = TC_28 * reprod_rate(L_i, f, pars_R);             % #/d, ultimate reproduction rate at T
 
   % ultimate for males BC
-  k_MmBC = p_MBC/E_G;
-  k_mBC = k_J/k_MmBC;
-  L_mmBC = v/ k_MmBC/ g;                  % cm, max struct length
-  pars_tjmBC = [g k_mBC l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males
+  p_Am_mBC = z_BC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  E_m_mBC = p_Am_mBC/ v;                   % J/cm^3, reserve capacity [E_m]
+  g_mBC = E_G/ (kap* E_m_mBC);             % -, energy investment ratio
+  m_Em_mBC = y_E_V * E_m_mBC/ E_G;         % mol/mol, reserve capacity 
+  w_mBC = m_Em_mBC * w_E/ w_V;             % -, contribution of reserve to weight
+  L_mmBC = v/ k_M/ g_mBC;                  % cm, max struct length
+  pars_tjmBC = [g_mBC k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males
   [t_jmBC, t_pmBC, t_bmBC, l_jmBC, l_pmBC, l_bmBC, l_imBC, rho_jmBC, rho_BmBC] = get_tj(pars_tjmBC, f);
   L_imBC = L_mmBC * l_imBC;     % cm, ultimate structural length at f
   Lw_i_mBC = L_imBC/ del_M;              % cm, ultimate total length at f
-  Ww_i_mBC = L_imBC^3 * (1 + f * w);       % g, ultimate wet weight 
+  Ww_i_mBC = L_imBC^3 * (1 + f * w_mBC);       % g, ultimate wet weight 
 
   % ultimate for Males OC
-  k_MmOC = p_MOC/E_G;
-  k_mOC = k_J/k_MmOC;
-  L_mmOC = v/ k_MmOC/ g;                  % cm, max struct length
-  pars_tjmOC = [g k_mOC l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males
+  p_Am_mOC = z_OC * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  E_m_mOC = p_Am_mOC/ v;                   % J/cm^3, reserve capacity [E_m]
+  g_mOC = E_G/ (kap* E_m_mOC);             % -, energy investment ratio
+  m_Em_mOC = y_E_V * E_m_mOC/ E_G;         % mol/mol, reserve capacity 
+  w_mOC = m_Em_mOC * w_E/ w_V;             % -, contribution of reserve to weight
+  L_mmOC = v/ k_M/ g_mOC;                  % cm, max struct length
+  pars_tjmOC = [g_mOC k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males
   [t_jmOC, t_pmOC, t_bmOC, l_jmOC, l_pmOC, l_bmOC, l_imOC, rho_jmOC, rho_BmOC] = get_tj(pars_tjmOC, f);
   L_imOC = L_mmOC * l_imOC;     % cm, ultimate structural length at f
   Lw_i_mOC = L_imOC/ del_M;              % cm, ultimate total length at f
-  Ww_i_mOC = L_imOC^3 * (1 + f * w);       % g, ultimate wet weight 
+  Ww_i_mOC = L_imOC^3 * (1 + f * w_mOC);       % g, ultimate wet weight 
 
   % ultimate for Males SM
-  k_MmSM = p_MSM/E_G;
-  k_mSM = k_J/k_MmSM;
-  L_mmSM = v/ k_MmSM/ g;                  % cm, max struct length
-  pars_tjmSM = [g k_mSM l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males
+  p_Am_mSM = z_SM * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+  E_m_mSM = p_Am_mSM/ v;                   % J/cm^3, reserve capacity [E_m]
+  g_mSM = E_G/ (kap* E_m_mSM);             % -, energy investment ratio
+  m_Em_mSM = y_E_V * E_m_mSM/ E_G;         % mol/mol, reserve capacity 
+  w_mSM = m_Em_mSM * w_E/ w_V;             % -, contribution of reserve to weight
+  L_mmSM = v/ k_M/ g_mSM;                  % cm, max struct length
+  pars_tjmSM = [g_mSM k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males
   [t_jmSM, t_pmSM, t_bmSM, l_jmSM, l_pmSM, l_bmSM, l_imSM, rho_jmSM, rho_BmSM] = get_tj(pars_tjmSM, f);
   L_imSM = L_mmSM * l_imSM;               % cm, ultimate structural length at f
   Lw_imSM = L_imSM/ del_M;               % cm, ultimate total length at f
-  Ww_i_mSM = L_imSM^3 * (1 + f * w);  % g, ultimate wet weight 
+  Ww_i_mSM = L_imSM^3 * (1 + f * w_mSM);  % g, ultimate wet weight 
 
   
   % pack to output
@@ -90,30 +99,34 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   
   %Males
   % After puberty males growth with different pAm
-  kT_M = k_M * TC_tW_SM;
   L_p = L_m * l_p;                  % cm, structural length at puberty at f
-  tT_p = (t_p-t_j)/ kT_M;           % d, time since metam at puberty at f
   
   %SM
   %time-weigth
-  kT_MmSM = k_MmSM * TC_tW_SM;
-  rT_BmSM = rho_BmSM * kT_MmSM;
-  L_ji_SM = L_imSM - (L_imSM - L_p) * exp( - rT_BmSM * (tW_SM(:,1) - tT_p)); % cm, structural length at time
-  EWw_SM = L_ji_SM.^3 * (1 + f * w);
+  kT_M = k_M * TC_tW_SM;
+  rT_jmSM = rho_jmSM * kT_M; 
+  tT_p = (t_p-t_j)/ kT_M;           % d, time since metam at puberty at f
+  rT_BmSM = rho_BmSM * kT_M;
+  L_ji_SM = L_imSM - (l_imSM - L_p) * exp( - rT_BmSM * (tW_SM(:,1) - tT_p)); % cm, structural length at time
+  EWw_SM = L_ji_SM.^3 * (1 + f * w_mSM);
 
   %OC
   %time-weigth
-  kT_MmOC = k_MmOC * TC_tW_OC;
-  rT_BmOC = rho_BmOC * kT_MmOC;
-  L_ji_OC = L_imOC - (L_imOC - L_p) * exp( - rT_BmOC * (tW_OC(:,1) - tT_p)); % cm, structural length at time
-  EWw_OC = L_ji_OC.^3 * (1 + f * w);
+  kT_M = k_M * TC_tW_OC;
+  rT_jmOC = rho_jmOC * kT_M; 
+  tT_p = (t_p-t_j)/ kT_M;           % d, time since metam at puberty at f
+  rT_BmOC = rho_BmOC * kT_M;
+  L_ji_OC = L_imOC - (l_imOC - L_p) * exp( - rT_BmOC * (tW_OC(:,1) - tT_p)); % cm, structural length at time
+  EWw_OC = L_ji_OC.^3 * (1 + f * w_mOC);
 
   %BC
   %time-weigth
-  kT_MmBC = k_MmBC * TC_tW_BC;
-  rT_BmBC = rho_BmBC * kT_MmBC;
-  L_ji_BC = L_imBC - (L_imBC - L_p) * exp( - rT_BmBC * (tW_BC(:,1) - tT_p)); % cm, structural length at time
-  EWw_BC = L_ji_BC.^3 * (1 + f * w);
+  kT_M = k_M * TC_tW_BC;
+  rT_jmBC = rho_jmBC * kT_M; 
+  tT_p = (t_p-t_j)/ kT_M;           % d, time since metam at puberty at f
+  rT_BmBC = rho_BmBC * kT_M;
+  L_ji_BC = L_imBC - (l_imBC - L_p) * exp( - rT_BmBC * (tW_BC(:,1) - tT_p)); % cm, structural length at time
+  EWw_BC = L_ji_BC.^3 * (1 + f * w_mBC);
   
   % pack to output
   prdData.LW_F = EWw_F;
