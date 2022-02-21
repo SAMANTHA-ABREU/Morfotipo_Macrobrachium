@@ -71,3 +71,73 @@ for i = 1:length(zoomfactor)
     results = [Wg, Wg_d, JT_X, JT_P, EJO, EJN];
     data(:, i) = results;                             % pack results output
 end
+
+%Results from Augusto, 2014 and 2016
+Alessandra = zeros(7,6);
+Nomes = [" " "Wg" "Wg_d" "JT_X" "JT_P" "EJO" "EJN"]';
+Femeas = ["Femeas" 2.5 0.21 0.003 5.13 0.07 2.13]';
+TC = ["TC" 3.7 0.19 0.7 1.71 0.01 3.18]';
+CC = ["CC" 12.7 24.6 3.22 1.95 0.03 0.87]';
+GC1 = ["GC1" 16.0 53.7 3.10 2.43 0.06 3.35]';
+GC2 = ["GC2" 1.9 7.5 3.08 2.8 0.07 13.53]';
+Ale = {Nomes Femeas TC CC GC1 GC2};
+TabAle = [Ale{:}]; %Table with the results from Augusto, 2014 and 2016
+
+%Graphics
+GraAle = zeros(6,5);
+GraAle (:,1) = Femeas(2:7);
+GraAle (:,2) = TC(2:7);
+GraAle (:,3) = CC(2:7);
+GraAle (:,4) = GC1(2:7);
+GraAle (:,5) = GC2(2:7);
+
+%Graph comparing Augusto 2014 and 2016 results with DEB theory
+%Female
+Fe (:,1)= data(:,1);
+Fe (:,2)= GraAle(:,1);
+x=categorical({'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+categorias=reordercats(x,{'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+figure
+bar(categorias,Fe,'DisplayName','Femeas') 
+title('Female')
+legend('DEB theory','Augusto, 2014')
+
+%Males TC
+mTC (:,1)= data(:,2);
+mTC (:,2)= GraAle(:,2);
+x=categorical({'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+categorias=reordercats(x,{'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+figure
+bar(categorias,mTC,'DisplayName','Machos TC') 
+title('Males TC')
+legend('DEB theory','Augusto, 2014')
+
+%Males CC
+mCC (:,1)= data(:,3);
+mCC (:,2)= GraAle(:,3);
+x=categorical({'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+categorias=reordercats(x,{'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+figure
+bar(categorias,mCC,'DisplayName','Machos CC') 
+title('Males CC')
+legend('DEB theory','Augusto, 2016')
+
+%Males GC1
+mGC1 (:,1)= data(:,4);
+mGC1 (:,2)= GraAle(:,4);
+x=categorical({'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+categorias=reordercats(x,{'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+figure
+bar(categorias,mGC1,'DisplayName','Machos GC1') 
+title('Males GC1')
+legend('DEB theory','Augusto, 2016')
+
+%Males GC2
+mGC2 (:,1)= data(:,5);
+mGC2 (:,2)= GraAle(:,5);
+x=categorical({'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+categorias=reordercats(x,{'Wg' 'Wg_d' 'JT_X' 'JT_P' 'EJO' 'EJN'});
+figure
+bar(categorias,mGC2,'DisplayName','Machos GC2') 
+title('Males GC2')
+legend('DEB theory','Augusto, 2016')
