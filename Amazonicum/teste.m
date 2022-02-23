@@ -30,15 +30,19 @@ for i = 1:length(zoomfactor)
     m_Em = y_E_V * E_m/ E_G;         % mol/mol, reserve capacity 
     w = m_Em * w_E/ w_V;             % -, contribution of reserve to weight
     L_m = v/ k_M/ g;                  % cm, max struct length
+    
     pars_tj = [g k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males TC
     [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);   
+
     L_i = L_m * l_i;    % cm, ultimate structural length at f
     Lw_i = L_i/ del_M;                % cm, ultimate total length at f
     Ww_i = L_i^3 * (1 + f * w);       % g, ultimate wet weight 
 
+    
     % Mass gained
     rT_B = rho_B * kT_M;
     L = L_i - (L_i-L_p) * exp(-rT_B*t);               % growth curve
+
     Ww0 = L_p.^3 * (1 + f * ome);
     Ww = L.^3 * (1 + f * ome);
     Wg = Ww/Ww0;                                      % Mass gained
@@ -47,8 +51,8 @@ for i = 1:length(zoomfactor)
     Wg_d = (Ww-Ww0)/30;
 
     % Ingestion rate
-    JT_X = 1000 * p_Am * L.^2/ kap_X/ mu_X * w_X/ d_X * TC * s_M;  % g/d, ingested food (Fenneropenaeus chinensis)
-    
+    JT_X = p_Am * L.^2/ kap_X/ mu_X * w_X/ d_X * TC * s_M;  % g/d, ingested food 
+    % 1000 * 
     % Faecal
     JT_P = JT_X * (1 - kap_X);                         % g/d, max faeces production per surface area 
     
@@ -70,6 +74,7 @@ for i = 1:length(zoomfactor)
 
     results = [Wg, Wg_d, JT_X, JT_P, EJO, EJN];
     data(:, i) = results;                             % pack results output
+
 end
 
 %Results from Augusto, 2014 and 2016
