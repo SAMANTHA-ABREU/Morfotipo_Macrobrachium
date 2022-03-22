@@ -3,14 +3,6 @@ function [prdData, info] = predict_Macrobrachium_amazonicum(par, data, auxData)
   cPar = parscomp_st(par); vars_pull(par); 
   vars_pull(cPar);  vars_pull(data);  vars_pull(auxData);
 
-  % customized filters to contrain additional parameter
-  filterChecks = kap > 0.8 ; 
-  if filterChecks
-     info = 0;
-     prdData = {};
-     return;
-  end
-  
   % compute temperature correction factors
   TC_ab = tempcorr(temp.ab, T_ref, T_A);
   TC_tj = tempcorr(temp.tj, T_ref, T_A);
