@@ -1,6 +1,12 @@
+#RMSE = sqrt(mean((WgAle[,1] - Wg[,1])^2))
+
 #Graphics
 #MASS GAINED (%)
-Wg=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Wg.csv" , header= FALSE, sep="," , dec=".")
+#P_am
+Wgpam=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Camarao/Camarao/Wg.csv" , header= FALSE, sep="," , dec=".")
+
+#P_M
+Wgpm=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/P_m/FluxoP_m/WgpM.csv" , header= FALSE, sep="," , dec=".")
 
 #Augusto 2014, 2016
 WgAle <- data.frame(Female1 = c(0.001, 0.003, 0.005), 
@@ -18,28 +24,32 @@ layout.show(2)
 #Painel 1
 par (mar=c(0, 0, 0, 0))
 plot(x=NULL,y=NULL, xlim=c(0, 0.1), ylim=c(0.0, 0.7),type="n", xaxt="n", yaxt="n",xlab="", ylab="", bty="n")
-legend("topright", ncol = 1, legend = c("DEB theory", "Augusto 2014 e 2016"), cex = 1.5, bty = "n")
-points(x = c(0.078, 0.078), y =c(0.47, 0.23), pch=22, bg=c("lightblue","red"), cex=3)
+legend("right", ncol = 1, legend = c("Augusto 2014 e 2016", "DEB theory P_am", "DEB theory P_m"), cex = 1.5, bty = "n")
+points(x = c(0.078, 0.078, 0.078), y =c(0.58, 0.34, 0.1), pch=22, bg=c("red", "lightblue", "orange"), cex=3)
 
 #Painel 2
 par (mar=c(2.3, 2.3, 1.5, 1.5))
-boxplot(WgAle[,1],Wg[,1],
-        WgAle[,3],Wg[,2],
-        WgAle[,4],Wg[,3],
-        WgAle[,5],Wg[,4],
-        WgAle[,6],Wg[,5], 
-        main="Mass gained (%)", col=c("red","lightblue"), at=c(1,2, 4,5, 7,8, 10,11, 13,14))
+boxplot(WgAle[,1], Wgpam[,1], Wgpm[,1],
+        WgAle[,3], Wgpam[,2], Wgpm[,2],
+        WgAle[,4], Wgpam[,3], Wgpm[,3],
+        WgAle[,5], Wgpam[,4], Wgpm[,4],
+        WgAle[,6], Wgpam[,5], Wgpm[,5], 
+        main="Mass gained (%)", col=c("red","lightblue","orange"), at=c(1,2,3, 5,6,7, 9,10,11, 13,14,15, 17,18,19))
 
-mtext("Female", side=1, line=1, at=1.5, las=1)
-mtext("Males TC", side=1, line=1, at=4.5, las=1)
-mtext("Males CC", side=1, line=1, at=7.5, las=1)
-mtext("Males GC1", side=1, line=1, at=10.5, las=1)
-mtext("Males GC2", side=1, line=1, at=13.5, las=1)
+mtext("Female", side=1, line=1, at=2, las=1)
+mtext("Males TC", side=1, line=1, at=6, las=1)
+mtext("Males CC", side=1, line=1, at=10, las=1)
+mtext("Males GC1", side=1, line=1, at=14, las=1)
+mtext("Males GC2", side=1, line=1, at=18, las=1)
 
 dev.off()
 
-#DAILY GROWTH (g/d)       
-Wg_d=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Wg_d.csv" , header= FALSE, sep="," , dec=".")
+#DAILY GROWTH (g/d) 
+#P_am      
+Wg_dpam=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Camarao/Camarao/Wg_d.csv" , header= FALSE, sep="," , dec=".")
+
+#P_M
+Wg_dpm=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/P_m/FluxoP_m/Wg_dpM.csv" , header= FALSE, sep="," , dec=".")
 
 #Augusto 2014, 2016
 Wg_dAle <- data.frame(Female1 = c((0.00025-0.00025), 0.00025, (0.00025+0.00025)), 
@@ -56,28 +66,32 @@ layout.show(2)
 #Painel 1
 par (mar=c(0, 0, 0, 0))
 plot(x=NULL,y=NULL, xlim=c(0, 0.1), ylim=c(0.0, 0.7),type="n", xaxt="n", yaxt="n",xlab="", ylab="", bty="n")
-legend("topright", ncol = 1, legend = c("DEB theory", "Augusto 2014 e 2016"), cex = 1.5, bty = "n")
-points(x = c(0.078, 0.078), y =c(0.47, 0.23), pch=22, bg=c("lightblue","red"), cex=3)
+legend("right", ncol = 1, legend = c("Augusto 2014 e 2016", "DEB theory P_am", "DEB theory P_m"), cex = 1.5, bty = "n")
+points(x = c(0.078, 0.078, 0.078), y =c(0.58, 0.34, 0.1), pch=22, bg=c("red", "lightblue", "orange"), cex=3)
 
 #Painel 2
 par (mar=c(2.3, 2.3, 1.5, 1.5))
-boxplot(Wg_dAle[,1],Wg_d[,1],
-        Wg_dAle[,3],Wg_d[,2],
-        Wg_dAle[,4],Wg_d[,3],
-        Wg_dAle[,5],Wg_d[,4],
-        Wg_dAle[,6],Wg_d[,5], 
-        main="Daily growth (g/d)", col=c("red","lightblue"), at=c(1,2, 4,5, 7,8, 10,11, 13,14))
+boxplot(Wg_dAle[,1], Wg_dpam[,1], Wg_dpm[,1],
+        Wg_dAle[,3], Wg_dpam[,2], Wg_dpm[,2],
+        Wg_dAle[,4], Wg_dpam[,3], Wg_dpm[,3],
+        Wg_dAle[,5], Wg_dpam[,4], Wg_dpm[,4],
+        Wg_dAle[,6], Wg_dpam[,5], Wg_dpm[,5], 
+        main="Daily growth (g/d)", col=c("red","lightblue","orange"), at=c(1,2,3, 5,6,7, 9,10,11, 13,14,15, 17,18,19))
 
-mtext("Female", side=1, line=1, at=1.5, las=1)
-mtext("Males TC", side=1, line=1, at=4.5, las=1)
-mtext("Males CC", side=1, line=1, at=7.5, las=1)
-mtext("Males GC1", side=1, line=1, at=10.5, las=1)
-mtext("Males GC2", side=1, line=1, at=13.5, las=1)
+mtext("Female", side=1, line=1, at=2, las=1)
+mtext("Males TC", side=1, line=1, at=6, las=1)
+mtext("Males CC", side=1, line=1, at=10, las=1)
+mtext("Males GC1", side=1, line=1, at=14, las=1)
+mtext("Males GC2", side=1, line=1, at=18, las=1)
 
 dev.off()
 
 #INGESTION RATE (mg/d)
-JT_X=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/JT_X.csv" , header= FALSE, sep="," , dec=".")
+#P_am
+JT_Xpam=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Camarao/Camarao/JT_X.csv" , header= FALSE, sep="," , dec=".")
+
+#P_M
+JT_Xpm=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/P_m/FluxoP_m/JT_XpM.csv" , header= FALSE, sep="," , dec=".")
 
 #Augusto 2014, 2016
 JT_XAle <- data.frame(Female1 = c((210-46), 210, (210+46)), 
@@ -94,28 +108,32 @@ layout.show(2)
 #Painel 1
 par (mar=c(0, 0, 0, 0))
 plot(x=NULL,y=NULL, xlim=c(0, 0.1), ylim=c(0.0, 0.7),type="n", xaxt="n", yaxt="n",xlab="", ylab="", bty="n")
-legend("topright", ncol = 1, legend = c("DEB theory", "Augusto 2014 e 2016"), cex = 1.5, bty = "n")
-points(x = c(0.078, 0.078), y =c(0.47, 0.23), pch=22, bg=c("lightblue","red"), cex=3)
+legend("right", ncol = 1, legend = c("Augusto 2014 e 2016", "DEB theory P_am", "DEB theory P_m"), cex = 1.5, bty = "n")
+points(x = c(0.078, 0.078, 0.078), y =c(0.58, 0.34, 0.1), pch=22, bg=c("red", "lightblue", "orange"), cex=3)
 
 #Painel 2
 par (mar=c(2.3, 2.3, 1.5, 1.5))
-boxplot(JT_XAle[,1],JT_X[,1],
-        JT_XAle[,3],JT_X[,2],
-        JT_XAle[,4],JT_X[,3],
-        JT_XAle[,5],JT_X[,4],
-        JT_XAle[,6],JT_X[,5], 
-        main="Ingestion rate (mg/d)", col=c("red","lightblue"), at=c(1,2, 4,5, 7,8, 10,11, 13,14))
+boxplot(JT_XAle[,1], JT_Xpam[,1], JT_Xpm[,1],
+        JT_XAle[,3], JT_Xpam[,2], JT_Xpm[,2],
+        JT_XAle[,4], JT_Xpam[,3], JT_Xpm[,3],
+        JT_XAle[,5], JT_Xpam[,4], JT_Xpm[,4],
+        JT_XAle[,6], JT_Xpam[,5], JT_Xpm[,5], 
+        main="Ingestion rate (mg/d)", col=c("red","lightblue","orange"), at=c(1,2,3, 5,6,7, 9,10,11, 13,14,15, 17,18,19))
 
-mtext("Female", side=1, line=1, at=1.5, las=1)
-mtext("Males TC", side=1, line=1, at=4.5, las=1)
-mtext("Males CC", side=1, line=1, at=7.5, las=1)
-mtext("Males GC1", side=1, line=1, at=10.5, las=1)
-mtext("Males GC2", side=1, line=1, at=13.5, las=1)
+mtext("Female", side=1, line=1, at=2, las=1)
+mtext("Males TC", side=1, line=1, at=6, las=1)
+mtext("Males CC", side=1, line=1, at=10, las=1)
+mtext("Males GC1", side=1, line=1, at=14, las=1)
+mtext("Males GC2", side=1, line=1, at=18, las=1)
 
 dev.off()
 
 #FAECAL (g/d, mas tem q ser em mg/d)
-JT_P=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/JT_P.csv" , header= FALSE, sep="," , dec=".")
+#P_am
+JT_Ppam=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Camarao/Camarao/JT_P.csv" , header= FALSE, sep="," , dec=".")
+
+#P_M
+JT_Ppm=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/P_m/FluxoP_m/JT_PpM.csv" , header= FALSE, sep="," , dec=".")
 
 #Augusto 2014, 2016
 JT_PAle <- data.frame(Female1 = c((5.13-1.39), 5.13, (5.13+1.39)), 
@@ -132,28 +150,32 @@ layout.show(2)
 #Painel 1
 par (mar=c(0, 0, 0, 0))
 plot(x=NULL,y=NULL, xlim=c(0, 0.1), ylim=c(0.0, 0.7),type="n", xaxt="n", yaxt="n",xlab="", ylab="", bty="n")
-legend("topright", ncol = 1, legend = c("DEB theory", "Augusto 2014 e 2016"), cex = 1.5, bty = "n")
-points(x = c(0.078, 0.078), y =c(0.47, 0.23), pch=22, bg=c("lightblue","red"), cex=3)
+legend("right", ncol = 1, legend = c("Augusto 2014 e 2016", "DEB theory P_am", "DEB theory P_m"), cex = 1.5, bty = "n")
+points(x = c(0.078, 0.078, 0.078), y =c(0.58, 0.34, 0.1), pch=22, bg=c("red", "lightblue", "orange"), cex=3)
 
 #Painel 2
 par (mar=c(2.3, 2.3, 1.5, 1.5))
-boxplot(JT_PAle[,1],JT_P[,1],
-        JT_PAle[,3],JT_P[,2],
-        JT_PAle[,4],JT_P[,3],
-        JT_PAle[,5],JT_P[,4],
-        JT_PAle[,6],JT_P[,5], 
-        main="Faecal", col=c("red","lightblue"), at=c(1,2, 4,5, 7,8, 10,11, 13,14))
+boxplot(JT_PAle[,1], JT_Ppam[,1], JT_Ppm[,1],
+        JT_PAle[,3], JT_Ppam[,2], JT_Ppm[,2],
+        JT_PAle[,4], JT_Ppam[,3], JT_Ppm[,3],
+        JT_PAle[,5], JT_Ppam[,4], JT_Ppm[,4],
+        JT_PAle[,6], JT_Ppam[,5], JT_Ppm[,5], 
+        main="Faecal (mg/d)", col=c("red","lightblue","orange"), at=c(1,2,3, 5,6,7, 9,10,11, 13,14,15, 17,18,19))
 
-mtext("Female", side=1, line=1, at=1.5, las=1)
-mtext("Males TC", side=1, line=1, at=4.5, las=1)
-mtext("Males CC", side=1, line=1, at=7.5, las=1)
-mtext("Males GC1", side=1, line=1, at=10.5, las=1)
-mtext("Males GC2", side=1, line=1, at=13.5, las=1)
+mtext("Female", side=1, line=1, at=2, las=1)
+mtext("Males TC", side=1, line=1, at=6, las=1)
+mtext("Males CC", side=1, line=1, at=10, las=1)
+mtext("Males GC1", side=1, line=1, at=14, las=1)
+mtext("Males GC2", side=1, line=1, at=18, las=1)
 
 dev.off()
 
 #RESPIRATION (g)
-EJO=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/EJO.csv" , header= FALSE, sep="," , dec=".")
+#P_am
+EJOpam=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Camarao/Camarao/EJO.csv" , header= FALSE, sep="," , dec=".")
+
+#P_M
+EJOpm=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/P_m/FluxoP_m/EJOpM.csv" , header= FALSE, sep="," , dec=".")
 
 #Augusto 2014, 2016
 EJOAle <- data.frame(Female1 = c((0.07-0.003), 0.07, (0.07+0.003)), 
@@ -170,28 +192,32 @@ layout.show(2)
 #Painel 1
 par (mar=c(0, 0, 0, 0))
 plot(x=NULL,y=NULL, xlim=c(0, 0.1), ylim=c(0.0, 0.7),type="n", xaxt="n", yaxt="n",xlab="", ylab="", bty="n")
-legend("topright", ncol = 1, legend = c("DEB theory", "Augusto 2014 e 2016"), cex = 1.5, bty = "n")
-points(x = c(0.078, 0.078), y =c(0.47, 0.23), pch=22, bg=c("lightblue","red"), cex=3)
+legend("right", ncol = 1, legend = c("Augusto 2014 e 2016", "DEB theory P_am", "DEB theory P_m"), cex = 1.5, bty = "n")
+points(x = c(0.078, 0.078, 0.078), y =c(0.58, 0.34, 0.1), pch=22, bg=c("red", "lightblue", "orange"), cex=3)
 
 #Painel 2
 par (mar=c(2.3, 2.3, 1.5, 1.5))
-boxplot(EJOAle[,1],EJO[,1],
-        EJOAle[,3],EJO[,2],
-        EJOAle[,4],EJO[,3],
-        EJOAle[,5],EJO[,4],
-        EJOAle[,6],EJO[,5], 
-        main="Respiration (g)", col=c("red","lightblue"), at=c(1,2, 4,5, 7,8, 10,11, 13,14))
+boxplot(EJOAle[,1], EJOpam[,1], EJOpm[,1],
+        EJOAle[,3], EJOpam[,2], EJOpm[,2],
+        EJOAle[,4], EJOpam[,3], EJOpm[,3],
+        EJOAle[,5], EJOpam[,4], EJOpm[,4],
+        EJOAle[,6], EJOpam[,5], EJOpm[,5], 
+        main="Respiration (g)", col=c("red","lightblue","orange"), at=c(1,2,3, 5,6,7, 9,10,11, 13,14,15, 17,18,19))
 
-mtext("Female", side=1, line=1, at=1.5, las=1)
-mtext("Males TC", side=1, line=1, at=4.5, las=1)
-mtext("Males CC", side=1, line=1, at=7.5, las=1)
-mtext("Males GC1", side=1, line=1, at=10.5, las=1)
-mtext("Males GC2", side=1, line=1, at=13.5, las=1)
+mtext("Female", side=1, line=1, at=2, las=1)
+mtext("Males TC", side=1, line=1, at=6, las=1)
+mtext("Males CC", side=1, line=1, at=10, las=1)
+mtext("Males GC1", side=1, line=1, at=14, las=1)
+mtext("Males GC2", side=1, line=1, at=18, las=1)
 
 dev.off()
 
 #EXCRETION (mg)
-EJN=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/EJN.csv" , header= FALSE, sep="," , dec=".")
+#P_am
+EJNpam=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/Online/Camarao/Camarao/EJN.csv" , header= FALSE, sep="," , dec=".")
+
+#P_M
+EJNpm=read.csv("C:/Users/saman/OneDrive/Documentos/MATLAB/Script/Amazonicum/P_m/FluxoP_m/EJNpM.csv" , header= FALSE, sep="," , dec=".")
 
 #Augusto 2014, 2016
 EJNAle <- data.frame(Female1 = c((2.13-0.29), 2.13, (2.13+0.29)), 
@@ -209,22 +235,22 @@ layout.show(2)
 #Painel 1
 par (mar=c(0, 0, 0, 0))
 plot(x=NULL,y=NULL, xlim=c(0, 0.1), ylim=c(0.0, 0.7),type="n", xaxt="n", yaxt="n",xlab="", ylab="", bty="n")
-legend("topright", ncol = 1, legend = c("DEB theory", "Augusto 2014 e 2016"), cex = 1.5, bty = "n")
-points(x = c(0.078, 0.078), y =c(0.47, 0.23), pch=22, bg=c("lightblue","red"), cex=3)
+legend("right", ncol = 1, legend = c("Augusto 2014 e 2016", "DEB theory P_am", "DEB theory P_m"), cex = 1.5, bty = "n")
+points(x = c(0.078, 0.078, 0.078), y =c(0.58, 0.34, 0.1), pch=22, bg=c("red", "lightblue", "orange"), cex=3)
 
 #Painel 2
 par (mar=c(2.3, 2.3, 1.5, 1.5))
-boxplot(EJNAle[,1],EJN[,1],
-        EJNAle[,3],EJN[,2],
-        EJNAle[,4],EJN[,3],
-        EJNAle[,5],EJN[,4],
-        EJNAle[,6],EJN[,5], 
-        main="Excretion (mg)", col=c("red","lightblue"), at=c(1,2, 4,5, 7,8, 10,11, 13,14))
+boxplot(EJNAle[,1], EJNpam[,1], EJNpm[,1],
+        EJNAle[,3], EJNpam[,2], EJNpm[,2],
+        EJNAle[,4], EJNpam[,3], EJNpm[,3],
+        EJNAle[,5], EJNpam[,4], EJNpm[,4],
+        EJNAle[,6], EJNpam[,5], EJNpm[,5], 
+        main="Excretion (mg)", col=c("red","lightblue","orange"), at=c(1,2,3, 5,6,7, 9,10,11, 13,14,15, 17,18,19))
 
-mtext("Female", side=1, line=1, at=1.5, las=1)
-mtext("Males TC", side=1, line=1, at=4.5, las=1)
-mtext("Males CC", side=1, line=1, at=7.5, las=1)
-mtext("Males GC1", side=1, line=1, at=10.5, las=1)
-mtext("Males GC2", side=1, line=1, at=13.5, las=1)
+mtext("Female", side=1, line=1, at=2, las=1)
+mtext("Males TC", side=1, line=1, at=6, las=1)
+mtext("Males CC", side=1, line=1, at=10, las=1)
+mtext("Males GC1", side=1, line=1, at=14, las=1)
+mtext("Males GC2", side=1, line=1, at=18, las=1)
 
 dev.off()

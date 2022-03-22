@@ -1,11 +1,11 @@
 %%% Load estimated parameters %%%
 load ('results_Macrobrachium_amazonicum.mat')
 
-% Zoom factors (used to vary {p_Am}) change with each morphotype 
-zoomfactor = [par.z, par.z_mTC, par.z_mCC, par.z_mGC1, par.z_mGC2];
+% Somatic maint (used to vary {p_M}) change with each morphotype 
+somaticmaint = [par.p_M, par.p_MTC, par.p_MCC, par.p_MGC1, par.p_MGC2];
 numbervar = 6; %Number of desired variable
 len_resvector = 50; %Length of output
-data = zeros(numbervar,length(zoomfactor),len_resvector);
+data = zeros(numbervar,length(somaticmaint),len_resvector);
 
 cPar = parscomp_st(par); vars_pull(par); 
 vars_pull(cPar);  %vars_pull(data);  vars_pull(auxData);
@@ -23,19 +23,22 @@ kT_M = k_M * TC;
 s_M=(l_j/l_b);                                    % Acceleration factor
 
 
-for i = 1:length(zoomfactor)
-    par.z = zoomfactor(i);
+for i = 1:length(somaticmaint)
+    par.p_M = somaticmaint(i);
     
   
-    p_Am = zoomfactor(i) * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+    p_Am = z * par.p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
     E_m = p_Am/ v;                   % J/cm^3, reserve capacity [E_m]
     g = E_G/ (kap* E_m);             % -, energy investment ratio
     m_Em = y_E_V * E_m/ E_G;         % mol/mol, reserve capacity 
     w = m_Em * w_E/ w_V;             % -, contribution of reserve to weight
+    k_M = par.p_M/E_G;
+    k = k_J/k_M;
     L_m = v/ k_M/ g;                  % cm, max struct length
     pars_tj = [g k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males TC
     [t_j, t_p, t_b, l_j, l_p, l_b, l_i, rho_j, rho_B] = get_tj(pars_tj, f);   
     L_i = L_m * l_i;    % cm, ultimate structural length at f
+    kT_M = k_M * TC;
     rT_B = rho_B * kT_M;
     
     L_init = linspace(L_p,L_i,len_resvector);
@@ -78,90 +81,90 @@ for i = 1:length(zoomfactor)
     results.EJO = EJO;
     results.EJN = EJN;
     
-    save('Results_'+string(zoomfactor(i))+'.mat','results')
+    save('Results_'+string(somaticmaint(i))+'.mat','results')
 end
 %%%Results%%%
 %Results Wg
 
-    Wg = zeros(50,5);
-    load ('Results_'+string(zoomfactor(1))+'.mat')
-    Wg (:,1) = results.Wg;
-    load ('Results_'+string(zoomfactor(2))+'.mat')
-    Wg (:,2) = results.Wg;
-    load ('Results_'+string(zoomfactor(3))+'.mat')
-    Wg (:,3) = results.Wg;
-    load ('Results_'+string(zoomfactor(4))+'.mat')
-    Wg (:,4) = results.Wg;
-    load ('Results_'+string(zoomfactor(5))+'.mat')
-    Wg (:,5) = results.Wg;
-    csvwrite ( 'Wg.csv' , Wg)
+Wg = zeros(50,5);
+load ('Results_'+string(somaticmaint(1))+'.mat')
+Wg (:,1) = results.Wg;
+load ('Results_'+string(somaticmaint(2))+'.mat')
+Wg (:,2) = results.Wg;
+load ('Results_'+string(somaticmaint(3))+'.mat')
+Wg (:,3) = results.Wg;
+load ('Results_'+string(somaticmaint(4))+'.mat')
+Wg (:,4) = results.Wg;
+load ('Results_'+string(somaticmaint(5))+'.mat')
+Wg (:,5) = results.Wg;
+csvwrite ( 'WgpM.csv' , Wg)
     
 %Results Wg_d
 Wg_d = zeros(50,5);
-load ('Results_'+string(zoomfactor(1))+'.mat')
+load ('Results_'+string(somaticmaint(1))+'.mat')
 Wg_d (:,1) = results.Wg_d;
-load ('Results_'+string(zoomfactor(2))+'.mat')
+load ('Results_'+string(somaticmaint(2))+'.mat')
 Wg_d (:,2) = results.Wg_d;
-load ('Results_'+string(zoomfactor(3))+'.mat')
+load ('Results_'+string(somaticmaint(3))+'.mat')
 Wg_d (:,3) = results.Wg_d;
-load ('Results_'+string(zoomfactor(4))+'.mat')
+load ('Results_'+string(somaticmaint(4))+'.mat')
 Wg_d (:,4) = results.Wg_d;
-load ('Results_'+string(zoomfactor(5))+'.mat')
+load ('Results_'+string(somaticmaint(5))+'.mat')
 Wg_d (:,5) = results.Wg_d;
-csvwrite ( 'Wg_d.csv' , Wg_d)
+csvwrite ( 'Wg_dpM.csv' , Wg_d)
 
 %Results JT_X
 JT_X = zeros(50,5);
-load ('Results_'+string(zoomfactor(1))+'.mat')
+load ('Results_'+string(somaticmaint(1))+'.mat')
 JT_X (:,1) = results.JT_X;
-load ('Results_'+string(zoomfactor(2))+'.mat')
+load ('Results_'+string(somaticmaint(2))+'.mat')
 JT_X (:,2) = results.JT_X;
-load ('Results_'+string(zoomfactor(3))+'.mat')
+load ('Results_'+string(somaticmaint(3))+'.mat')
 JT_X (:,3) = results.JT_X;
-load ('Results_'+string(zoomfactor(4))+'.mat')
+load ('Results_'+string(somaticmaint(4))+'.mat')
 JT_X (:,4) = results.JT_X;
-load ('Results_'+string(zoomfactor(5))+'.mat')
+load ('Results_'+string(somaticmaint(5))+'.mat')
 JT_X (:,5) = results.JT_X;
-csvwrite ( 'JT_X.csv' , JT_X)
+csvwrite ( 'JT_XpM.csv' , JT_X)
 
 %Results JT_P
 JT_P = zeros(50,5);
-load ('Results_'+string(zoomfactor(1))+'.mat')
+load ('Results_'+string(somaticmaint(1))+'.mat')
 JT_P (:,1) = results.JT_P;
-load ('Results_'+string(zoomfactor(2))+'.mat')
+load ('Results_'+string(somaticmaint(2))+'.mat')
 JT_P (:,2) = results.JT_P;
-load ('Results_'+string(zoomfactor(3))+'.mat')
+load ('Results_'+string(somaticmaint(3))+'.mat')
 JT_P (:,3) = results.JT_P;
-load ('Results_'+string(zoomfactor(4))+'.mat')
+load ('Results_'+string(somaticmaint(4))+'.mat')
 JT_P (:,4) = results.JT_P;
-load ('Results_'+string(zoomfactor(5))+'.mat')
+load ('Results_'+string(somaticmaint(5))+'.mat')
 JT_P (:,5) = results.JT_P;
-csvwrite ( 'JT_P.csv' , JT_P)
+csvwrite ( 'JT_PpM.csv' , JT_P)
 
 %Results EJO
 EJO = zeros(50,5);
-load ('Results_'+string(zoomfactor(1))+'.mat')
+load ('Results_'+string(somaticmaint(1))+'.mat')
 EJO (:,1) = results.EJO;
-load ('Results_'+string(zoomfactor(2))+'.mat')
+load ('Results_'+string(somaticmaint(2))+'.mat')
 EJO (:,2) = results.EJO;
-load ('Results_'+string(zoomfactor(3))+'.mat')
+load ('Results_'+string(somaticmaint(3))+'.mat')
 EJO (:,3) = results.EJO;
-load ('Results_'+string(zoomfactor(4))+'.mat')
+load ('Results_'+string(somaticmaint(4))+'.mat')
 EJO (:,4) = results.EJO;
-load ('Results_'+string(zoomfactor(5))+'.mat')
+load ('Results_'+string(somaticmaint(5))+'.mat')
 EJO (:,5) = results.EJO;
-csvwrite ( 'EJO.csv' , EJO)
+csvwrite ( 'EJOpM.csv' , EJO)
 
 %Results EJN
 EJN = zeros(50,5);
-load ('Results_'+string(zoomfactor(1))+'.mat')
+load ('Results_'+string(somaticmaint(1))+'.mat')
 EJN (:,1) = results.EJN;
-load ('Results_'+string(zoomfactor(2))+'.mat')
+load ('Results_'+string(somaticmaint(2))+'.mat')
 EJN (:,2) = results.EJN;
-load ('Results_'+string(zoomfactor(3))+'.mat')
+load ('Results_'+string(somaticmaint(3))+'.mat')
 EJN (:,3) = results.EJN;
-load ('Results_'+string(zoomfactor(4))+'.mat')
+load ('Results_'+string(somaticmaint(4))+'.mat')
 EJN (:,4) = results.EJN;
-load ('Results_'+string(zoomfactor(5))+'.mat')
+load ('Results_'+string(somaticmaint(5))+'.mat')
 EJN (:,5) = results.EJN;
-csvwrite ( 'EJN.csv' , EJN)
+csvwrite ( 'EJNpM.csv' , EJN)
