@@ -40,9 +40,9 @@ data.ab = 19;      units.ab = 'd';    label.ab = 'age at birth';  bibkey.ab = 'P
 data.tj = 18;      units.tj = 'd';    label.tj = 'time at end of acceleration';  bibkey.tj = 'Pinh1998';   
   temp.tj = C2K(28);  units.temp.tj = 'K'; label.temp.tj = 'temperature';
   comment.tj  = 'periodo varia de 16 a 20 dias';
-data.tp = 120;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = 'Pinh1998';
+data.tp = 110;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = 'Pinh1998';
   temp.tp = C2K(28);  units.temp.tp = 'K'; label.temp.tp = 'temperature';
-  comment.tb  = 'periodo varia de 120 a 180 dias';
+  comment.tb  = 'periodo varia de 100 a 120 dias';
 data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New2000';   
   temp.am = C2K(28); units.temp.am = 'K'; label.temp.am = 'temperature';
  
