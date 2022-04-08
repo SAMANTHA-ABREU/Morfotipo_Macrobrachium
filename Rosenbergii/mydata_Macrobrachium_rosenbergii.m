@@ -542,7 +542,7 @@ data.tW_SM = [... % time since metam (days), weight (g)
 126.0	4.1
 140.0	4.7
  ];
-data.tW_SM(:,1) = data.tW_SM(:,1) + 122; % Add two months due to nursing period * 7; % convert weeks to d
+data.tW_SM(:,1) = data.tW_SM(:,1) + 138; % Add two months due to nursing period * 7; % convert weeks to d
 units.tW_SM = {'d', 'g'}; label.tW_SM = {'time (days)', 'total weight'};  
 temp.tW_SM = C2K(27);  units.temp.tW_SM = 'K'; label.temp.tW_SM = 'temperature';
 bibkey.tW_SM = 'Raan1991'; comment.tW_SM = 'Data extracted from Fig.1, medians of the lnW distributions of individual males for each morphotype against time. The nursing period was 4 months.';
@@ -561,7 +561,7 @@ data.tW_OC = [... % time since metam (days), weight (g)
 126.0	21.3
 140.0	28.2
  ];
-data.tW_OC(:,1) = data.tW_OC(:,1) + 122; % Add two months due to nursing period
+data.tW_OC(:,1) = data.tW_OC(:,1) + 138; % Add two months due to nursing period
 units.tW_OC = {'d', 'g'}; label.tW_OC = {'time (days)', 'total weight'};  
 temp.tW_OC = C2K(27);  units.temp.tW_OC = 'K'; label.temp.tW_OC = 'temperature';
 bibkey.tW_OC = 'Raan1991'; comment.tW_OC = 'Data extracted from Fig.1, medians of the lnW distributions of individual males for each morphotype against time. The nursing period was 4 months.';
@@ -580,7 +580,7 @@ data.tW_BC = [... % time since metam (days), weight (g)
 126.0	41.5
 140.0	41.6
 ];
-data.tW_BC(:,1) = data.tW_BC(:,1) + 122; % Add two months due to nursing period
+data.tW_BC(:,1) = data.tW_BC(:,1) + 138; % Add two months due to nursing period
 units.tW_BC = {'d', 'g'}; label.tW_BC = {'time (days)', 'total weight'};  
 temp.tW_BC = C2K(27);  units.temp.tW_BC = 'K'; label.temp.tW_BC = 'temperature';
 bibkey.tW_BC = 'Raan1991'; comment.tW_BC = 'Data extracted from Fig.1, medians of the lnW distributions of individual males for each morphotype against time. The nursing period was 4 months.';
