@@ -40,12 +40,15 @@ data.ab = 19;      units.ab = 'd';    label.ab = 'age at birth';  bibkey.ab = 'P
 data.tj = 18;      units.tj = 'd';    label.tj = 'time at end of acceleration';  bibkey.tj = 'Pinh1998';   
   temp.tj = C2K(28);  units.temp.tj = 'K'; label.temp.tj = 'temperature';
   comment.tj  = 'periodo varia de 16 a 20 dias';
-data.tp = 110;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = 'Pinh1998';
+data.tp = 110;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = ''; comment.tj = 'Média dos dado observado no CAUNESP, tempo varia entre 100 e 120 dias';
   temp.tp = C2K(28);  units.temp.tp = 'K'; label.temp.tp = 'temperature';
   comment.tb  = 'periodo varia de 100 a 120 dias';
 data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New2000';   
   temp.am = C2K(28); units.temp.am = 'K'; label.temp.am = 'temperature';
  
+data.Lp  = 2.5;     units.Lp  = 'cm';  label.Lp  = 'total length st puberty'; bibkey.Lp  = ''; 
+  temp.Lp = C2K(28);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature'; comment.Lp = 'Dado observado no CAUNESP'; 
+
 data.Ri  = 100000/30;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSi2004';   
   temp.Ri = C2K(28);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
 
@@ -542,7 +545,7 @@ data.tW_SM = [... % time since metam (days), weight (g)
 126.0	4.1
 140.0	4.7
  ];
-data.tW_SM(:,1) = data.tW_SM(:,1) + 138; % Add two months due to nursing period * 7; % convert weeks to d
+data.tW_SM(:,1) = data.tW_SM(:,1) + 138; % Add nursing period
 units.tW_SM = {'d', 'g'}; label.tW_SM = {'time (days)', 'total weight'};  
 temp.tW_SM = C2K(27);  units.temp.tW_SM = 'K'; label.temp.tW_SM = 'temperature';
 bibkey.tW_SM = 'Raan1991'; comment.tW_SM = 'Data extracted from Fig.1, medians of the lnW distributions of individual males for each morphotype against time. The nursing period was 4 months.';
@@ -561,7 +564,7 @@ data.tW_OC = [... % time since metam (days), weight (g)
 126.0	21.3
 140.0	28.2
  ];
-data.tW_OC(:,1) = data.tW_OC(:,1) + 138; % Add two months due to nursing period
+data.tW_OC(:,1) = data.tW_OC(:,1) + 138; % Add nursing period
 units.tW_OC = {'d', 'g'}; label.tW_OC = {'time (days)', 'total weight'};  
 temp.tW_OC = C2K(27);  units.temp.tW_OC = 'K'; label.temp.tW_OC = 'temperature';
 bibkey.tW_OC = 'Raan1991'; comment.tW_OC = 'Data extracted from Fig.1, medians of the lnW distributions of individual males for each morphotype against time. The nursing period was 4 months.';
@@ -580,20 +583,20 @@ data.tW_BC = [... % time since metam (days), weight (g)
 126.0	41.5
 140.0	41.6
 ];
-data.tW_BC(:,1) = data.tW_BC(:,1) + 138; % Add two months due to nursing period
+data.tW_BC(:,1) = data.tW_BC(:,1) + 138; % Add nursing period
 units.tW_BC = {'d', 'g'}; label.tW_BC = {'time (days)', 'total weight'};  
 temp.tW_BC = C2K(27);  units.temp.tW_BC = 'K'; label.temp.tW_BC = 'temperature';
 bibkey.tW_BC = 'Raan1991'; comment.tW_BC = 'Data extracted from Fig.1, medians of the lnW distributions of individual males for each morphotype against time. The nursing period was 4 months.';
 
 %% set weights for all real data
 weights = setweights(data, []);
-weights.tp = 0.1 * weights.tp;
+%weights.tp = 0.1 * weights.tp;
 % weights.tW_J = 0.2 * weights.tW_J;
 % weights.LW_F = 10 * weights.LW_F;
 % weights.tL_F = 0.2 *weights.tL_F;
-weights.tW_BC = 10 * weights.tW_BC;
-weights.tW_OC = 10 * weights.tW_OC;
-weights.tW_SM = 10 * weights.tW_SM;
+% weights.tW_BC = 10 * weights.tW_BC;
+% weights.tW_OC = 10 * weights.tW_OC;
+% weights.tW_SM = 10 * weights.tW_SM;
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
