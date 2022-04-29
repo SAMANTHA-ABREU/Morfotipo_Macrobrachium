@@ -46,8 +46,7 @@ data.tp = 110;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp 
 data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New2000';   
   temp.am = C2K(28); units.temp.am = 'K'; label.temp.am = 'temperature';
  
-data.Lp  = 2.5;     units.Lp  = 'cm';  label.Lp  = 'total length st puberty'; bibkey.Lp  = ''; 
-  temp.Lp = C2K(28);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature'; comment.Lp = 'Dado observado no CAUNESP'; 
+data.Lp  = 2.5;     units.Lp  = 'cm';  label.Lp  = 'total length st puberty'; bibkey.Lp  = ''; temp.Lp = C2K(28);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature'; comment.Lp = 'Dado observado no CAUNESP'; 
 
 data.Ri  = 100000/30;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSi2004';   
   temp.Ri = C2K(28);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
@@ -590,13 +589,13 @@ bibkey.tW_BC = 'Raan1991'; comment.tW_BC = 'Data extracted from Fig.1, medians o
 
 %% set weights for all real data
 weights = setweights(data, []);
-%weights.tp = 0.1 * weights.tp;
+weights.tp = 0.1 * weights.tp;
 % weights.tW_J = 0.2 * weights.tW_J;
 % weights.LW_F = 10 * weights.LW_F;
 % weights.tL_F = 0.2 *weights.tL_F;
-% weights.tW_BC = 10 * weights.tW_BC;
-% weights.tW_OC = 10 * weights.tW_OC;
-% weights.tW_SM = 10 * weights.tW_SM;
+weights.tW_BC = 10 * weights.tW_BC;
+weights.tW_OC = 10 * weights.tW_OC;
+weights.tW_SM = 10 * weights.tW_SM;
 
 %% set pseudodata and respective weights
 [data, units, label, weights] = addpseudodata(data, units, label, weights);
