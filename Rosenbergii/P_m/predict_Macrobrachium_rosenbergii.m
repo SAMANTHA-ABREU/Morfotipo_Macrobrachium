@@ -24,6 +24,8 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   
   % puberty 
   tT_p = t_p/ kT_M;           % d, time at puberty at f and T
+  L_p = L_m * l_p;                  % cm, structural length at puberty at f
+  Lw_p = L_p/ del_M;                % cm, total length at puberty at f
 
   % life span
   pars_tm = [g; l_T; h_a/ k_M^2; s_G];  % compose parameter vector at T_ref
@@ -75,6 +77,7 @@ function [prdData, info] = predict_Macrobrachium_rosenbergii(par, data, auxData)
   prdData.ab = aT_b;
   prdData.tj = tT_j;
   prdData.tp = tT_p;
+  prdData.Lp = Lw_p;
   prdData.am = aT_m;
   prdData.Ri = RT_i;
   prdData.Wwi_F = Ww_i_F;
