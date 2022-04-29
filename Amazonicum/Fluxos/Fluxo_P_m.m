@@ -19,20 +19,19 @@ Temp = C2K(30);
 TC = tempcorr(Temp, T_ref, T_A);
   
 L_p = L_m * l_p;                  % cm, structural length at puberty at f
-kT_M = k_M * TC;
 s_M=(l_j/l_b);                                    % Acceleration factor
 
 
 for i = 1:length(somaticmaint)
-    par.p_M = somaticmaint(i);
+    p_M = somaticmaint(i);
     
   
-    p_Am = z * par.p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
+    %p_Am = z * p_M/ kap;             % J/d.cm^2, {p_Am} spec assimilation flux
     E_m = p_Am/ v;                   % J/cm^3, reserve capacity [E_m]
     g = E_G/ (kap* E_m);             % -, energy investment ratio
     m_Em = y_E_V * E_m/ E_G;         % mol/mol, reserve capacity 
     w = m_Em * w_E/ w_V;             % -, contribution of reserve to weight
-    k_M = par.p_M/E_G;
+    k_M = p_M/E_G;
     k = k_J/k_M;
     L_m = v/ k_M/ g;                  % cm, max struct length
     pars_tj = [g k l_T v_Hb v_Hj v_Hp]; % parameter vector like pars_tj, but for males TC
@@ -41,23 +40,29 @@ for i = 1:length(somaticmaint)
     kT_M = k_M * TC;
     rT_B = rho_B * kT_M;
     
+%     mu = (L_i+L_p)/2;
+%     sigma = (L_i-L_p)/6;
+%     L_init = sort(L_p + ((mu - L_p) + sigma * randn(1,50)));
+%     L_init(L_init>L_i) = L_i;
+%     L_init(L_init<L_p) = L_p;
+%     L_init = sort(L_init);
     L_init = linspace(L_p,L_i,len_resvector);
-    t = t_p + 30;
-
+    
     % Mass gained (Augusto 2016 e 2014 - %)
-    L_f = L_i - (L_i-L_init) * exp(-rT_B*t_obs);                 % growth curve
+    L_f = L_i - (L_i-L_init) * exp(-rT_B* t_obs);                 % growth curve
     Ww0 = L_init.^3 * (1 + f * ome);
     Ww = L_f.^3 * (1 + f * ome);
     Wg = Ww./Ww0;                                                % Mass gained (%)
-
+    Wd = Ww * d_V;                                               % g Dry weight
+    
     % P - daily growth (Augusto 2016 - g/d e Augusto 2014 - mg/d)
     Wg_d = (Ww-Ww0)./30;                                         % g/d
 
     % Ingestion rate (Augusto 2016 - mg/d e Augusto 2014 - mg/d)
     mu_X = 14000;                                                %J/gDW
-    X_wd = 2;                                                    %gWW/gDW
+    X_wd = 0.2388/0.2198;                                                    %gWW/gDW
     JT_X = 1000 * p_Am * L_f.^2/ kap_X/ mu_X * X_wd * TC * s_M;  % mg/d, ingested food (Fenneropenaeus chinensis)
-    
+   
     % Faecal (Augusto 2016 - mg e Augusto 2014 - mg)
     JT_P = JT_X * (1 - kap_X);                                   % mg/d, max faeces production per surface area 
     
@@ -66,12 +71,13 @@ for i = 1:length(somaticmaint)
     p_ref = TC * p_Am * L_m^2;                        % J/d, max assimilation capacity at maximum size
     pACSJGRD = p_ref * scaled_power_j(L_f, f, pars_p, l_b, l_j, l_p); % J/d, powers
     J_M = - (n_M\n_O) * eta_O * pACSJGRD(:, [1 7 5])';% mol/d: J_C, J_H, J_O, J_N in rows
+    Wd = 1e3 * L_f.^3 * (1 + f * ome) * d_V;                 % mg Dry weight
     
     % Respiration (Augusto 2016 - g e Augusto 2014 - g)
-    EJO = (- 2*16 * J_M(3,:) * TC)';                   % g O2/d, O2 consumption (Fenneropenaeus chinensis)
+    EJO = (- 2*16 * J_M(3,:) * TC)' * d_V;                   % g O2/d, O2 consumption (Fenneropenaeus chinensis)
 
     % Excretion (Augusto 2016 - mg e Augusto 2014 - mg)
-    EJN = (1000 * J_M(4,:) * TC * 17.031)';          % mg-at NH3/d, ammonia production
+    EJN = (1e3 * J_M(4,:) * TC * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
 
     results = struct;                                      % pack results output
     results.Wg = Wg;                                
