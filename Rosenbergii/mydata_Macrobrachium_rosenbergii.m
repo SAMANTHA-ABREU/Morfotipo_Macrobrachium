@@ -40,13 +40,13 @@ data.ab = 19;      units.ab = 'd';    label.ab = 'age at birth';  bibkey.ab = 'P
 data.tj = 18;      units.tj = 'd';    label.tj = 'time at end of acceleration';  bibkey.tj = 'Pinh1998';   
   temp.tj = C2K(28);  units.temp.tj = 'K'; label.temp.tj = 'temperature';
   comment.tj  = 'periodo varia de 16 a 20 dias';
-data.tp = 110;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = ''; comment.tj = 'Média dos dado observado no CAUNESP, tempo varia entre 100 e 120 dias';
+data.tp = 110;      units.tp = 'd';    label.tp = 'time at puberty';  bibkey.tp = 'Guess'; comment.tj = '*Data obtained from preliminary results of experiments conducted at the Unesp Aquaculture Center - Caunesp. Time ranges is 100 to 120 days';
   temp.tp = C2K(28);  units.temp.tp = 'K'; label.temp.tp = 'temperature';
   comment.tb  = 'periodo varia de 100 a 120 dias';
 data.am = 1095;    units.am = 'd';   label.am = 'life span';  bibkey.am = 'New2000';   
   temp.am = C2K(28); units.temp.am = 'K'; label.temp.am = 'temperature';
  
-data.Lp  = 2.5;     units.Lp  = 'cm';  label.Lp  = 'total length st puberty'; bibkey.Lp  = ''; temp.Lp = C2K(28);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature'; comment.Lp = 'Dado observado no CAUNESP'; 
+data.Lp  = 2.5;     units.Lp  = 'cm';  label.Lp  = 'total length st puberty'; bibkey.Lp  = 'Guess'; temp.Lp = C2K(28);  units.temp.Lp = 'K'; label.temp.Lp = 'temperature'; comment.Lp = '*Data obtained from preliminary results of experiments conducted at the Unesp Aquaculture Center - Caunesp'; 
 
 data.Ri  = 100000/30;   units.Ri  = '#/d'; label.Ri  = 'maximum reprod rate'; bibkey.Ri  = 'DaSi2004';   
   temp.Ri = C2K(28);  units.temp.Ri = 'K'; label.temp.Ri = 'temperature';
