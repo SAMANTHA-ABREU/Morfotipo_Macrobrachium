@@ -61,7 +61,7 @@ for i = 1:length(somaticmaint)
     % Ingestion rate (Augusto 2016 - mg/d e Augusto 2014 - mg/d)
     mu_X = 14000;                                                %J/gDW
     X_wd = 0.2388/0.2198;                                                    %gWW/gDW
-    JT_X = 1000 * p_Am * L_f.^2/ kap_X/ mu_X * X_wd * TC * s_M;  % mg/d, ingested food (Fenneropenaeus chinensis)
+    JT_X = 1000 * p_Am * L_f.^2/ kap_X/ mu_X * X_wd * TC * s_M;  % mg/d, ingested food 
    
     % Faecal (Augusto 2016 - mg e Augusto 2014 - mg)
     JT_P = JT_X * (1 - kap_X);                                   % mg/d, max faeces production per surface area 
@@ -74,10 +74,10 @@ for i = 1:length(somaticmaint)
     Wd = 1e3 * L_f.^3 * (1 + f * ome) * d_V;                 % mg Dry weight
     
     % Respiration (Augusto 2016 - g e Augusto 2014 - g)
-    EJO = (- 2*16 * J_M(3,:) * TC)' * d_V;                   % g O2/d, O2 consumption (Fenneropenaeus chinensis)
+    EJO = (- 2*16 * J_M(3,:))' * d_V;                   % g O2/d, O2 consumption 
 
     % Excretion (Augusto 2016 - mg e Augusto 2014 - mg)
-    EJN = (1e3 * J_M(4,:) * TC * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
+    EJN = (1e3 * J_M(4,:) * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
 
     results = struct;                                      % pack results output
     results.Wg = Wg;                                
