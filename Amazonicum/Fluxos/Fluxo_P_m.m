@@ -40,13 +40,13 @@ for i = 1:length(somaticmaint)
     kT_M = k_M * TC;
     rT_B = rho_B * kT_M;
     
-%     mu = (L_i+L_p)/2;
-%     sigma = (L_i-L_p)/6;
-%     L_init = sort(L_p + ((mu - L_p) + sigma * randn(1,50)));
-%     L_init(L_init>L_i) = L_i;
-%     L_init(L_init<L_p) = L_p;
+    mu = (L_i+L_p)/2;
+    sigma = (L_i-L_p)/6;
+    L_init = sort(L_p + ((mu - L_p) + sigma * randn(1,50)));
+    L_init(L_init>L_i) = L_i;
+    L_init(L_init<L_p) = L_p;
 %     L_init = sort(L_init);
-    L_init = linspace(L_p,L_i,len_resvector);
+%     L_init = linspace(L_p,L_i,len_resvector);
     
     % Mass gained (Augusto 2016 e 2014 - %)
     L_f = L_i - (L_i-L_init) * exp(-rT_B* t_obs);                 % growth curve
@@ -62,24 +62,26 @@ for i = 1:length(somaticmaint)
     pars_p = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose pars
     p_ref = p_Am * L_m^2*TC;                        % J/d, max assimilation capacity at maximum size
     pACSJGRD = p_ref * scaled_power_j(L_f, f, pars_p, l_b, l_j, l_p); % J/d, powers
+    eta_O(1,1) = -0.2989;   %food
+    eta_O(4,1) = 0.005978;  %faeces
     J_M = - (n_M\n_O) * eta_O * pACSJGRD(:, [1 7 5])';% mol/d: J_C, J_H, J_O, J_N in rows
     J_O = eta_O * pACSJGRD(:, [1 7 5])';% mol/d: J_X, J_V, J_E + J_ER, J_P in rows
     Wd = 1e3 * L_f.^3 * (1 + f * ome) * d_V;                 % mg Dry weight
     Ww = 1e3 * L_f.^3 * (1 + f * ome);  %mg Wet weigth
     % Ingestion rate (Augusto 2016 - mg/d e Augusto 2014 - mg/d)
 %     mu_X = 14000;                                                %J/gDW
-%     X_wd = 0.2388/0.2198;                                                    %gWW/gDW
+    X_wd = 0.2388/0.2198;                                                    %gWW/gDW
 %     JT_X = 1000 * p_Am * L_f.^2/ kap_X/ mu_X * X_wd * TC * s_M;  % mg/d, ingested food (Fenneropenaeus chinensis)
-    JT_X = 1e3 * (1 + f * ome)* 23.9 * J_O(1,:);         %mg/d Wet weight
+    JT_X = - X_wd * 1e3 * (1 + f * ome) * 23.9 * J_O(1,:);         %mg/d Wet weight
     % Faecal (Augusto 2016 - mg e Augusto 2014 - mg)
-%     JT_P = JT_X * (1 - kap_X);                                   % mg/d, max faeces production per surface area 
-    JT_P = 1e3 * 23.9 * J_O(4,:);                                  %mg/d Dry weight
+    JT_P =  JT_X / X_wd * (1 - kap_X);                                   % mg/d, max faeces production per surface area 
+%     JT_P = X_wd * 1e3 * 23.9 * J_O(4,:);                                  %mg/d Dry weight
     % Respiration (Augusto 2016 - g e Augusto 2014 - g)
-    EJO = (- 2*16 * J_M(3,:) * TC)' * d_V;                   % g O2/d, O2 consumption 
-
+%     EJO = (- 2*16 * J_M(3,:) * TC)' * d_V;                   % g O2/d, O2 consumption 
+      EJO = (- 2*16 * J_M(3,:))' * d_V;                   % g O2/d, O2 consumption
     % Excretion (Augusto 2016 - mg e Augusto 2014 - mg)
-    EJN = (1e3 * J_M(4,:) * TC * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
-
+%     EJN = (1e3 * J_M(4,:) * TC * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
+      EJN = (1e3 * J_M(4,:) * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
     results = struct;                                      % pack results output
     results.Wg = Wg;                                
     results.Wg_d = Wg_d;
@@ -175,3 +177,4 @@ EJN (:,4) = results.EJN;
 load ('Results_'+string(somaticmaint(5))+'.mat')
 EJN (:,5) = results.EJN;
 csvwrite ( 'EJNpM.csv' , EJN)
+
