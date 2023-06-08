@@ -1,5 +1,5 @@
 %%% Load estimated parameters %%%
-load ('results_Macrobrachium_amazonicum.mat')
+load ('results_Macrobrachium_amazonicumpm.mat')
 
 % Somatic maint (used to vary {p_M}) change with each morphotype 
 somaticmaint = [par.p_M, par.p_MTC, par.p_MCC, par.p_MGC1, par.p_MGC2];
