@@ -78,10 +78,10 @@ for i = 1:length(somaticmaint)
 %     JT_P = X_wd * 1e3 * 23.9 * J_O(4,:);                                  %mg/d Dry weight
     % Respiration (Augusto 2016 - g e Augusto 2014 - g)
 %     EJO = (- 2*16 * J_M(3,:) * TC)' * d_V;                   % g O2/d, O2 consumption 
-      EJO = (- 2*16 * J_M(3,:))' * d_V;                   % g O2/d, O2 consumption
+      EJO = - 2*16 * J_M(3,:);                   % g O2/d, O2 consumption
     % Excretion (Augusto 2016 - mg e Augusto 2014 - mg)
 %     EJN = (1e3 * J_M(4,:) * TC * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
-      EJN = (1e3 * J_M(4,:) * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
+      EJN = 1e3 * J_M(4,:) * 17.031;          % mg-at NH3/d, ammonia production
     results = struct;                                      % pack results output
     results.Wg = Wg;                                
     results.Wg_d = Wg_d;
