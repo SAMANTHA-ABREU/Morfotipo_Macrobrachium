@@ -1,5 +1,5 @@
 %%% Load estimated parameters %%%
-load ('results_Macrobrachium_amazonicum.mat')
+load ('results_Macrobrachium_amazonicumpam.mat')
 
 % Zoom factors (used to vary {p_Am}) change with each morphotype 
 zoomfactor = [par.z, par.z_mTC, par.z_mCC, par.z_mGC1, par.z_mGC2];
