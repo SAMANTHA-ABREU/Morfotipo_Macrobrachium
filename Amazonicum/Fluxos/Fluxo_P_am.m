@@ -37,16 +37,13 @@ for i = 1:length(zoomfactor)
     L_i = L_m * l_i;    % cm, ultimate structural length at f
     rT_B = rho_B * kT_M;
     
-%     mu = (L_i+L_p)/2;
-%     sigma = (L_i-L_p)/6;
-%     L_init = sort(L_p + ((mu - L_p) + sigma * randn(1,50)));
-%     L_init(L_init>L_i) = L_i;
-%     L_init(L_init<L_p) = L_p;
-%     L_init = sort(L_init);
-    L_init = linspace(L_p,L_i,len_resvector);
-    
-    t = t_p + 30;
+     mu = (L_i+L_p)/2;
+     sigma = (L_i-L_p)/6;
+     L_init = sort(L_p + ((mu - L_p) + sigma * randn(1,50)));
+     L_init(L_init>L_i) = L_i;
+     L_init(L_init<L_p) = L_p;
 
+    
     % Mass gained (Augusto 2016 e 2014 - %)
     L_f = L_i - (L_i-L_init) * exp(-rT_B*t_obs);                 % growth curve
     Ww0 = L_init.^3 * (1 + f * ome);
@@ -54,28 +51,29 @@ for i = 1:length(zoomfactor)
     Wg = Ww./Ww0;                                                % Mass gained (%)
     Wd = Ww * d_V;                                               % g Dry weight
 
-    % P - daily growth (Augusto 2016 - g/d e Augusto 2014 - mg/d)
+    % Daily growth (Augusto 2016 - g/d e Augusto 2014 - mg/d)
     Wg_d = (Ww-Ww0)./30;                                         % g/d
+
+    % Flux data 
+    pars_p = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose pars
+    p_ref = p_Am * L_m^2*TC;                        % J/d, max assimilation capacity at maximum size
+    pACSJGRD = p_ref * scaled_power_j(L_f, f, pars_p, l_b, l_j, l_p); % J/d, powers
+    J_M = - (n_M\n_O) * eta_O * pACSJGRD(:, [1 7 5])';% mol/d: J_C, J_H, J_O, J_N in rows
+    J_O = eta_O * pACSJGRD(:, [1 7 5])';% mol/d: J_X, J_V, J_E + J_ER, J_P in rows
 
     % Ingestion rate (Augusto 2016 - mg/d e Augusto 2014 - mg/d)
     mu_X = 14000;                                                %J/gDW
     X_wd = 0.2388/0.2198;                                                    %gWW/gDW
-    JT_X = 1000 * p_Am * L_f.^2/ kap_X/ mu_X * X_wd * TC * s_M;  % mg/d, ingested food 
+    JT_X = 1000 * p_Am * L_f.^2/ kap_X/ mu_X * X_wd * TC * s_M;  % mg/d, ingested food
     
     % Faecal (Augusto 2016 - mg e Augusto 2014 - mg)
     JT_P = JT_X * (1 - kap_X);                                   % mg/d, max faeces production per surface area 
-    
-    % Flux data 
-    pars_p = [kap; kap_R; g; k_J; k_M; L_T; v; U_Hb; U_Hj; U_Hp]; % compose pars
-    p_ref = TC * p_Am * L_m^2;                        % J/d, max assimilation capacity at maximum size
-    pACSJGRD = p_ref * scaled_power_j(L_f, f, pars_p, l_b, l_j, l_p); % J/d, powers
-    J_M = - (n_M\n_O) * eta_O * pACSJGRD(:, [1 7 5])';% mol/d: J_C, J_H, J_O, J_N in rows
-        
+       
     % Respiration (Augusto 2016 - g e Augusto 2014 - g)
-    EJO = (- 2*16 * J_M(3,:))' * d_V;                   % g O2/d, O2 consumption 
+    EJO = (- 2*16 * J_M(3,:) * TC)' * d_V;                   % g O2/d, O2 consumption 
 
     % Excretion (Augusto 2016 - mg e Augusto 2014 - mg)
-    EJN = (1e3 * J_M(4,:) * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
+    EJN = (1e3 * J_M(4,:) * TC * 17.031)' * d_V;          % mg-at NH3/d, ammonia production
 
     results = struct;                                      % pack results output
     results.Wg = Wg;                                
